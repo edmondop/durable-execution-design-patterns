@@ -238,8 +238,10 @@ changes at compile time. In practice, it was a tool designed for the J2EE era:
 perfectly at home inside an enterprise monolith, deeply foreign to a polyglot
 microservice architecture. The engine worked well for what it was designed to do,
 but when the business needed behavior that BPMN could not express natively,
-extending it meant writing custom Java delegates wired into the engine&#8217;s
-internals.</p>
+you had to reach for escape hatches: custom Java delegates, REST calls that
+returned routing decisions, or the external task service pattern. All
+workable, but each one pulled you further from the visual process model
+that was supposed to be the point.</p>
 </div>
 <div class="paragraph">
 <p>We eventually replaced it with a choreography-based architecture: services
