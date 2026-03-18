@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: Durable Execution Design Patterns</title>
+    <meta name="generator" content="Antora 3.1.14">
+<link rel="stylesheet" href="../_/css/site.css">
+<link rel="stylesheet" href="../_/css/extra.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="..">Durable Execution Design Patterns</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="dedp" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="index.html">Durable Execution Design Patterns</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Preface</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">State Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-entity.html">The Entity (Durable Object)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-code-as-state.html">Code-as-State</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Coordination Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03-durable-promise.html">The Durable Promise</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-execution-singleton.html">The Execution Singleton</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Composition Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="05-saga.html">The Saga</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="06-scatter-gather.html">The Scatter-Gather</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07-pipeline.html">The Pipeline</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Lifecycle Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="08-perpetual-execution.html">The Perpetual Execution</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09-durable-observer.html">The Durable Observer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="10-closing-thoughts.html">Closing Thoughts</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Appendices</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="a-pattern-quick-reference.html">A: Pattern Quick Reference</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="b-environment-setup.html">B: Environment Setup</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="c-failure-simulation-playbook.html">C: Failure Simulation Playbook</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Durable Execution Design Patterns</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="index.html">Durable Execution Design Patterns</a></div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Durable Execution Design Patterns</a></li>
+    <li>Appendices</li>
+    <li><a href="c-failure-simulation-playbook.html">C: Failure Simulation Playbook</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="https://github.com/edmondop/durable-execution-design-patterns/edit/main/docs/modules/ROOT/pages/c-failure-simulation-playbook.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="_failure_simulation_playbook"><a class="anchor" href="#_failure_simulation_playbook"></a>Appendix A: Failure Simulation Playbook</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Each chapter&#8217;s pattern can be validated by injecting failures and observing
+recovery. This appendix documents the failure scenarios, how to simulate them,
+and the expected outcomes.</p>
+</div>
+<div class="sect2">
+<h3 id="_general_approach"><a class="anchor" href="#_general_approach"></a>General Approach</h3>
+<div class="paragraph">
+<p>All chaos tests follow the same pattern:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Deploy the chapter&#8217;s example to a Kind cluster with Temporal</p>
+</li>
+<li>
+<p>Start a workflow execution</p>
+</li>
+<li>
+<p>Inject a failure (kill worker, partition network, corrupt state)</p>
+</li>
+<li>
+<p>Verify the workflow recovers and produces the correct result</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The simplest simulations require only <code>kubectl</code> to kill pods. More sophisticated
+tests use Chaos Mesh for network partitions and I/O faults.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Kill a worker pod (simplest chaos test)
+kubectl delete pod -l app=chapter-worker --grace-period=0
+
+# Watch workflow recovery in real time
+temporal workflow show -w &lt;workflow-id&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_chapter_1_the_entity"><a class="anchor" href="#_chapter_1_the_entity"></a>Chapter 1: The Entity</h3>
+<div class="paragraph">
+<p><strong>Worker kill during signal processing</strong>: Kill the worker pod while it is
+processing a signal. The workflow should replay and apply the signal exactly
+once.</p>
+</div>
+<div class="paragraph">
+<p><strong>Network partition between worker and Temporal</strong>: Use Chaos Mesh to partition
+the worker from the Temporal frontend. Signals should queue during the
+partition and process after connectivity is restored.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_chapter_2_code_as_state"><a class="anchor" href="#_chapter_2_code_as_state"></a>Chapter 2: Code-as-State</h3>
+<div class="paragraph">
+<p><strong>Worker kill between activity completions</strong>: Kill the worker after activity A
+completes but before activity B starts. On recovery, activity A should return
+its cached result (no re-execution) and activity B should execute normally.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_chapter_3_the_durable_promise"><a class="anchor" href="#_chapter_3_the_durable_promise"></a>Chapter 3: The Durable Promise</h3>
+<div class="paragraph">
+<p><strong>Worker kill during await</strong>: Kill the worker while the workflow is suspended
+waiting for external fulfillment. After the worker restarts, send the signal.
+The workflow should resume and complete.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_chapter_4_the_execution_singleton"><a class="anchor" href="#_chapter_4_the_execution_singleton"></a>Chapter 4: The Execution Singleton</h3>
+<div class="paragraph">
+<p><strong>Duplicate start requests during recovery</strong>: Start a workflow, kill the worker,
+then send multiple start requests for the same workflow ID. Only one execution
+should exist; duplicates should receive the existing execution&#8217;s handle.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_chapter_5_the_saga"><a class="anchor" href="#_chapter_5_the_saga"></a>Chapter 5: The Saga</h3>
+<div class="paragraph">
+<p><strong>Worker kill during compensation</strong>: Kill the worker while compensations are
+executing. All compensations should complete after recovery, in the correct
+reverse order.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_chapter_6_the_scatter_gather"><a class="anchor" href="#_chapter_6_the_scatter_gather"></a>Chapter 6: The Scatter-Gather</h3>
+<div class="paragraph">
+<p><strong>Worker kill after partial results</strong>: Kill the worker after 3 of 5 activities
+have completed. On recovery, the 3 completed activities should return cached
+results and the remaining 2 should execute.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_chapter_7_the_pipeline"><a class="anchor" href="#_chapter_7_the_pipeline"></a>Chapter 7: The Pipeline</h3>
+<div class="paragraph">
+<p><strong>Worker kill between pipeline stages</strong>: Kill the worker after stage 2
+(validate) but before stage 3 (enrich). On recovery, stages 1 and 2 should
+return cached results; stage 3 should execute normally.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_chapter_8_the_perpetual_execution"><a class="anchor" href="#_chapter_8_the_perpetual_execution"></a>Chapter 8: The Perpetual Execution</h3>
+<div class="paragraph">
+<p><strong>Worker kill during ContinueAsNew boundary</strong>: Kill the worker at the exact
+moment of ContinueAsNew. The new execution should start with correct carried
+state.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_chapter_9_the_durable_observer"><a class="anchor" href="#_chapter_9_the_durable_observer"></a>Chapter 9: The Durable Observer</h3>
+<div class="paragraph">
+<p><strong>Worker kill during signal accumulation</strong>: Kill the worker after several events
+have been signaled but before the correlation rule fires. On recovery, all
+previously signaled events should be reconstructed from history.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

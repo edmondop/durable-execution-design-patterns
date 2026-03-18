@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Durable Execution Design Patterns :: Durable Execution Design Patterns</title>
+    <meta name="generator" content="Antora 3.1.14">
+<link rel="stylesheet" href="../_/css/site.css">
+<link rel="stylesheet" href="../_/css/extra.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="..">Durable Execution Design Patterns</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="dedp" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="index.html">Durable Execution Design Patterns</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="index.html">Preface</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">State Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-entity.html">The Entity (Durable Object)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-code-as-state.html">Code-as-State</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Coordination Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03-durable-promise.html">The Durable Promise</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-execution-singleton.html">The Execution Singleton</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Composition Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="05-saga.html">The Saga</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="06-scatter-gather.html">The Scatter-Gather</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07-pipeline.html">The Pipeline</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Lifecycle Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="08-perpetual-execution.html">The Perpetual Execution</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09-durable-observer.html">The Durable Observer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="10-closing-thoughts.html">Closing Thoughts</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Appendices</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="a-pattern-quick-reference.html">A: Pattern Quick Reference</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="b-environment-setup.html">B: Environment Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="c-failure-simulation-playbook.html">C: Failure Simulation Playbook</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Durable Execution Design Patterns</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="index.html">Durable Execution Design Patterns</a></div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link is-current"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Durable Execution Design Patterns</a></li>
+    <li><a href="index.html">Preface</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="https://github.com/edmondop/durable-execution-design-patterns/edit/main/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Durable Execution Design Patterns</h1>
+<div class="sect1">
+<h2 id="_preface"><a class="anchor" href="#_preface"></a>Preface</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_on_patterns_and_why_engineers_struggle_with_them"><a class="anchor" href="#_on_patterns_and_why_engineers_struggle_with_them"></a>On Patterns and Why Engineers Struggle with Them</h3>
+<div class="paragraph">
+<p>Most software engineers first encounter design patterns in a university course.
+You build a toy project, memorize some UML diagrams, implement a Singleton to
+satisfy a homework assignment, and move on. The projects are too small for the
+patterns to matter — there is no team to coordinate with, no codebase that has
+outgrown one person&#8217;s comprehension, no production system where a bad
+abstraction means six months of rework. Patterns feel like ceremony in that
+context: verbose, overly formal, solutions looking for problems.</p>
+</div>
+<div class="paragraph">
+<p>I know this because I lived it. When I first encountered pattern catalogs, I
+found them archaic. The class diagrams felt like relics of an era obsessed with
+inheritance hierarchies. The prose was dense. I could not connect any of it to
+the code I was actually writing. For years I dismissed the whole idea.</p>
+</div>
+<div class="paragraph">
+<p><strong>What changed my mind was scale.</strong> When the scope of a system exceeds what you can
+hold in your head — seven services, four teams, a timeline measured in
+quarters — you need a way to communicate structural ideas quickly. Not
+implementation details, but the <em>shape</em> of a solution, to people who will go
+build their piece of it independently. A three-page design document explaining
+how your system coordinates distributed actions with paired rollbacks that
+unwind in reverse order on failure takes a meeting, a whiteboard session, and
+three rounds of review comments to land. Saying "this is a Saga" and pointing
+to a well-documented pattern <strong>communicates the same thing in ten seconds</strong>.</p>
+</div>
+<div class="paragraph">
+<p>In a presentation I gave on engineering communication, I argued that diagrams
+are one of the most underused tools in our profession. Civil, mechanical,
+electrical, and architectural engineers all use shared diagrams as their primary
+medium for planning and review. Research backs this up: people skim text in
+<a href="https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/" target="_blank" rel="noopener">F-shaped patterns</a> (Nielsen Norman Group), but they engage with diagrams holistically. Diagrams reduce ambiguity, force precision, and make hidden
+assumptions visible. Patterns serve the same function at a higher level of
+abstraction. A diagram communicates the structure of one system; a pattern
+communicates the structure of an entire <em>class</em> of systems. When a team shares
+a pattern vocabulary, they can reason about architecture the way structural
+engineers reason about trusses — by naming the form, not describing each beam.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_i_discovered_durable_execution"><a class="anchor" href="#_how_i_discovered_durable_execution"></a>How I Discovered Durable Execution</h3>
+<div class="paragraph">
+<p>I spent a large part of my career in financial services, where workflows are
+fundamental. Transaction processing, compliance checks, loan origination,
+payment reconciliation — these are long-running stateful processes that must
+survive failures, handle human intervention, and maintain audit trails. Every
+company in the space builds some version of a workflow engine, whether they call
+it that or not.</p>
+</div>
+<div class="paragraph">
+<p>When I became CTO and co-founder of a fintech startup in 2016, I built the
+first version of our platform on a Java workflow engine from the BPM world.
+Business logic lived in BPMN XML files — diagrams that compiled into execution
+graphs. The engine ran inside a servlet container, and you could not test a
+workflow without standing up the full stack: application server, database, the
+engine itself. There was no way to write a unit test that exercised just the
+process logic. The engine exposed a REST API, but there were no language SDKs
+outside Java — which meant every non-Java service had to talk to it through raw
+HTTP calls with no type safety, no IDE support, and no way to catch contract
+changes at compile time. In practice, it was a tool designed for the J2EE era:
+perfectly at home inside an enterprise monolith, deeply foreign to a polyglot
+microservice architecture. Debugging meant clicking through XML execution logs
+in a web console. Features that should have taken days took weeks because the
+BPMN notation could not express what the business needed, and extending it meant
+writing custom Java delegates wired into the engine&#8217;s internals.</p>
+</div>
+<div class="paragraph">
+<p>We eventually replaced it with a choreography-based architecture: services
+communicating through events, each owning its own slice of the business process.
+This solved the monolith problem but introduced a different set of failures.
+Observability disappeared overnight — no single place showed the state of a
+loan application as it moved through underwriting, compliance, and disbursement.
+Error handling became inconsistent across teams. One team would retry failed
+steps; another would dead-letter them; a third would silently drop them and
+rely on a daily reconciliation batch to catch the gaps. Compensating actions
+were implemented ad hoc, and the subtle bugs they introduced surfaced months
+later in production, usually during an audit.</p>
+</div>
+<div class="paragraph">
+<p>When I discovered durable execution, it collapsed the gap between what I wanted
+to express and what the platform could support. <strong>Write sequential code, and the
+runtime handles persistence, retries, and failure recovery.</strong> The state lives in
+the code, not in a database schema you maintain separately. <strong>The workflow <em>is</em>
+the program.</strong> I had spent years building infrastructure to paper over the
+distance between business logic and execution guarantees. Durable execution
+<strong>simply removed that distance</strong>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_who_is_this_book_for"><a class="anchor" href="#_who_is_this_book_for"></a>Who Is This Book For?</h3>
+<div class="paragraph">
+<p>This book is for <strong>backend engineers and architects</strong> who build distributed
+systems — whether you&#8217;re already using a durable execution platform or
+evaluating one. You should be comfortable reading code in at least one of
+Go, Java, Python, TypeScript, or C#. Familiarity with concepts like retries,
+idempotency, and eventual consistency will help, but the chapters explain what
+you need as they go.</p>
+</div>
+<div class="paragraph">
+<p>If you&#8217;ve never heard of durable execution, the Introduction provides the
+context. If you&#8217;re already building with Temporal or a similar platform, the
+pattern catalog gives you a vocabulary for the recurring designs you&#8217;ve likely
+encountered but haven&#8217;t named.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_what_this_book_is_and_is_not"><a class="anchor" href="#_what_this_book_is_and_is_not"></a>What This Book Is (and Is Not)</h3>
+<div class="paragraph">
+<p>This book is about <strong>durable execution <em>patterns</em></strong>, not about any specific
+platform.</p>
+</div>
+<div class="paragraph">
+<p>A durable execution platform lets you build things that are genuinely difficult
+without one: long-running stateful processes, distributed coordination, failure
+recovery, exactly-once semantics. These capabilities enable recurring structural
+solutions — patterns — that are worth naming, documenting, and reusing.</p>
+</div>
+<div class="paragraph">
+<p>The examples use <a href="https://temporal.io">Temporal</a>. I am a member of the
+<a href="https://temporal.io/community#702702">Temporal Constellation program</a>, and I
+chose Temporal because it is the most flexible and complete implementation of
+the durable execution model available today. Each chapter uses a different
+Temporal SDK language — Go, Java, Python, TypeScript, .NET — to show that these
+patterns are not language-specific.</p>
+</div>
+<div class="paragraph">
+<p>The patterns themselves are platform-agnostic. Other durable execution
+platforms — Restate, DBOS, Azure Durable Functions, Infinitic, and others —
+make different design decisions and support different subsets of these patterns.
+Some patterns require capabilities — such as external messaging into workflows, synchronous state inspection, and history compaction — that not every platform provides. The consequences section of each pattern discusses
+these constraints honestly.</p>
+</div>
+<div class="paragraph">
+<p>For an up-to-date list of platforms, I maintain
+<a href="https://github.com/edmondop/awesome-durable-executions">Awesome Durable Executions</a>,
+an open-source catalog of platforms, tools, and resources in this space.</p>
+</div>
+<div class="paragraph">
+<p>I hope this book gives you a vocabulary that makes your distributed systems
+clearer to design, easier to communicate about, and less painful to operate.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
