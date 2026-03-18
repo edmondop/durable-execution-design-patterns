@@ -1,0 +1,86 @@
+[appendix]
+== Failure Simulation Playbook
+
+Each chapter's pattern can be validated by injecting failures and observing
+recovery. This appendix documents the failure scenarios, how to simulate them,
+and the expected outcomes.
+
+=== General Approach
+
+All chaos tests follow the same pattern:
+
+. Deploy the chapter's example to a Kind cluster with Temporal
+. Start a workflow execution
+. Inject a failure (kill worker, partition network, corrupt state)
+. Verify the workflow recovers and produces the correct result
+
+The simplest simulations require only `kubectl` to kill pods. More sophisticated
+tests use Chaos Mesh for network partitions and I/O faults.
+
+[source,bash]
+----
+# Kill a worker pod (simplest chaos test)
+kubectl delete pod -l app=chapter-worker --grace-period=0
+
+# Watch workflow recovery in real time
+temporal workflow show -w <workflow-id>
+----
+
+=== Chapter 1: The Entity
+
+**Worker kill during signal processing**: Kill the worker pod while it is
+processing a signal. The workflow should replay and apply the signal exactly
+once.
+
+**Network partition between worker and Temporal**: Use Chaos Mesh to partition
+the worker from the Temporal frontend. Signals should queue during the
+partition and process after connectivity is restored.
+
+=== Chapter 2: Code-as-State
+
+**Worker kill between activity completions**: Kill the worker after activity A
+completes but before activity B starts. On recovery, activity A should return
+its cached result (no re-execution) and activity B should execute normally.
+
+=== Chapter 3: The Durable Promise
+
+**Worker kill during await**: Kill the worker while the workflow is suspended
+waiting for external fulfillment. After the worker restarts, send the signal.
+The workflow should resume and complete.
+
+=== Chapter 4: The Execution Singleton
+
+**Duplicate start requests during recovery**: Start a workflow, kill the worker,
+then send multiple start requests for the same workflow ID. Only one execution
+should exist; duplicates should receive the existing execution's handle.
+
+=== Chapter 5: The Saga
+
+**Worker kill during compensation**: Kill the worker while compensations are
+executing. All compensations should complete after recovery, in the correct
+reverse order.
+
+=== Chapter 6: The Scatter-Gather
+
+**Worker kill after partial results**: Kill the worker after 3 of 5 activities
+have completed. On recovery, the 3 completed activities should return cached
+results and the remaining 2 should execute.
+
+=== Chapter 7: The Pipeline
+
+**Worker kill between pipeline stages**: Kill the worker after stage 2
+(validate) but before stage 3 (enrich). On recovery, stages 1 and 2 should
+return cached results; stage 3 should execute normally.
+
+=== Chapter 8: The Perpetual Execution
+
+**Worker kill during ContinueAsNew boundary**: Kill the worker at the exact
+moment of ContinueAsNew. The new execution should start with correct carried
+state.
+
+=== Chapter 9: The Durable Observer
+
+**Worker kill during signal accumulation**: Kill the worker after several events
+have been signaled but before the correlation rule fires. On recovery, all
+previously signaled events should be reconstructed from history.
+

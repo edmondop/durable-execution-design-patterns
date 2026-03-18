@@ -1,0 +1,27 @@
+worker:
+  image: ch01-entity-worker:latest
+  replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
+
+api:
+  image: ch01-entity-api:latest
+  replicas: 1
+  port: 8080
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
+
+temporal:
+  address: temporal-frontend:7233
+  namespace: default
+  taskQueue: cart-task-queue

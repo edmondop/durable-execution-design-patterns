@@ -1,0 +1,20 @@
+* xref:index.adoc[Preface]
+* xref:introduction.adoc[Introduction]
+* State Patterns
+** xref:01-entity.adoc[The Entity (Durable Object)]
+** xref:02-code-as-state.adoc[Code-as-State]
+* Coordination Patterns
+** xref:03-durable-promise.adoc[The Durable Promise]
+** xref:04-execution-singleton.adoc[The Execution Singleton]
+* Composition Patterns
+** xref:05-saga.adoc[The Saga]
+** xref:06-scatter-gather.adoc[The Scatter-Gather]
+** xref:07-pipeline.adoc[The Pipeline]
+* Lifecycle Patterns
+** xref:08-perpetual-execution.adoc[The Perpetual Execution]
+** xref:09-durable-observer.adoc[The Durable Observer]
+* xref:10-closing-thoughts.adoc[Closing Thoughts]
+* Appendices
+** xref:a-pattern-quick-reference.adoc[A: Pattern Quick Reference]
+** xref:b-environment-setup.adoc[B: Environment Setup]
+** xref:c-failure-simulation-playbook.adoc[C: Failure Simulation Playbook]

@@ -1,0 +1,130 @@
+= Durable Execution Design Patterns
+
+[preface]
+== Preface
+
+=== On Patterns and Why Engineers Struggle with Them
+
+Most software engineers first encounter design patterns in a university course.
+You build a toy project, memorize some UML diagrams, implement a Singleton to
+satisfy a homework assignment, and move on. The projects are too small for the
+patterns to matter — there is no team to coordinate with, no codebase that has
+outgrown one person's comprehension, no production system where a bad
+abstraction means six months of rework. Patterns feel like ceremony in that
+context: verbose, overly formal, solutions looking for problems.
+
+I know this because I lived it. When I first encountered pattern catalogs, I
+found them archaic. The class diagrams felt like relics of an era obsessed with
+inheritance hierarchies. The prose was dense. I could not connect any of it to
+the code I was actually writing. For years I dismissed the whole idea.
+
+**What changed my mind was scale.** When the scope of a system exceeds what you can
+hold in your head — seven services, four teams, a timeline measured in
+quarters — you need a way to communicate structural ideas quickly. Not
+implementation details, but the _shape_ of a solution, to people who will go
+build their piece of it independently. A three-page design document explaining
+how your system coordinates distributed actions with paired rollbacks that
+unwind in reverse order on failure takes a meeting, a whiteboard session, and
+three rounds of review comments to land. Saying "this is a Saga" and pointing
+to a well-documented pattern **communicates the same thing in ten seconds**.
+
+In a presentation I gave on engineering communication, I argued that diagrams
+are one of the most underused tools in our profession. Civil, mechanical,
+electrical, and architectural engineers all use shared diagrams as their primary
+medium for planning and review. Research backs this up: people skim text in
+https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/[F-shaped patterns^] (Nielsen Norman Group), but they engage with diagrams holistically. Diagrams reduce ambiguity, force precision, and make hidden
+assumptions visible. Patterns serve the same function at a higher level of
+abstraction. A diagram communicates the structure of one system; a pattern
+communicates the structure of an entire _class_ of systems. When a team shares
+a pattern vocabulary, they can reason about architecture the way structural
+engineers reason about trusses — by naming the form, not describing each beam.
+
+=== How I Discovered Durable Execution
+
+I spent a large part of my career in financial services, where workflows are
+fundamental. Transaction processing, compliance checks, loan origination,
+payment reconciliation — these are long-running stateful processes that must
+survive failures, handle human intervention, and maintain audit trails. Every
+company in the space builds some version of a workflow engine, whether they call
+it that or not.
+
+When I became CTO and co-founder of a fintech startup in 2016, we built the
+first version of our platform on a Java workflow engine from the BPM world.
+Business logic lived in BPMN XML files — diagrams that compiled into execution
+graphs. The engine ran inside a servlet container, and you could not test a
+workflow without standing up the full stack: application server, database, the
+engine itself. There was no way to write a unit test that exercised just the
+process logic. The engine exposed a REST API, but there were no language SDKs
+outside Java — which meant every non-Java service had to talk to it through raw
+HTTP calls with no type safety, no IDE support, and no way to catch contract
+changes at compile time. In practice, it was a tool designed for the J2EE era:
+perfectly at home inside an enterprise monolith, deeply foreign to a polyglot
+microservice architecture. The engine worked well for what it was designed to do,
+but when the business needed behavior that BPMN could not express natively,
+you had to reach for escape hatches: custom Java delegates, REST calls that
+returned routing decisions, or the external task service pattern. All
+workable, but each one pulled you further from the visual process model
+that was supposed to be the point.
+
+We eventually replaced it with a choreography-based architecture: services
+communicating through events, each owning its own slice of the business process.
+This solved the monolith problem but introduced a different set of failures.
+Observability disappeared overnight — no single place showed the state of a
+loan application as it moved through underwriting, compliance, and disbursement.
+Error handling became inconsistent across teams. One team would retry failed
+steps; another would dead-letter them; a third would silently drop them and
+rely on a daily reconciliation batch to catch the gaps. Compensating actions
+were implemented ad hoc, and the subtle bugs they introduced surfaced months
+later in production, usually during an audit.
+
+When I discovered durable execution, it collapsed the gap between what I wanted
+to express and what the platform could support. **Write sequential code, and the
+runtime handles persistence, retries, and failure recovery.** The state lives in
+the code, not in a database schema you maintain separately. **The workflow _is_
+the program.** I had spent years building infrastructure to paper over the
+distance between business logic and execution guarantees. Durable execution
+**simply removed that distance**.
+
+=== Who Is This Book For?
+
+This book is for **backend engineers and architects** who build distributed
+systems — whether you're already using a durable execution platform or
+evaluating one. You should be comfortable reading code in at least one of
+Go, Java, Python, TypeScript, or C#. Familiarity with concepts like retries,
+idempotency, and eventual consistency will help, but the chapters explain what
+you need as they go.
+
+If you've never heard of durable execution, the Introduction provides the
+context. If you're already building with Temporal or a similar platform, the
+pattern catalog gives you a vocabulary for the recurring designs you've likely
+encountered but haven't named.
+
+=== What This Book Is (and Is Not)
+
+This book is about **durable execution _patterns_**, not about any specific
+platform.
+
+A durable execution platform lets you build things that are genuinely difficult
+without one: long-running stateful processes, distributed coordination, failure
+recovery, exactly-once semantics. These capabilities enable recurring structural
+solutions — patterns — that are worth naming, documenting, and reusing.
+
+The examples use https://temporal.io[Temporal]. I am a member of the
+https://temporal.io/community#702702[Temporal Constellation program], and I
+chose Temporal because it is the most flexible and complete implementation of
+the durable execution model available today. Each chapter uses a different
+Temporal SDK language — Go, Java, Python, TypeScript, .NET — to show that these
+patterns are not language-specific.
+
+The patterns themselves are platform-agnostic. Other durable execution
+platforms — Restate, DBOS, Azure Durable Functions, Infinitic, and others —
+make different design decisions and support different subsets of these patterns.
+Some patterns require capabilities — such as external messaging into workflows, synchronous state inspection, and history compaction — that not every platform provides. The consequences section of each pattern discusses
+these constraints honestly.
+
+For an up-to-date list of platforms, I maintain
+https://github.com/edmondop/awesome-durable-executions[Awesome Durable Executions],
+an open-source catalog of platforms, tools, and resources in this space.
+
+I hope this book gives you a vocabulary that makes your distributed systems
+clearer to design, easier to communicate about, and less painful to operate.

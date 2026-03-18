@@ -1,0 +1,255 @@
+== Closing Thoughts
+
+[quote]
+____
+A monad is just a monoid in the category of endofunctors. What's the
+problem?
+____
+
+=== Durable Execution Through the Functional Programming Lens
+
+If you've spent time in the Haskell, Scala, or ML communities, you
+probably winced — and then laughed. That line, from Saunders Mac Lane's
+_Categories for the Working Mathematician_, has become the canonical
+example of a true statement that explains nothing.
+
+This section is the opposite. We're going to take three ideas from
+functional programming and show how they illuminate durable execution —
+not with category theory, but with practical parallels that make both
+sides click. If you've written Scala with Cats or ZIO, or Haskell with
+IO, you'll recognize old friends in new clothes. If you haven't, you'll
+discover that the durable execution constraints you've been learning
+throughout this book aren't arbitrary engineering decisions — they're
+consequences of ideas that functional programmers identified decades
+ago.
+
+==== Purity Is Determinism
+
+The most fundamental rule in durable execution is the **determinism
+constraint**: workflow code must produce the same results given the same
+inputs. No `datetime.now()`. No `random()`. No network calls. No file
+I/O. The introduction to this book spends considerable space on this
+rule because violating it causes `NonDeterminismError` on replay.
+
+Functional programmers have a name for this rule: **purity**. A pure
+function has no side effects and exhibits referential transparency —
+you can replace a function call with its result without changing the
+program's behavior. That's not a philosophical preference. It's a
+mechanical requirement. If `f(x)` can return different values on
+different calls, you can't cache its result and replay it later. If
+`f(x)` mutates global state, replaying it changes the world twice.
+
+The determinism rules documented by durable execution platforms are, line by
+line, a purity tutorial for imperative programmers:
+
+[cols="1,1",options="header"]
+|===
+| Durable execution rule | FP equivalent
+
+| Don't use `datetime.now()` | Don't perform I/O in pure code
+| Don't use `random()` | No non-deterministic effects
+| Don't call external APIs directly | Side effects go in IO, not in pure functions
+| Use `workflow.now()` instead | Use a managed effect that the runtime controls
+|===
+
+Durable execution SDKs provide deterministic replacements (`workflow.now()`,
+`workflow.random()`) not because the SDK designers were being
+paternalistic, but because **the replay interpreter needs to control
+these effects**. In Haskell, you'd express this by keeping workflow
+logic in a pure function and pushing effects into `IO`. In ZIO, you'd
+express it by returning `ZIO` values instead of performing effects
+directly. In Temporal, you express it by calling activities instead of
+doing I/O inline. Different syntax, identical structure.
+
+==== Activities Are Managed Effects
+
+In ZIO, you don't write `println("Order confirmed")`. You write
+`Console.printLine("Order confirmed")`, which returns a `ZIO[Any,
+IOException, Unit]` — a **description** of an effect, not the effect
+itself. The ZIO runtime decides _when_ and _how_ to execute it. This
+separation of description from execution is the core idea behind every
+effect system.
+
+Activities are the same thing. When a workflow calls
+`await execute_activity(charge_payment, order)`, it doesn't charge the
+customer. It emits a **command**: "please schedule this activity." The
+runtime receives the command, dispatches the activity to a worker,
+records the result in the event history, and returns it to the workflow.
+The workflow described the effect. The runtime executed it.
+
+This isn't an analogy. It's the same architectural pattern:
+
+[cols="1,1",options="header"]
+|===
+| Effect system (ZIO/IO) | Durable execution
+
+| `ZIO[R, E, A]` describes an effect | `execute_activity(fn, input)` describes an effect
+| The ZIO runtime executes it | The durable execution runtime executes it
+| The runtime can retry, timeout, or trace it | The runtime can retry, timeout, or trace it
+| On test, swap the interpreter | On replay, swap the interpreter (return cached results)
+|===
+
+The last row is the crucial one. In a test, you might swap the ZIO
+interpreter to return fake values instead of hitting a real database.
+On replay, the durable execution runtime swaps its own interpreter — instead of
+executing the activity again, it returns the result from the event
+history. **Replay is just a different interpreter for the same program.**
+
+==== Event Replay Is Re-Interpretation: The Free Monad Connection
+
+This brings us to the deepest parallel: the **Free Monad**.
+
+If you attended Runar Bjarnason's talks in the early 2010s or worked
+through _Functional Programming in Scala_ (the Red Book), you'll
+remember the idea. A Free Monad lets you build a program as a **data
+structure** — an abstract syntax tree of operations — and then interpret
+that tree with different interpreters. One interpreter executes for
+real. Another logs the operations. A third returns canned values for
+testing.
+
+Here's the structure of a Free program:
+
+[source]
+----
+Program:
+  1. Charge(order)       -- effect description
+  2. SendReceipt(email)  -- effect description
+  3. Return(confirmation)
+
+Interpreter A (production):
+  Charge(order)      → call Stripe API, return result
+  SendReceipt(email) → call SendGrid API, return result
+
+Interpreter B (test):
+  Charge(order)      → return Success("ch_fake123")
+  SendReceipt(email) → return Success("sent")
+----
+
+Now look at what a durable execution runtime does:
+
+[source]
+----
+Workflow code (the "program"):
+  1. execute_activity(charge_payment, order)   -- command
+  2. execute_activity(send_receipt, email)      -- command
+  3. return confirmation
+
+First execution (Interpreter A):
+  charge_payment → dispatch to worker, call Stripe, record result
+  send_receipt   → dispatch to worker, call SendGrid, record result
+
+Replay after crash (Interpreter B):
+  charge_payment → return result from event history
+  send_receipt   → return result from event history
+----
+
+The workflow code is the program. The event history is the log of
+effects. First execution and replay are two interpreters for the same
+program. The `NonDeterminismError` you get when workflow code changes
+between executions? That's the equivalent of modifying the AST after
+the first interpreter has already run — the second interpreter finds
+commands in the history that don't match the program, and it rightfully
+panics.
+
+This isn't a loose metaphor. The structural correspondence is exact:
+
+- The workflow function = the Free program (a sequence of effect descriptions)
+- Activity calls = the effect constructors (the AST nodes)
+- First execution = the production interpreter
+- Replay = the test/cached interpreter
+- Event history = the interpreter's log of previous results
+- `NonDeterminismError` = AST mismatch between program and log
+
+If you've ever implemented a Free Monad interpreter, you've built a
+toy version of a durable execution replay engine. And perhaps the most
+vivid example of this convergence: Runar Bjarnason and Paul Chiusano —
+co-authors of _Functional Programming in Scala_ — went on to create
+Unison, a language whose cloud platform includes durable execution
+built in. They started from the FP side and arrived at durable
+execution. Temporal started from the infrastructure side and arrived at
+an effect system.
+
+And if none of that convinces you — well, a monad is just a monoid in
+the category of endofunctors. What's the problem?
+
+=== Across Platforms
+
+The patterns in this book use terminology from Temporal, but they apply
+to any platform that provides durable execution. The tables below map
+each concept to its equivalent across representative platforms.
+
+==== Temporal and Azure Durable Functions
+
+[cols="2,2,2",options="header"]
+|===
+| Concept | Temporal | Azure Durable Functions
+
+| Workflow | Workflow | Orchestrator Function
+| Side effect | Activity | Activity Function
+| External message | Signal | External Event
+| State query | Query | Custom Status
+| History compaction | `ContinueAsNew` | `ContinueAsNew`
+| Singleton | Workflow ID + Reuse Policy | Instance ID
+| Race / select | Selector / `race()` | `Task.WhenAny()`
+| Durable timer | `workflow.sleep()` | `CreateTimer()`
+| Child execution | Child Workflow | Sub-orchestration
+| Execution log | Event History (append-only) | Orchestration History
+| Executor | Worker (self-hosted) | Function App (managed)
+| Indexed metadata | Search Attributes | Custom Status
+|===
+
+==== DBOS, Inngest, and Restate
+
+[cols="2,2,2,2",options="header"]
+|===
+| Concept | DBOS | Inngest | Restate
+
+| Workflow | `@DBOS.workflow()` | Function | Workflow / Virtual Object
+| Side effect | `@DBOS.step()` | `step.run()` | `ctx.run()`
+| External message | `DBOS.send()` / `recv()` | `step.waitForEvent()` | Awakeable
+| State query | `get_event()` | _Not supported_ | Shared Handler
+| History compaction | _Not needed_ | _Not needed_ | _Not needed_
+| Singleton | Workflow ID | Concurrency key + limit | Virtual Object key
+| Race / select | _Not supported_ | _Not supported_ | `ctx.race()`
+| Durable timer | `DBOS.sleep()` | `step.sleep()` | `ctx.sleep()`
+| Child execution | `DBOS.start_workflow()` | `step.invoke()` | `ctx.workflowClient().run()`
+| Execution log | PostgreSQL rows | Memoized step results | Journal (per invocation)
+| Executor | Your app process | Your HTTP server | Your HTTP server
+| Indexed metadata | Workflow list filters | Event payload | _Not supported_
+|===
+
+=== How to Read This Book If You Use...
+
+**Azure Durable Functions or Dapr.** These share the Durable Task
+Framework heritage with Temporal. Every pattern translates directly.
+Substitute "Orchestrator Function" for "Workflow," "Activity Function"
+for "Activity," "External Event" for "Signal," and `CreateTimer` for
+`workflow.sleep()`. The `ContinueAsNew` API works identically.
+
+**DBOS.** Most patterns apply. You don't need to worry about history
+compaction — DBOS stores step results in PostgreSQL, not an append-only
+log. The Entity pattern works but without Temporal-style query handlers;
+you'd use DBOS's event-based pub/sub for state reads. The determinism
+sections are less critical — DBOS doesn't replay as aggressively as
+Temporal.
+
+**Inngest.** The sequential patterns (Code-as-State, Saga, Pipeline)
+translate well using `step.run()` for activities. Inngest's event-driven
+model is a natural fit for the Durable Observer. The Entity pattern is
+harder — there's no persistent event loop or query mechanism. You don't
+need history compaction.
+
+**Restate.** Restate's three abstractions (Services, Virtual Objects,
+Workflows) map cleanly to the book's patterns. Virtual Objects are a
+native implementation of the Entity pattern — keyed singletons with
+shared handlers for queries. `ctx.run()` replaces activities.
+`ctx.sleep()` and `ctx.race()` provide timers and race semantics.
+Journals are per-invocation, so Perpetual Execution's history
+management doesn't apply.
+
+**Golem.** Golem's WASM-based model is the most different from the
+Temporal model used in this book. Workers are persistent stateful
+processes — the Entity pattern is the natural programming model.
+Activities don't exist as a separate concept; all I/O is transparently
+recorded by the WASM sandbox. The determinism constraint is enforced by
+the sandbox, not by developer discipline.

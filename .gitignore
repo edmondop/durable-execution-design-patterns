@@ -1,0 +1,45 @@
+# Build output
+_build/
+
+# Dagger binary
+dagger/dagger
+
+# Rendered diagrams (regenerated via `mise run diagrams`)
+diagrams/rendered/*.svg
+!diagrams/rendered/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# Go
+examples/ch*/go/bin/
+
+# Java
+examples/ch*/java/target/
+
+# TypeScript
+examples/ch*/typescript/node_modules/
+examples/ch*/typescript/dist/
+
+# .NET
+examples/ch*/dotnet/bin/
+examples/ch*/dotnet/obj/
+examples/ch*/dotnet/*/bin/
+examples/ch*/dotnet/*/obj/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+*.pem

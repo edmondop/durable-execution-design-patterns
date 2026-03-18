@@ -1,0 +1,8 @@
+worker:
+  image: ch03-durable-promise:latest
+  replicas: 1
+
+temporal:
+  address: temporal-frontend:7233
+  namespace: default
+  taskQueue: approval-task-queue

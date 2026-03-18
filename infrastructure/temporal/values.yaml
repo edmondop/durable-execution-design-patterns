@@ -1,0 +1,19 @@
+# Temporal Helm chart values for local development
+server:
+  replicaCount: 1
+
+cassandra:
+  config:
+    cluster_size: 1
+
+prometheus:
+  enabled: false
+
+grafana:
+  enabled: false
+
+elasticsearch:
+  enabled: false
+
+web:
+  enabled: true

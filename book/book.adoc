@@ -1,0 +1,55 @@
+= Durable Execution Design Patterns
+Edmondo Porcu
+:doctype: book
+:toc: left
+:toclevels: 2
+:source-highlighter: rouge
+:imagesdir: ../docs/modules/ROOT/images
+:icons: font
+:experimental:
+:xrefstyle: short
+:stylesheet: theme/book.css
+:linkcss:
+:examplesdir: ../docs/modules/ROOT/examples
+
+include::../docs/modules/ROOT/pages/index.adoc[]
+
+include::../docs/modules/ROOT/pages/introduction.adoc[leveloffset=+1]
+
+= State Patterns
+
+include::../docs/modules/ROOT/pages/01-entity.adoc[leveloffset=+1]
+
+include::../docs/modules/ROOT/pages/02-code-as-state.adoc[leveloffset=+1]
+
+= Coordination Patterns
+
+include::../docs/modules/ROOT/pages/03-durable-promise.adoc[leveloffset=+1]
+
+include::../docs/modules/ROOT/pages/04-execution-singleton.adoc[leveloffset=+1]
+
+= Composition Patterns
+
+include::../docs/modules/ROOT/pages/05-saga.adoc[leveloffset=+1]
+
+include::../docs/modules/ROOT/pages/06-scatter-gather.adoc[leveloffset=+1]
+
+include::../docs/modules/ROOT/pages/07-pipeline.adoc[leveloffset=+1]
+
+= Lifecycle Patterns
+
+include::../docs/modules/ROOT/pages/08-perpetual-execution.adoc[leveloffset=+1]
+
+include::../docs/modules/ROOT/pages/09-durable-observer.adoc[leveloffset=+1]
+
+= Closing
+
+include::../docs/modules/ROOT/pages/10-closing-thoughts.adoc[leveloffset=+1]
+
+= Appendices
+
+include::appendices/a-pattern-quick-reference.adoc[leveloffset=+1]
+
+include::appendices/b-environment-setup.adoc[leveloffset=+1]
+
+include::appendices/c-failure-simulation-playbook.adoc[leveloffset=+1]

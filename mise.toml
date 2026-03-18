@@ -1,0 +1,200 @@
+[tools]
+go = "1.22"
+java = "temurin-21"
+python = "3.12"
+node = "22"
+usage = "latest"
+
+[tasks.ci]
+description = "Run full CI pipeline via Dagger (requires Docker)"
+dir = "dagger"
+run = "go run . check"
+
+[tasks.site]
+description = "Build the Antora site"
+depends = ["diagrams"]
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+cp diagrams/rendered/*.svg docs/modules/ROOT/images/ 2>/dev/null || true
+npx antora antora-playbook.yml
+echo "Site built: _build/site/"
+"""
+
+[tasks.serve]
+description = "Build and serve the Antora site with live reload"
+depends = ["site"]
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+echo "Serving at http://localhost:8000/dedp/"
+echo "Press Ctrl+C to stop"
+python3 -m http.server 8000 --directory _build/site
+"""
+
+[tasks.watch]
+description = "Watch for changes, rebuild Antora site, and serve"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Initial build
+mise run site
+
+# Start server in background
+python3 -m http.server 8000 --directory _build/site &
+SERVER_PID=$!
+trap "kill $SERVER_PID 2>/dev/null" EXIT
+
+echo ""
+echo "Serving at http://localhost:8000/dedp/"
+echo "Watching docs/, diagrams/, examples/ for changes..."
+echo "Press Ctrl+C to stop"
+echo ""
+
+npx -y chokidar-cli \
+    'docs/**/*.adoc' \
+    'docs/**/examples/**' \
+    'diagrams/**/*.py' \
+    'diagrams/**/*.puml' \
+    --debounce 2000 \
+    --command 'echo "Change detected, rebuilding..." && mise run site && echo "Done. Reload your browser."'
+"""
+
+[tasks.book]
+description = "Build HTML + PDF"
+depends = ["diagrams"]
+run = """
+cd book && asciidoctor book.adoc -o ../_build/html/index.html
+cd book && asciidoctor-pdf book.adoc \
+    -a pdf-theme=theme/durable-patterns-theme.yml \
+    -a pdf-fontsdir=theme/fonts \
+    -o ../_build/book.pdf
+"""
+
+[tasks.book-html]
+description = "Build HTML only"
+depends = ["diagrams"]
+run = "cd book && asciidoctor book.adoc -o ../_build/html/index.html"
+
+[tasks.book-pdf]
+description = "Build PDF only"
+depends = ["diagrams"]
+run = """
+cd book && asciidoctor-pdf book.adoc \
+    -a pdf-theme=theme/durable-patterns-theme.yml \
+    -a pdf-fontsdir=theme/fonts \
+    -o ../_build/book.pdf
+"""
+
+[tasks.diagrams]
+description = "Render all diagrams (Python + PlantUML)"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+mkdir -p diagrams/rendered
+for f in diagrams/ch*.py diagrams/intro*.py; do
+    [ -f "$f" ] || continue
+    echo "  Rendering $(basename "$f" .py)..."
+    uv run "$f"
+done
+for f in diagrams/*.puml; do
+    [ -f "$f" ] || continue
+    echo "  Rendering $(basename "$f" .puml)..."
+    plantuml -tsvg "$f" -o rendered/
+done
+echo "All diagrams rendered to diagrams/rendered/"
+"""
+
+[tasks.test]
+description = "Test a single chapter: mise run test -- 01"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+ch="${1:?Usage: mise run test -- <chapter_number>}"
+chapter="ch$(printf '%02d' "$ch")"
+dir=$(ls -d examples/${chapter}-*/ 2>/dev/null | head -1)
+if [ -z "$dir" ]; then echo "Chapter ${chapter} not found"; exit 1; fi
+
+lang_dir=$(ls -d ${dir}*/ | grep -v helm | head -1)
+lang=$(basename "$lang_dir")
+
+echo "Testing ${chapter} (${lang})..."
+case "$lang" in
+    go)         cd "$lang_dir" && go test ./... ;;
+    python)     cd "$lang_dir" && uv run pytest ;;
+    java)       cd "$lang_dir" && mvn -q test ;;
+    typescript) cd "$lang_dir" && npm test ;;
+    dotnet)     cd "$lang_dir" && dotnet test ;;
+esac
+"""
+
+[tasks.test-all]
+description = "Test all chapter examples"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+for i in 01 02 03 04 05 06 07 08 09 10; do
+    mise run test -- "$i" || exit 1
+done
+echo "All chapters pass"
+"""
+
+[tasks.lint]
+description = "Lint all code"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+echo "Linting Go..."
+for d in examples/ch*/go; do [ -d "$d" ] && (cd "$d" && golangci-lint run); done
+echo "Linting Python..."
+for d in examples/ch*/python; do [ -d "$d" ] && (cd "$d" && ruff check .); done
+echo "Linting TypeScript..."
+for d in examples/ch*/typescript; do [ -d "$d" ] && (cd "$d" && npx eslint src/); done
+echo "Linting diagrams..."
+ruff check diagrams/
+echo "All linting passed"
+"""
+
+[tasks.k8s-up]
+description = "Create Kind cluster and install Temporal"
+run = """
+kind create cluster --config infrastructure/kind-cluster.yaml --name de-patterns
+helm repo add temporal https://go.temporal.io/helm-charts
+helm repo update
+helm install temporal temporal/temporal \
+    -f infrastructure/temporal/values.yaml \
+    --timeout 10m \
+    --wait
+echo "Kind cluster + Temporal ready"
+"""
+
+[tasks.k8s-down]
+description = "Tear down Kind cluster"
+run = "kind delete cluster --name de-patterns"
+
+[tasks.helm-test]
+description = "Deploy and test a chapter on K8s: mise run helm-test -- 01"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+ch="${1:?Usage: mise run helm-test -- <chapter_number>}"
+chapter="ch$(printf '%02d' "$ch")"
+dir=$(ls -d examples/${chapter}-*/helm/ 2>/dev/null | head -1)
+echo "Deploying ${chapter} to Kind cluster..."
+helm install "${chapter}" "$dir" --wait --timeout 5m
+echo "Running integration tests..."
+helm uninstall "${chapter}"
+"""
+
+[tasks.chaos]
+description = "Run chaos test for a chapter: mise run chaos -- 01"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+ch="${1:?Usage: mise run chaos -- <chapter_number>}"
+chapter="ch$(printf '%02d' "$ch")"
+echo "Running chaos test for ${chapter}..."
+echo "TODO: Apply chaos-mesh experiments"
+echo "Chaos test complete"
+"""

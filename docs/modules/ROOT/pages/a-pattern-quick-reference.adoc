@@ -1,0 +1,53 @@
+[appendix]
+== Pattern Quick Reference
+
+[cols="1,2,2,1",options="header"]
+|===
+| Pattern | Intent | Key Mechanism | SDK{empty}footnote:[The SDK column indicates which language the chapter's code examples use. All patterns are implementable in any Temporal SDK.]
+
+| The Entity (Durable Object)
+| Encapsulate state and behavior in a long-lived workflow
+| Signals (commands), Queries (reads), ContinueAsNew (compaction)
+| Go
+
+| Code-as-State (Implicit State Machine)
+| Use execution position as implicit state
+| Sequential await points as durable checkpoints
+| Python
+
+| The Durable Promise (External Fulfillment)
+| Suspend for external fulfillment
+| Signal + optional deadline timer
+| Java
+
+| The Execution Singleton (Durable Lock)
+| One active workflow per business key
+| Workflow ID uniqueness constraint
+| TypeScript
+
+| The Saga (Compensating Interaction)
+| Compensating transactions in reverse order
+| Compensation stack + sequential execution
+| .NET
+
+| The Scatter-Gather (Parallel Aggregation)
+| Parallel execution with durable aggregation
+| Child workflows/activities + channel multiplexer
+| Go
+
+| The Pipeline (Staged Transformation)
+| Sequential stages with durable checkpoints
+| Activity results cached on replay
+| Python
+
+| The Perpetual Execution (Living Process)
+| Run indefinitely with history compaction
+| ContinueAsNew with carried state
+| Java
+
+| The Durable Observer (Event Correlator)
+| Correlate events over time
+| Signal accumulation + condition evaluation
+| TypeScript
+
+|===

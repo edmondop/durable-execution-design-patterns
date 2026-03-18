@@ -1,0 +1,63 @@
+@startuml ch03-durable-promise-seq
+skinparam backgroundColor transparent
+skinparam sequence {
+  ArrowColor #555555
+  LifeLineBorderColor #555555
+  LifeLineBackgroundColor #ffffff
+  ParticipantBorderColor #555555
+  ParticipantBackgroundColor #ffffff
+  ParticipantFontColor #333333
+  ParticipantFontSize 14
+  ParticipantFontName Helvetica
+  ArrowFontSize 10
+  ActorBorderColor #555555
+  ActorFontSize 12
+  GroupBackgroundColor #ffffff
+  GroupBorderColor #4338CA
+  ParticipantPadding 40
+}
+skinparam note {
+  BackgroundColor #ffffff
+  BorderColor #999999
+  FontColor #666666
+  FontSize 11
+}
+
+participant "Requester\n(API client)" as Req
+participant "  Temporal\n  Server" as TS
+participant "Approval Workflow\n(on worker)" as WF
+actor "Approver" as App
+
+Req -> TS : (1) StartWorkflow
+activate TS
+TS -> WF : (2) dispatch to worker
+activate WF
+
+||20||
+WF -> App : (3) NotifyApprover
+||5||
+WF -> WF : (4) await Signal
+note right of WF
+  **SUSPENDED**
+  No threads, no polling,
+  no DB row to check.
+  Zero resource cost.
+end note
+WF --> TS : yield
+deactivate WF
+
+||10||
+note right of TS #white;line:white
+  <size:9><color:#999999>time passes (hours / days)</color></size>
+end note
+||5||
+
+App -> TS : (5) Signal(approved = true)
+TS -> WF : (6) deliver signal
+activate WF
+||5||
+WF --> Req : (7) WorkflowResult: Approved
+deactivate WF
+deactivate TS
+
+@enduml

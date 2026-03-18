@@ -1,0 +1,5 @@
+apiVersion: v2
+name: ch03-durable-promise
+description: "Chapter 3: The Durable Promise — Expense Approval example"
+version: 0.1.0
+appVersion: "1.0.0"

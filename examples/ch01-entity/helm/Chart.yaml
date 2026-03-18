@@ -1,0 +1,5 @@
+apiVersion: v2
+name: ch01-entity
+description: "Chapter 1: The Entity (Durable Object) — Shopping Cart example"
+version: 0.1.0
+appVersion: "1.0.0"

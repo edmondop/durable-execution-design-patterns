@@ -1,0 +1,7 @@
+# Chaos Mesh Helm values for failure simulation
+chaosDaemon:
+  runtime: containerd
+  socketPath: /run/containerd/containerd.sock
+
+dashboard:
+  enabled: true

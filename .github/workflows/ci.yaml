@@ -1,0 +1,110 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: write
+  pages: write
+  pull-requests: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+
+      - name: Verify examples compile
+        working-directory: dagger
+        run: go run . check
+
+  build-book:
+    runs-on: ubuntu-latest
+    needs: check
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - uses: astral-sh/setup-uv@v4
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq graphviz plantuml
+
+      - name: Render diagrams
+        run: |
+          mkdir -p diagrams/rendered
+          for f in diagrams/ch*.py diagrams/intro*.py; do
+            [ -f "$f" ] || continue
+            echo "  Rendering $(basename "$f" .py)..."
+            uv run "$f"
+          done
+          for f in diagrams/*.puml; do
+            [ -f "$f" ] || continue
+            echo "  Rendering $(basename "$f" .puml)..."
+            plantuml -tsvg "$f" -o rendered/
+          done
+          cp diagrams/rendered/*.svg docs/modules/ROOT/images/
+
+      - name: Build Antora site
+        run: npx antora antora-playbook.yml
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: book-html
+          path: _build/site/
+
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_build/site
+          keep_files: false
+
+      - name: Deploy PR preview
+        if: github.event_name == 'pull_request'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_build/site
+          destination_dir: pr/${{ github.event.pull_request.number }}
+          keep_files: true
+
+      - name: Comment preview link
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const previewUrl = `https://${owner}.github.io/${repo}/pr/${prNumber}/dedp/`;
+
+            const comments = await github.rest.issues.listComments({
+              owner, repo, issue_number: prNumber
+            });
+            const existing = comments.data.find(c =>
+              c.user.type === 'Bot' && c.body.includes('Book preview')
+            );
+
+            const body = `**Book preview:** ${previewUrl}\n\n_Updated at ${new Date().toISOString()}_`;
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner, repo, comment_id: existing.id, body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner, repo, issue_number: prNumber, body
+              });
+            }

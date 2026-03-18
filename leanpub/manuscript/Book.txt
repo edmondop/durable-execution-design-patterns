@@ -1,0 +1,14 @@
+00-introduction.markua
+01-entity.markua
+02-code-as-state.markua
+03-durable-promise.markua
+04-execution-singleton.markua
+05-saga.markua
+06-scatter-gather.markua
+07-pipeline.markua
+08-perpetual-execution.markua
+09-durable-observer.markua
+10-cross-boundary-nexus.markua
+a-pattern-quick-reference.markua
+b-environment-setup.markua
+c-failure-simulation-playbook.markua

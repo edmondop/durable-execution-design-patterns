@@ -1,0 +1,12 @@
+name: dedp
+title: Durable Execution Design Patterns
+version: ~
+nav:
+  - modules/ROOT/nav.adoc
+asciidoc:
+  attributes:
+    source-highlighter: rouge
+    icons: font
+    experimental: true
+    xrefstyle: short
+    examplesdir: example$

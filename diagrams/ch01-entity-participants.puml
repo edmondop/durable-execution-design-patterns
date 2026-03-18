@@ -1,0 +1,70 @@
+@startuml
+skinparam backgroundColor transparent
+skinparam sequence {
+  ArrowColor #555555
+  LifeLineBorderColor #555555
+  LifeLineBackgroundColor #ffffff
+  ParticipantBorderColor #555555
+  ParticipantBackgroundColor #ffffff
+  ParticipantFontColor #333333
+  ParticipantFontSize 14
+  ActorBorderColor #555555
+}
+skinparam note {
+  BackgroundColor #ffffff
+  BorderColor #999999
+  FontSize 11
+  FontColor #666666
+}
+skinparam participant<<wf>> {
+  BackgroundColor #4338CA
+  BorderColor #4338CA
+  FontColor #ffffff
+}
+
+hide footbox
+
+actor "Client A" as a
+participant "  Cart Workflow\n  (cart-abc-123)  " as cart <<wf>>
+actor "Client B" as b
+
+note over cart #ffffff
+  **Event loop starts.**
+  Local state: empty cart
+  Selector blocks, waiting for signals.
+end note
+
+a -> cart : **addItem**(T-shirt, $25)
+note right of cart #ffffff: state = [{T-shirt, $25}]
+
+a -> cart : **addItem**(Mug, $15)
+note right of cart #ffffff: state = [{T-shirt, $25}, {Mug, $15}]
+
+...hours later...
+
+b -> cart : query **getCart()**
+cart --> b : [{T-shirt, $25}, {Mug, $15}]
+note right of cart #ffffff: query reads local var —\nno DB, no cache
+
+...next day...
+
+hnote over cart #ffffff
+  Worker crashes and restarts.
+  Runtime replays event history.
+  State is reconstructed.
+end hnote
+
+a -> cart : **removeItem**(T-shirt)
+note right of cart #ffffff: state = [{Mug, $15}]
+
+b -> cart : query **getCart()**
+cart --> b : [{Mug, $15}]
+
+a -> cart : **checkout**
+
+note over cart #ffffff
+  **Loop exits.** Terminal condition reached.
+  Workflow returns final CartState.
+end note
+
+@enduml

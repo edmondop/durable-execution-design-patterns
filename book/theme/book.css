@@ -1,0 +1,490 @@
+/* ==========================================================================
+   Durable Execution Design Patterns — "The Well-Edited Room"
+   A restrained, typographically-driven book theme.
+   One accent color. Generous space. No decoration without purpose.
+   ========================================================================== */
+
+/* ---------- Fonts ---------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400;1,7..72,500;1,7..72,600;1,7..72,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap');
+
+/* ---------- Reset & Base ---------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  font-size: 17px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Literata", Georgia, "Noto Serif", serif;
+  font-optical-sizing: auto;
+  line-height: 1.7;
+  color: #2c2c2c;
+  background: #fff;
+}
+
+/* ---------- Layout: TOC sidebar + content ---------- */
+
+body.toc2 {
+  padding-left: 17em;
+}
+
+/* ---------- TOC (left sidebar) ---------- */
+
+#toc.toc2 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 17em;
+  height: 100%;
+  overflow-y: auto;
+  padding: 1.5em 1.2em;
+  background: #f8f9fa;
+  border-right: 1px solid #eee;
+  font-family: "Inter", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 0.82rem;
+  z-index: 100;
+}
+
+#toctitle {
+  font-family: "Inter", -apple-system, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 1.2em 0;
+  padding-bottom: 0.6em;
+  border-bottom: 1px solid #eee;
+}
+
+#toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#toc ul ul {
+  padding-left: 1em;
+}
+
+#toc li {
+  line-height: 1.4;
+  margin: 0.25em 0;
+}
+
+#toc a {
+  color: #666;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+#toc a:hover {
+  color: #4338CA;
+}
+
+/* Part-level entries in TOC */
+#toc ul.sectlevel0 > li > a {
+  font-weight: 600;
+  color: #4338CA;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- Content area ---------- */
+
+#content {
+  max-width: 48em;
+  margin: 0 auto;
+  padding: 2em 1.5em 4em;
+}
+
+/* ---------- Header ---------- */
+
+#header {
+  max-width: 48em;
+  margin: 0 auto;
+  padding: 3em 1.5em 1em;
+}
+
+#header h1 {
+  font-family: "Inter", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.2;
+  margin: 0 0 0.3em;
+}
+
+#header .details {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+/* ---------- Headings ---------- */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Inter", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  color: #1a1a1a;
+  line-height: 1.3;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+/* Part titles (= State Patterns, etc.) — the smallest heading, a label */
+h1.sect0 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #4338CA;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-bottom: none;
+  padding: 3em 0 0.6em;
+  margin: 0;
+}
+
+/* Chapter titles */
+.sect1 > h2 {
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  padding-top: 2em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 1em;
+}
+
+/* Remove default sect1 borders */
+.sect1 + .sect1 {
+  border-top: none;
+}
+
+.sect1 {
+  padding-bottom: 0;
+}
+
+/* Sub-headings */
+h3 {
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin-top: 2em;
+}
+
+h4 {
+  font-size: 1.05rem;
+  font-weight: 500;
+  margin-top: 1.5em;
+}
+
+/* ---------- Paragraphs ---------- */
+
+p {
+  margin: 0 0 1em;
+  text-rendering: optimizeLegibility;
+}
+
+/* Bold and italic in body text */
+strong {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+em {
+  font-style: italic;
+}
+
+/* Kill the lead paragraph oversizing */
+.paragraph.lead > p,
+#preamble > .sectionbody > [class=paragraph]:first-of-type p {
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+/* ---------- Quote blocks (pattern intent statements) ---------- */
+
+.quoteblock {
+  margin: 1.8em 0;
+  padding: 0 0 0 1.5em;
+  border-left: 2px solid #ddd;
+  background: none;
+}
+
+.quoteblock blockquote {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.quoteblock blockquote::before {
+  content: none;
+}
+
+.quoteblock blockquote p,
+.quoteblock p {
+  font-family: "Literata", Georgia, serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: #555;
+  text-align: left;
+  letter-spacing: 0;
+  word-spacing: 0;
+  margin-bottom: 0;
+}
+
+/* ---------- Code blocks ---------- */
+
+.listingblock {
+  margin: 1.5em 0;
+}
+
+.listingblock > .content > pre {
+  font-family: "JetBrains Mono", "Fira Code", "Source Code Pro", Consolas, monospace;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  padding: 1.2em 1.5em;
+  background: #f8f9fa;
+  border: none;
+  border-left: 3px solid #4338CA;
+  border-radius: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Callout numbers in code */
+.conum[data-value] {
+  background: #4338CA;
+  color: #fff;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 0.72rem;
+  width: 1.4em;
+  height: 1.4em;
+  line-height: 1.4em;
+  text-align: center;
+  font-family: "Inter", -apple-system, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.conum[data-value]::after {
+  content: attr(data-value);
+}
+
+.conum[data-value] + b {
+  display: none;
+}
+
+/* Callout list */
+.colist td {
+  padding: 0.2em 0.5em 0.2em 0;
+  vertical-align: top;
+}
+
+.colist td p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 0.3em;
+}
+
+/* Inline code */
+code, .literal {
+  font-family: "JetBrains Mono", "Fira Code", "Source Code Pro", Consolas, monospace;
+  font-size: 0.88em;
+  background: #f0f1f3;
+  padding: 0.15em 0.35em;
+  border-radius: 3px;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+}
+
+/* ---------- Links ---------- */
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: #ccc;
+  text-underline-offset: 0.15em;
+  transition: text-decoration-color 0.15s;
+}
+
+a:hover {
+  text-decoration-color: #4338CA;
+}
+
+/* Heading anchor links */
+h1 > a.anchor, h2 > a.anchor, h3 > a.anchor,
+h4 > a.anchor, h5 > a.anchor, h6 > a.anchor {
+  display: none;
+}
+
+/* TOC links — override the inherited underline */
+#toc a {
+  text-decoration: none;
+}
+
+/* ---------- Images / Diagrams ---------- */
+
+.imageblock {
+  margin: 1.5em 0;
+}
+
+.imageblock img {
+  max-width: 100%;
+  height: auto;
+}
+
+.imageblock > .title {
+  font-family: "Inter", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 0.8rem;
+  font-style: normal;
+  color: #777;
+  margin-top: 0.5em;
+  text-align: left;
+}
+
+/* ---------- Lists ---------- */
+
+ul, ol {
+  margin: 0 0 1em;
+  padding-left: 1.5em;
+}
+
+li {
+  margin-bottom: 0.3em;
+}
+
+li > p {
+  margin-bottom: 0.3em;
+}
+
+/* Definition lists */
+.dlist dt {
+  font-weight: 600;
+  margin-top: 0.8em;
+}
+
+.dlist dd {
+  margin-left: 1em;
+}
+
+/* ---------- Tables ---------- */
+
+table.tableblock {
+  border-collapse: collapse;
+  margin: 1em 0;
+  font-size: 0.9rem;
+}
+
+table.tableblock th,
+table.tableblock td {
+  padding: 0.5em 0.8em;
+  border: 1px solid #eee;
+}
+
+table.tableblock th {
+  background: #f8f9fa;
+  font-family: "Inter", -apple-system, sans-serif;
+  font-weight: 500;
+  text-align: left;
+}
+
+/* ---------- Admonition blocks ---------- */
+
+.admonitionblock {
+  margin: 1.2em 0;
+}
+
+.admonitionblock td.icon {
+  width: 50px;
+  text-align: center;
+  vertical-align: top;
+  padding-top: 0.3em;
+}
+
+.admonitionblock td.content {
+  padding-left: 0.8em;
+  font-size: 0.92rem;
+}
+
+/* ---------- Footer ---------- */
+
+#footer {
+  max-width: 48em;
+  margin: 3em auto 0;
+  padding: 1em 1.5em;
+  border-top: 1px solid #eee;
+  font-size: 0.82rem;
+  color: #999;
+}
+
+/* ---------- Responsive ---------- */
+
+@media screen and (max-width: 1024px) {
+  body.toc2 {
+    padding-left: 0;
+  }
+
+  #toc.toc2 {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  #content {
+    padding: 1.5em 1em;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  html {
+    font-size: 16px;
+  }
+
+  #content {
+    padding: 1em;
+  }
+
+  .listingblock > .content > pre {
+    font-size: 0.78rem;
+    padding: 0.8em;
+  }
+}
+
+/* ---------- Print ---------- */
+
+@media print {
+  body.toc2 {
+    padding-left: 0;
+  }
+
+  #toc.toc2 {
+    display: none;
+  }
+
+  #content {
+    max-width: none;
+  }
+
+  h1.sect0, .sect1 > h2 {
+    page-break-before: always;
+  }
+
+  .listingblock > .content > pre {
+    font-size: 9pt;
+    border-left: 2px solid #4338CA;
+  }
+}

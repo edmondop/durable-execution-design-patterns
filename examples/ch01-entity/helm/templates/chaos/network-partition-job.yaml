@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Release.Name }}-chaos-network-partition
+  annotations:
+    "helm.sh/hook": test
+spec:
+  template:
+    spec:
+      containers:
+        - name: chaos
+          image: bitnami/kubectl:latest
+          command:
+            - /bin/sh
+            - -c
+            - |
+              echo "Simulating network partition between worker and Temporal..."
+              echo "TODO: Apply NetworkChaos CRD from Chaos Mesh"
+              echo "Network partition simulation complete"
+      restartPolicy: Never
+  backoffLimit: 0

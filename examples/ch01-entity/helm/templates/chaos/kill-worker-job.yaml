@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Release.Name }}-chaos-kill-worker
+  annotations:
+    "helm.sh/hook": test
+spec:
+  template:
+    spec:
+      serviceAccountName: default
+      containers:
+        - name: chaos
+          image: bitnami/kubectl:latest
+          command:
+            - /bin/sh
+            - -c
+            - |
+              echo "Killing worker pod to simulate crash..."
+              kubectl delete pod -l app={{ .Release.Name }}-worker --grace-period=0 --force
+              echo "Worker pod killed. Waiting for restart..."
+              kubectl wait --for=condition=ready pod -l app={{ .Release.Name }}-worker --timeout=60s
+              echo "Worker restarted. Verifying workflow recovery..."
+      restartPolicy: Never
+  backoffLimit: 0

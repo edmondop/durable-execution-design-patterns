@@ -1,0 +1,73 @@
+[appendix]
+== Environment Setup
+
+=== Prerequisites
+
+To run all 10 chapter examples, you need:
+
+* **Docker** — for the Temporal development server
+* **Temporal CLI** (`temporal`) — https://docs.temporal.io/cli — for starting a local server with `temporal server start-dev`
+* **Go 1.21+** — chapters 1, 6
+* **Python 3.11+** — chapters 2, 7. Install https://docs.astral.sh/uv/[uv] for dependency management
+* **Java 17+ and Maven** — chapters 3, 8
+* **Node.js 18+ and npm** — chapters 4, 9
+* **.NET 8 SDK** — chapters 5, 10. Install from https://dotnet.microsoft.com/download
+* **mise** (optional) — https://mise.jdx.dev — manages all toolchain versions and provides task shortcuts
+
+For the Kubernetes-based chaos tests (Appendix C):
+
+* **Docker** / **Docker Compose** — container runtime
+* **Kind** — https://kind.sigs.k8s.io — local Kubernetes clusters
+* **kubectl** — Kubernetes CLI
+* **Helm** — https://helm.sh — Kubernetes package manager
+
+For building the book itself:
+
+* **Node.js 18+** — for Antora (HTML site generation)
+* **Ruby and Asciidoctor** — `gem install asciidoctor-pdf` — for PDF generation
+* **uv** — for rendering diagram scripts
+
+=== Quick Start
+
+[source,bash]
+----
+# Start a local Temporal server (via Docker or Temporal CLI)
+temporal server start-dev
+
+# Run tests for a specific chapter (e.g., chapter 1)
+cd docs/modules/ROOT/examples/ch01-entity/go && go test ./...
+
+# Or use mise if installed
+mise install        # Install all language toolchains
+mise run test -- 01 # Run tests for chapter 1
+mise run test-all   # Run all tests
+----
+
+=== Language-Specific Setup
+
+Each chapter example is self-contained with its own dependency management:
+
+* **Go** (ch01, ch06): `go.mod` per example — `go test ./...`
+* **Python** (ch02, ch07): `pyproject.toml` per example — `uv run pytest`
+* **Java** (ch03, ch08): `pom.xml` per example — `mvn test`
+* **TypeScript** (ch04, ch09): `package.json` per example — `npm install && npm test`
+* **.NET** (ch05, ch10): `.csproj` per example — `dotnet test`
+
+=== Kubernetes Setup (Optional)
+
+For running the Helm-based deployment and chaos tests:
+
+[source,bash]
+----
+# Create a Kind cluster with Temporal
+mise run k8s-up
+
+# Deploy and test a chapter
+mise run helm-test -- 01
+
+# Run chaos simulation
+mise run chaos -- 01
+
+# Tear down
+mise run k8s-down
+----
