@@ -11,15 +11,9 @@ dir = "dagger"
 run = "go run . check"
 
 [tasks.site]
-description = "Build the Antora site"
-depends = ["diagrams"]
-run = """
-#!/usr/bin/env bash
-set -euo pipefail
-cp diagrams/rendered/*.svg docs/modules/ROOT/images/ 2>/dev/null || true
-npx antora antora-playbook.yml
-echo "Site built: _build/site/"
-"""
+description = "Build the Antora site via Dagger (requires Docker only)"
+dir = "dagger"
+run = "go run . site"
 
 [tasks.serve]
 description = "Build and serve the Antora site with live reload"
@@ -88,7 +82,7 @@ cd book && asciidoctor-pdf book.adoc \
 """
 
 [tasks.diagrams]
-description = "Render all diagrams (Python + PlantUML)"
+description = "Render all diagrams (requires graphviz + plantuml locally)"
 run = """
 #!/usr/bin/env bash
 set -euo pipefail
@@ -104,6 +98,17 @@ for f in diagrams/*.puml; do
     plantuml -tsvg "$f" -o rendered/
 done
 echo "All diagrams rendered to diagrams/rendered/"
+"""
+
+[tasks.site-local]
+description = "Build the Antora site locally (requires graphviz, plantuml, node, uv)"
+depends = ["diagrams"]
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+cp diagrams/rendered/*.svg docs/modules/ROOT/images/ 2>/dev/null || true
+npx antora antora-playbook.yml
+echo "Site built: _build/site/"
 """
 
 [tasks.test]

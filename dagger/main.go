@@ -25,8 +25,6 @@ func main() {
 	repo := client.Host().Directory("..", dagger.HostDirectoryOpts{
 		Exclude: []string{
 			"_build",
-			".git",
-			"dagger",
 			"node_modules",
 			"diagrams/rendered",
 		},
@@ -38,8 +36,13 @@ func main() {
 			fmt.Fprintf(os.Stderr, "check failed: %v\n", err)
 			os.Exit(1)
 		}
+	case "site":
+		if err := buildSite(ctx, client, repo); err != nil {
+			fmt.Fprintf(os.Stderr, "site build failed: %v\n", err)
+			os.Exit(1)
+		}
 	default:
-		fmt.Fprintf(os.Stderr, "unknown command: %s\n", cmd)
+		fmt.Fprintf(os.Stderr, "unknown command: %s\nusage: go run . [check|site]\n", cmd)
 		os.Exit(1)
 	}
 }
