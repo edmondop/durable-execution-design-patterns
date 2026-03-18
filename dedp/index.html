@@ -225,7 +225,7 @@ company in the space builds some version of a workflow engine, whether they call
 it that or not.</p>
 </div>
 <div class="paragraph">
-<p>When I became CTO and co-founder of a fintech startup in 2016, I built the
+<p>When I became CTO and co-founder of a fintech startup in 2016, we built the
 first version of our platform on a Java workflow engine from the BPM world.
 Business logic lived in BPMN XML files — diagrams that compiled into execution
 graphs. The engine ran inside a servlet container, and you could not test a
@@ -236,10 +236,10 @@ outside Java — which meant every non-Java service had to talk to it through ra
 HTTP calls with no type safety, no IDE support, and no way to catch contract
 changes at compile time. In practice, it was a tool designed for the J2EE era:
 perfectly at home inside an enterprise monolith, deeply foreign to a polyglot
-microservice architecture. Debugging meant clicking through XML execution logs
-in a web console. Features that should have taken days took weeks because the
-BPMN notation could not express what the business needed, and extending it meant
-writing custom Java delegates wired into the engine&#8217;s internals.</p>
+microservice architecture. The engine worked well for what it was designed to do,
+but when the business needed behavior that BPMN could not express natively,
+extending it meant writing custom Java delegates wired into the engine&#8217;s
+internals.</p>
 </div>
 <div class="paragraph">
 <p>We eventually replaced it with a choreography-based architecture: services
