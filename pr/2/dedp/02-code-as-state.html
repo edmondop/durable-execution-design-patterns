@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: Durable Execution Design Patterns</title>
+    <meta name="generator" content="Antora 3.1.14">
+<link rel="stylesheet" href="../_/css/site.css">
+<link rel="stylesheet" href="../_/css/extra.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="..">Durable Execution Design Patterns</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="dedp" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="index.html">Durable Execution Design Patterns</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Preface</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">State Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-entity.html">The Entity (Durable Object)</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="02-code-as-state.html">Code-as-State</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Coordination Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03-durable-promise.html">The Durable Promise</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-execution-singleton.html">The Execution Singleton</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Composition Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="05-saga.html">The Saga</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="06-scatter-gather.html">The Scatter-Gather</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07-pipeline.html">The Pipeline</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Lifecycle Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="08-perpetual-execution.html">The Perpetual Execution</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09-durable-observer.html">The Durable Observer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="10-closing-thoughts.html">Closing Thoughts</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Appendices</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="a-pattern-quick-reference.html">A: Pattern Quick Reference</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="b-environment-setup.html">B: Environment Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="c-failure-simulation-playbook.html">C: Failure Simulation Playbook</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Durable Execution Design Patterns</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="index.html">Durable Execution Design Patterns</a></div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Durable Execution Design Patterns</a></li>
+    <li>State Patterns</li>
+    <li><a href="02-code-as-state.html">Code-as-State</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="https://github.com/edmondop/durable-execution-design-patterns/edit/HEAD/docs/modules/ROOT/pages/02-code-as-state.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="_code_as_state_implicit_state_machine"><a class="anchor" href="#_code_as_state_implicit_state_machine"></a>Code-as-State (Implicit State Machine)</h2>
+<div class="sectionbody">
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Use the workflow&#8217;s execution position as implicit state representation,
+eliminating explicit state variables, transition tables, and developer-managed
+persistence.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p><strong>Intent.</strong> A process follows a sequence of steps where each step depends on
+the previous one&#8217;s outcome. Rather than modeling it as an explicit state machine
+with named states, transitions, and a persistence layer, you express it as
+sequential code. Each activity invocation creates a durable checkpoint. The
+workflow runtime persists execution position automatically.</p>
+</div>
+<div class="paragraph">
+<p><strong>Motivation.</strong> Consider order fulfillment: validate the order, charge payment,
+reserve inventory, ship the package, send a confirmation email. Each step must
+complete before the next begins. If the process crashes after payment but
+before shipping, it must resume from exactly that point — not restart from the
+beginning, and certainly not re-charge the customer.</p>
+</div>
+<div class="paragraph">
+<p>The natural way to model this in a traditional architecture is as an explicit
+finite state machine. You define an enum — <code>PENDING</code>, <code>VALIDATED</code>, <code>PAID</code>,
+<code>RESERVED</code>, <code>SHIPPED</code>, <code>CONFIRMED</code> — and store the current state in a database
+row. A worker polls for orders in each state, performs the next action, and
+updates the state column. If the worker crashes, another instance picks up
+the order in whatever state it was left in.</p>
+</div>
+<div class="paragraph">
+<p>This works, but the cost scales with complexity. Every new edge case — a
+payment that needs manual review, an item that&#8217;s out of stock after
+reservation, a shipping provider that returns an ambiguous status — requires
+a new state and new transitions. The FSM definition grows. <strong>The gap between
+the state machine description and the code that executes each transition
+widens.</strong> The database must be kept in sync with the execution layer through
+careful idempotency logic, and that logic is different for each transition
+because the side effects are different.</p>
+</div>
+<div class="paragraph">
+<p>For a five-step happy path, the explicit FSM is manageable. For a real order
+system with returns, partial refunds, split shipments, and fraud holds, the
+state machine diagram stops fitting on a whiteboard.</p>
+</div>
+<div class="paragraph">
+<p><strong>The Pattern</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ch02-code-as-state-fsm.svg" alt="Implicit vs explicit state machine" width="100%">
+</div>
+</div>
+<div class="paragraph">
+<p>The sequential workflow is written as straight-line async code. Each <code>await</code> on
+an activity call is a durable checkpoint — the equivalent of a state
+transition, except that <strong>no explicit state variable is needed</strong>. The
+workflow&#8217;s program counter <em>is</em> its state. The individual operations (validate,
+charge, ship) are activity steps, each executed as a durable activity whose
+completion is recorded in the workflow&#8217;s event history. On crash, the workflow
+runtime replays completed activities — returning their cached results without
+re-executing them — and resumes execution at the next incomplete step.</p>
+</div>
+<div class="paragraph">
+<p><strong>Traditionally,</strong> building explicit state machines for sequential processes is
+one of the most common patterns in backend services, and one of the most
+tedious to maintain. You need a database table with a <code>state</code> enum column,
+background workers polling for rows in each state, <strong>idempotency keys</strong> for
+every side effect (because a crash between the API call and the database write
+leaves no trace), a dead-letter mechanism for stuck rows, and a runbook for
+manual reprocessing. If any transition is <em>timed</em> — "escalate to a manager if
+the order isn&#8217;t fulfilled within 24 hours" — you also need <strong>persisted timers</strong>
+in the database and a cron job to fire them, with all the race conditions
+between the cron and the normal transition path (<a href="03-durable-promise.html" class="xref page">the
+Durable Promise</a> covers this in detail). The FSM definition and its execution live in different places — often
+different files or services — and understanding the full process means reading
+artifacts that have no structural relationship to each other.</p>
+</div>
+<div class="paragraph">
+<p><strong>With Durable Execution.</strong> The same order process, written as sequential code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">@workflow.defn
+class OrderWorkflow:
+    @workflow.run
+    async def run(self, order: Order) -&gt; str:
+        # STATE: Validating
+        await workflow.execute_activity(  <i class="conum" data-value="1"></i><b>(1)</b>
+            validate_order,
+            order,
+            start_to_close_timeout=timedelta(seconds=30),
+        )
+
+        # STATE: Charging Payment
+        payment_id = await workflow.execute_activity(  <i class="conum" data-value="1"></i><b>(1)</b>
+            charge_payment,
+            order,
+            start_to_close_timeout=timedelta(seconds=60),
+        )
+
+        # STATE: Fulfilling — no state variable tracks this  <i class="conum" data-value="2"></i><b>(2)</b>
+        shipment_id = await workflow.execute_activity(
+            fulfill_order,
+            order,
+            start_to_close_timeout=timedelta(minutes=5),
+        )
+
+        # STATE: Confirming
+        try:  <i class="conum" data-value="3"></i><b>(3)</b>
+            await workflow.execute_activity(
+                send_confirmation,
+                order,
+                start_to_close_timeout=timedelta(seconds=30),
+            )
+        except Exception:
+            pass  # best-effort confirmation
+
+        # STATE: Complete
+        return f"completed: {payment_id}, {shipment_id}"</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Each <code>await</code> is a durable checkpoint — crash here, resume here.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>No state variable, no transition table, no database row.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Error handling is just Python try/except — compensations are just code.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>OrderWorkflow</code> reads like a description of the business process because
+it <em>is</em> the business process. There&#8217;s no separate FSM definition to keep in
+sync, no database table tracking the current state, no polling workers.</p>
+</div>
+<div class="paragraph">
+<p>When this workflow reaches the <code>await</code> on <code>charge_payment</code>, the runtime has
+already recorded the successful completion of <code>validate_order</code> in the event
+history. If the worker crashes after charging but before fulfillment, the
+runtime assigns the workflow to a new worker, replays the history (returning
+the cached results of <code>validate_order</code> and <code>charge_payment</code> without
+re-executing them), and continues from the <code>fulfill_order</code> call. <strong>The customer
+isn&#8217;t charged twice.</strong> No idempotency key is needed in application code — the
+runtime provides it.</p>
+</div>
+<div class="paragraph">
+<p>The <code>try/except</code> around <code>send_confirmation</code> is ordinary Python error handling.
+If sending the email fails, the workflow swallows the exception and continues.
+This is a business decision ("confirmation emails are best-effort") expressed
+in the same language as the rest of the process, not as a special transition
+in a state machine.</p>
+</div>
+<div class="paragraph">
+<p>Each <code># STATE:</code> comment in the code marks what would be a named state in an
+explicit FSM. The comments are there for readability — the runtime doesn&#8217;t
+need them. The execution position <em>is</em> the state, persisted automatically.</p>
+</div>
+<div class="paragraph">
+<p>Timed transitions are equally straightforward. If a step needs a timeout —
+"wait up to 24 hours for fraud review, then escalate" — it&#8217;s a durable sleep or a condition wait with a deadline — <code>workflow.sleep()</code> and <code>workflow.wait_condition()</code> in Temporal&#8217;s Python SDK. <strong>The timer is
+durable</strong>: it survives restarts, deploys, and infrastructure failures without
+a database row or cron job. The race condition between the timer and the
+normal path is handled atomically by the runtime.</p>
+</div>
+<div class="paragraph">
+<p><strong>Consequences.</strong> The primary benefit is readability. A ten-step business
+process reads as ten lines of sequential code with error handling. A new
+developer can understand the process by reading one function, not by
+reconstructing it from an enum, three workers, and a runbook.</p>
+</div>
+<div class="paragraph">
+<p>The trade-off is <strong>aggregate visibility</strong>. For a single workflow, you can add a
+synchronous read handler (a <em>query handler</em> in Temporal) that returns the current step — that&#8217;s trivial. But for
+operational dashboards that need to answer "show me all orders stuck in PAID
+state for more than an hour," you need to query <em>across</em> workflows. An
+explicit FSM gives you a database column you can filter with SQL. With
+Code-as-State, you set a <strong>searchable metadata annotation</strong> (a <em>search attribute</em> in Temporal) at each major step so the
+runtime&#8217;s workflow index (Temporal&#8217;s <em>visibility store</em>) can answer the same aggregate queries. It&#8217;s a small
+amount of extra work — one line per step — but it&#8217;s work you must remember to
+do, because the implicit state model doesn&#8217;t give you aggregate queryability
+for free.</p>
+</div>
+<div class="paragraph">
+<p><strong>Complex branching</strong> is another consideration. A linear five-step process maps
+beautifully to sequential code. A process with many conditional branches — "if
+the customer is in the EU, do GDPR consent; if the item is hazardous, do
+compliance review; if the order total exceeds $10,000, require manager
+approval" — can become deeply nested. There&#8217;s no exact threshold, but if your
+process has more than three or four conditional branches at different points,
+consider whether an explicit state representation (the Entity pattern) would
+be clearer.</p>
+</div>
+<div class="paragraph">
+<p><strong>Distinction from the Entity.</strong> The Entity pattern (<a href="01-entity.html" class="xref page">Chapter 1</a>) also stores
+state in a workflow, but it models an <em>object</em> sitting in an event loop,
+accepting commands indefinitely. Code-as-State models a <em>process</em> that moves
+through a sequence and terminates. If the domain concept has a beginning and an
+end (order fulfillment, employee onboarding, CI pipeline), use Code-as-State.
+If it sits in a loop accepting commands until some external event ends it
+(shopping cart, device twin), use the Entity.</p>
+</div>
+<div class="paragraph">
+<p><strong>Distinction from the Saga.</strong> The Saga pattern (<a href="05-saga.html" class="xref page">Chapter 5</a>) extends sequential
+execution with explicit compensation logic — if step 3 fails, undo steps 2
+and 1. Code-as-State is the simpler case where each step either succeeds (and
+the process continues) or fails (and the workflow returns an error). If your
+process needs coordinated rollbacks across multiple services, you want a Saga.</p>
+</div>
+<div class="paragraph">
+<p><strong>Known Applications</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Order fulfillment — validate, charge, reserve, ship, confirm.</p>
+</li>
+<li>
+<p>Loan origination — application, credit check, underwriting, approval,
+disbursement.</p>
+</li>
+<li>
+<p>Employee onboarding — account creation, equipment provisioning, training
+enrollment, team assignment.</p>
+</li>
+<li>
+<p>CI/CD pipelines — build, test, security scan, deploy to staging, deploy to
+production.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Related Patterns</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The Entity (<a href="01-entity.html" class="xref page">Chapter 1</a>) — explicit state with an event loop.</p>
+</li>
+<li>
+<p>The Saga (<a href="05-saga.html" class="xref page">Chapter 5</a>) — sequential execution with compensation.</p>
+</li>
+<li>
+<p>The Pipeline (<a href="07-pipeline.html" class="xref page">Chapter 7</a>) — sequential stages with independent restartability
+and data transformation between stages.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

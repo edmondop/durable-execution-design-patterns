@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: Durable Execution Design Patterns</title>
+    <meta name="generator" content="Antora 3.1.14">
+<link rel="stylesheet" href="../_/css/site.css">
+<link rel="stylesheet" href="../_/css/extra.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="..">Durable Execution Design Patterns</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="dedp" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="index.html">Durable Execution Design Patterns</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Preface</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">State Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-entity.html">The Entity (Durable Object)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-code-as-state.html">Code-as-State</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Coordination Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03-durable-promise.html">The Durable Promise</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="04-execution-singleton.html">The Execution Singleton</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Composition Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="05-saga.html">The Saga</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="06-scatter-gather.html">The Scatter-Gather</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07-pipeline.html">The Pipeline</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Lifecycle Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="08-perpetual-execution.html">The Perpetual Execution</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09-durable-observer.html">The Durable Observer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="10-closing-thoughts.html">Closing Thoughts</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Appendices</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="a-pattern-quick-reference.html">A: Pattern Quick Reference</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="b-environment-setup.html">B: Environment Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="c-failure-simulation-playbook.html">C: Failure Simulation Playbook</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Durable Execution Design Patterns</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="index.html">Durable Execution Design Patterns</a></div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Durable Execution Design Patterns</a></li>
+    <li>Coordination Patterns</li>
+    <li><a href="04-execution-singleton.html">The Execution Singleton</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="https://github.com/edmondop/durable-execution-design-patterns/edit/HEAD/docs/modules/ROOT/pages/04-execution-singleton.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="_the_execution_singleton_durable_lock"><a class="anchor" href="#_the_execution_singleton_durable_lock"></a>The Execution Singleton (Durable Lock)</h2>
+<div class="sectionbody">
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Leverage the workflow runtime&#8217;s guarantee that only one execution with a given
+ID can be active, using workflow existence as a distributed coordination
+primitive.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p><strong>Intent.</strong> Ensure that exactly one instance of a process is running for a
+given business key at any time. Instead of implementing distributed locking with
+Redis, ZooKeeper, or database advisory locks, you use the workflow runtime&#8217;s
+built-in uniqueness constraint: one active workflow per ID.</p>
+</div>
+<div class="paragraph">
+<p><strong>Motivation.</strong> A payment processing system receives a charge request. Due to
+network retries, webhook redeliveries, or simply a user double-clicking the
+"Pay" button, the same payment ID may arrive multiple times. Processing a
+payment twice means double-charging a customer — an incident that requires
+manual intervention, a refund, and an apology email.</p>
+</div>
+<div class="paragraph">
+<p>The traditional defense is a distributed lock. Acquire it before processing,
+release it after. But distributed locks are one of the most deceptively
+difficult primitives in distributed systems. Martin Kleppmann wrote extensively
+about this in the Redlock debate with Redis&#8217;s creator: a lock based on
+wall-clock TTLs can expire while the holder is still processing (a GC pause, a
+slow network, a page fault). The holder continues, believing it holds the lock,
+while another process has already acquired it. Both processes charge the
+payment.</p>
+</div>
+<div class="paragraph">
+<p>ZooKeeper ephemeral nodes solve the expiry problem but introduce operational
+complexity — you need a ZooKeeper cluster, and the session timeout behavior
+requires careful tuning. Database advisory locks (<code>SELECT &#8230;&#8203; FOR UPDATE</code> or
+<code>pg_advisory_lock</code>) tie the lock to a database connection; if the connection
+drops, the lock is released, which may or may not be what you want depending on
+whether the payment API call was already in flight.</p>
+</div>
+<div class="paragraph">
+<p>All of these approaches treat locking as an infrastructure problem separate from
+the business logic. The lock acquisition, the payment processing, and the lock
+release are three distinct steps that must be coordinated, and <strong>the failure
+modes live in the gaps between them</strong>.</p>
+</div>
+<div class="paragraph">
+<p><strong>The Pattern</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ch04-execution-singleton.svg" alt="Execution Singleton pattern" width="70%">
+</div>
+</div>
+<div class="paragraph">
+<p>The core idea is a workflow whose ID is <strong>deterministically derived from the
+business key</strong> — <code>payment-{payment_id}</code>, for example. The workflow engine
+enforces a hard constraint: at most one active workflow with a given ID can exist at any
+time. A second start request with the same ID is <strong>rejected by default</strong>
+— the caller receives a duplicate-start error (<code>WorkflowExecutionAlreadyStarted</code> in Temporal). This is the
+deduplication guarantee: the caller handles the rejection and can query or await
+the existing execution instead of starting a duplicate.
+The caller — an API handler, a queue consumer, a webhook receiver — starts the
+workflow with the deterministic ID. It doesn&#8217;t need to check whether the
+workflow already exists; <strong>the runtime handles deduplication</strong>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Traditionally,</strong> you&#8217;d call <code>SET payment:{id} locked NX EX 300</code> in Redis —
+set the key only if it doesn&#8217;t exist, with a 300-second expiry. If the SET
+returns OK, you hold the "lock" and proceed. But if processing takes longer
+than the TTL (a slow third-party API, a GC pause), the key expires and another
+process acquires the lock. You now have two processes charging the same payment.
+There&#8217;s no TTL value that&#8217;s simultaneously short enough to recover from crashes
+and long enough to survive slow processing.</p>
+</div>
+<div class="paragraph">
+<p><strong>With Durable Execution.</strong> The payment workflow uses the payment ID as the
+workflow ID. Deduplication is a property of the runtime, not application code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">/**
+ * Payment processing workflow. The workflow ID is `payment-${paymentId}`,
+ * so the runtime guarantees at most one active execution per payment.
+ *
+ * If a second start request arrives for the same payment ID, the runtime
+ * returns the existing execution — no duplicate processing.
+ */
+export async function paymentWorkflow(paymentId: string, amount: number): Promise&lt;string&gt; {
+  const transactionId = await processPayment(paymentId, amount); <i class="conum" data-value="1"></i><b>(1)</b>
+
+  await sleep('5s'); <i class="conum" data-value="2"></i><b>(2)</b>
+
+  await markPaymentComplete(paymentId, transactionId); <i class="conum" data-value="3"></i><b>(3)</b>
+
+  return transactionId; <i class="conum" data-value="4"></i><b>(4)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The payment activity runs exactly once per payment ID — duplicates are
+prevented by the workflow ID uniqueness constraint, not by application code.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>sleep</code> extends the deduplication window. During this 5-second delay,
+any duplicate start request still returns the existing execution.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Post-processing completes within the same workflow — the ID remains occupied.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>When the workflow returns, the ID is released. Future starts with the same
+ID depend on the workflow ID reuse policy.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>paymentWorkflow</code> function is deliberately simple — there&#8217;s no locking
+code because there&#8217;s no lock. The caller starts the workflow with ID
+<code>payment-${paymentId}</code>. If a workflow with that ID is already running, the
+runtime rejects the duplicate start. The caller catches the
+duplicate-start error and can query or await the
+already-running workflow instead of creating a duplicate.</p>
+</div>
+<div class="paragraph">
+<p>The uniqueness guarantee isn&#8217;t based on TTLs or wall-clock time. It&#8217;s a
+property of the workflow&#8217;s lifecycle: <strong>the ID is occupied from the moment the
+workflow starts until it completes</strong> (or is terminated). There&#8217;s no expiry
+window, no GC-pause vulnerability, no split-brain scenario. If the worker
+crashes during <code>processPayment</code>, the workflow engine replays execution on
+another worker and continues — the ID remains occupied throughout.</p>
+</div>
+<div class="paragraph">
+<p>The <code>sleep('5s')</code> in the example represents post-processing delay (settlement
+confirmation, ledger reconciliation). During this sleep, any duplicate start
+request for the same payment ID still returns the existing execution. The
+deduplication window is exactly the workflow&#8217;s lifetime, which is exactly the
+duration of the business operation it protects.</p>
+</div>
+<div class="paragraph">
+<p><strong>Consequences.</strong> The Execution Singleton eliminates distributed locking
+infrastructure entirely. No Redis cluster to operate, no TTL values to tune,
+no lock-expiry edge cases to handle in application code. The workflow engine&#8217;s uniqueness guarantee is stronger than any TTL-based lock
+because it&#8217;s tied to the workflow&#8217;s lifecycle, not to a timer.</p>
+</div>
+<div class="paragraph">
+<p>The trade-off is that the "lock" exists only while the workflow is running.
+For very short operations (sub-second), the overhead of starting a workflow
+may exceed the overhead of a Redis SETNX. If your deduplication window needs to
+extend beyond the workflow&#8217;s completion — for example, you want to reject
+duplicate payments for 24 hours after the first one completed — you need to
+configure what happens when a workflow ID is reused. Temporal provides two controls:
+the <em>ID reuse policy</em> governs what happens after a workflow has <strong>closed</strong>
+(<code>REJECT_DUPLICATE</code> prevents reuse entirely, <code>ALLOW_DUPLICATE_FAILED_ONLY</code>
+allows reuse only after failure), while the <em>ID conflict policy</em> governs what
+happens when a workflow is <strong>still running</strong> (<code>FAIL</code> rejects the start,
+<code>USE_EXISTING</code> returns the running execution, <code>TERMINATE_IF_RUNNING</code> kills the
+old one and starts fresh). The default for running workflows is rejection.</p>
+</div>
+<div class="paragraph">
+<p>Another consideration: the Execution Singleton guarantees that only one workflow
+with a given ID is <em>active</em>, but it doesn&#8217;t prevent concurrent <em>starts</em> from
+racing. Two clients can both call <code>StartWorkflow</code> at the same instant. The
+platform ensures only one succeeds, but both clients may need to handle the
+"already exists" response. The duplicate-start error (<code>WorkflowExecutionAlreadyStarted</code> in Temporal, or its
+SDK-specific equivalent) is the expected response, not an exceptional condition.</p>
+</div>
+<div class="paragraph">
+<p><strong>Distinction from the Entity.</strong> Both patterns use a deterministic workflow ID
+derived from a business key, and they&#8217;re almost always combined. The difference
+is what the workflow <em>does</em>. An Entity (<a href="01-entity.html" class="xref page">Chapter 1</a>) sits in an event loop,
+accepting commands indefinitely — it models a <em>thing</em>. The Execution Singleton
+is the uniqueness constraint itself — it ensures only one workflow per key is
+active. You can have an Execution Singleton that isn&#8217;t an Entity (a one-shot
+payment workflow), and in theory an Entity without singleton semantics, though
+in practice you&#8217;ll rarely want one.</p>
+</div>
+<div class="paragraph">
+<p><strong>Known Applications</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Payment deduplication — workflow ID is <code>payment-{payment_id}</code></p>
+</li>
+<li>
+<p>Singleton scheduled jobs — one <code>daily-report</code> workflow at a time</p>
+</li>
+<li>
+<p>Per-user rate limiting — one <code>user-action-{user_id}</code> workflow per rate window</p>
+</li>
+<li>
+<p>Leader election — the workflow that&#8217;s running is the leader</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Related Patterns</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The Entity (<a href="01-entity.html" class="xref page">Chapter 1</a>) — almost always combined with Execution Singleton to
+ensure one entity per business key</p>
+</li>
+<li>
+<p>Perpetual Execution (<a href="08-perpetual-execution.html" class="xref page">Chapter 8</a>) — a singleton that runs indefinitely via
+periodic re-execution (<code>ContinueAsNew</code> in Temporal)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

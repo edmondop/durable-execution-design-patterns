@@ -1,0 +1,77 @@
+/* Well-Edited Room — Antora overlay */
+
+@import url('https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400;1,7..72,500;1,7..72,600;1,7..72,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap');
+
+/* Body text — Literata */
+.doc {
+  font-family: "Literata", Georgia, serif;
+  font-optical-sizing: auto;
+  color: #2c2c2c;
+}
+
+/* Headings — Inter */
+.doc h1, .doc h2, .doc h3, .doc h4, .doc h5, .doc h6 {
+  font-family: "Inter", -apple-system, sans-serif;
+  color: #1a1a1a;
+}
+
+.doc h1 { font-size: 1.55rem; font-weight: 600; }
+.doc h2 { font-size: 1.25rem; font-weight: 600; }
+.doc h3 { font-size: 1.1rem; font-weight: 500; }
+
+/* Accent color */
+.nav-panel-explore .context .title,
+.nav-panel-menu .nav-link.is-current-page {
+  color: #4338CA;
+}
+
+/* Code blocks */
+.doc pre {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  background: #f8f9fa;
+  border-left: 3px solid #4338CA;
+  border-radius: 0;
+}
+
+.doc code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.88em;
+}
+
+/* Quote blocks */
+.doc .quoteblock {
+  border-left: 2px solid #ddd;
+  background: none;
+}
+
+.doc .quoteblock blockquote p {
+  font-style: italic;
+  color: #555;
+}
+
+/* Bold and italic */
+.doc strong {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+/* Links */
+.doc a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: #ccc;
+}
+
+.doc a:hover {
+  text-decoration-color: #4338CA;
+}
+
+/* Callout numbers */
+.doc .conum[data-value] {
+  background: #4338CA;
+  color: #fff;
+  border-radius: 50%;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+}
