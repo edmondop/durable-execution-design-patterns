@@ -493,9 +493,7 @@ a sequence of side effects paired with compensations. A Pipeline holds a chain
 of transformations with checkpoints between stages. These are structurally
 different. An Entity sits in a loop accepting commands until a terminal event (checkout,
 deletion, inactivity); a Saga always completes (successfully or after full
-rollback); a Pipeline progresses linearly. Using a Saga where you need an
-Entity, or an Entity where you need a Pipeline, will produce <strong>code that fights
-its own abstraction</strong>.</p>
+rollback); a Pipeline progresses linearly.</p>
 </div>
 <div class="paragraph">
 <p>The four categories reflect four different architectural tensions:</p>
