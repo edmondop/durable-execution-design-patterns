@@ -9,6 +9,9 @@ permissions:
   pages: write
   pull-requests: write
 
+env:
+  BUILDER_IMAGE: dedp-builder
+
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -29,34 +32,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
+      - name: Build builder image
+        run: docker build -t $BUILDER_IMAGE .
 
-      - uses: astral-sh/setup-uv@v4
-
-      - name: Install system dependencies
+      - name: Check diagrams are up to date
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq graphviz plantuml
+          docker run --rm \
+            -v "${{ github.workspace }}:/repo" \
+            $BUILDER_IMAGE check
 
-      - name: Render diagrams
+      - name: Build site
         run: |
-          mkdir -p diagrams/rendered
-          for f in diagrams/ch*.py diagrams/intro*.py; do
-            [ -f "$f" ] || continue
-            echo "  Rendering $(basename "$f" .py)..."
-            uv run "$f"
-          done
-          for f in diagrams/*.puml; do
-            [ -f "$f" ] || continue
-            echo "  Rendering $(basename "$f" .puml)..."
-            plantuml -tsvg "$f" -o rendered/
-          done
-          cp diagrams/rendered/*.svg docs/modules/ROOT/images/
-
-      - name: Build Antora site
-        run: npx antora antora-playbook.yml
+          docker run --rm \
+            -v "${{ github.workspace }}:/repo" \
+            $BUILDER_IMAGE build
 
       - uses: actions/upload-artifact@v4
         with:

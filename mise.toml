@@ -10,20 +10,31 @@ description = "Run full CI pipeline via Dagger (requires Docker)"
 dir = "dagger"
 run = "go run . check"
 
-[tasks.site]
-description = "Build the Antora site"
-depends = ["diagrams"]
+[tasks.build]
+description = "Build diagrams + site via Docker (requires Docker only)"
 run = """
 #!/usr/bin/env bash
 set -euo pipefail
-cp diagrams/rendered/*.svg docs/modules/ROOT/images/ 2>/dev/null || true
-npx antora antora-playbook.yml
-echo "Site built: _build/site/"
+docker build -t dedp-builder .
+docker run --rm -v "$(pwd):/repo" dedp-builder build
 """
 
+[tasks.check-diagrams]
+description = "Verify committed SVGs match diagram sources (requires Docker only)"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+docker build -t dedp-builder .
+docker run --rm -v "$(pwd):/repo" dedp-builder check
+"""
+
+[tasks.site]
+description = "Build the Antora site via Docker (requires Docker only)"
+run = "mise run build"
+
 [tasks.serve]
-description = "Build and serve the Antora site with live reload"
-depends = ["site"]
+description = "Build and serve the Antora site"
+depends = ["build"]
 run = """
 #!/usr/bin/env bash
 set -euo pipefail
@@ -39,7 +50,7 @@ run = """
 set -euo pipefail
 
 # Initial build
-mise run site
+mise run build
 
 # Start server in background
 python3 -m http.server 8000 --directory _build/site &
@@ -58,12 +69,12 @@ npx -y chokidar-cli \
     'diagrams/**/*.py' \
     'diagrams/**/*.puml' \
     --debounce 2000 \
-    --command 'echo "Change detected, rebuilding..." && mise run site && echo "Done. Reload your browser."'
+    --command 'echo "Change detected, rebuilding..." && mise run build && echo "Done. Reload your browser."'
 """
 
 [tasks.book]
-description = "Build HTML + PDF"
-depends = ["diagrams"]
+description = "Build HTML + PDF (requires local asciidoctor)"
+depends = ["diagrams-local"]
 run = """
 cd book && asciidoctor book.adoc -o ../_build/html/index.html
 cd book && asciidoctor-pdf book.adoc \
@@ -73,13 +84,13 @@ cd book && asciidoctor-pdf book.adoc \
 """
 
 [tasks.book-html]
-description = "Build HTML only"
-depends = ["diagrams"]
+description = "Build HTML only (requires local asciidoctor)"
+depends = ["diagrams-local"]
 run = "cd book && asciidoctor book.adoc -o ../_build/html/index.html"
 
 [tasks.book-pdf]
-description = "Build PDF only"
-depends = ["diagrams"]
+description = "Build PDF only (requires local asciidoctor)"
+depends = ["diagrams-local"]
 run = """
 cd book && asciidoctor-pdf book.adoc \
     -a pdf-theme=theme/durable-patterns-theme.yml \
@@ -87,8 +98,8 @@ cd book && asciidoctor-pdf book.adoc \
     -o ../_build/book.pdf
 """
 
-[tasks.diagrams]
-description = "Render all diagrams (Python + PlantUML)"
+[tasks.diagrams-local]
+description = "Render all diagrams locally (requires graphviz + plantuml)"
 run = """
 #!/usr/bin/env bash
 set -euo pipefail
@@ -103,6 +114,7 @@ for f in diagrams/*.puml; do
     echo "  Rendering $(basename "$f" .puml)..."
     plantuml -tsvg "$f" -o rendered/
 done
+cp diagrams/rendered/*.svg docs/modules/ROOT/images/
 echo "All diagrams rendered to diagrams/rendered/"
 """
 
