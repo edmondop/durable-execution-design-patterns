@@ -16,7 +16,9 @@ RUN apt-get update -qq && \
         plantuml \
         python3 \
         python3-venv \
-    && rm -rf /var/lib/apt/lists/*
+        fonts-urw-base35 \
+    && rm -rf /var/lib/apt/lists/* \
+    && fc-cache -f
 
 # uv (pinned)
 RUN curl -LsSf https://astral.sh/uv/${UV_VERSION}/install.sh | sh
