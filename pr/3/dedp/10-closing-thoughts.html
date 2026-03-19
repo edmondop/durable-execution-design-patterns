@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: Durable Execution Design Patterns</title>
+    <meta name="generator" content="Antora 3.1.14">
+<link rel="stylesheet" href="../_/css/site.css">
+<link rel="stylesheet" href="../_/css/extra.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="..">Durable Execution Design Patterns</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="dedp" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="index.html">Durable Execution Design Patterns</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Preface</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">State Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-entity.html">The Entity (Durable Object)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-code-as-state.html">Code-as-State</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Coordination Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03-durable-promise.html">The Durable Promise</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-execution-singleton.html">The Execution Singleton</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Composition Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="05-saga.html">The Saga</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="06-scatter-gather.html">The Scatter-Gather</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07-pipeline.html">The Pipeline</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Lifecycle Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="08-perpetual-execution.html">The Perpetual Execution</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09-durable-observer.html">The Durable Observer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="10-closing-thoughts.html">Closing Thoughts</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Appendices</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="a-pattern-quick-reference.html">A: Pattern Quick Reference</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="b-environment-setup.html">B: Environment Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="c-failure-simulation-playbook.html">C: Failure Simulation Playbook</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Durable Execution Design Patterns</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="index.html">Durable Execution Design Patterns</a></div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Durable Execution Design Patterns</a></li>
+    <li><a href="10-closing-thoughts.html">Closing Thoughts</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="file:///repo/docs/modules/ROOT/pages/10-closing-thoughts.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="_closing_thoughts"><a class="anchor" href="#_closing_thoughts"></a>Closing Thoughts</h2>
+<div class="sectionbody">
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>A monad is just a monoid in the category of endofunctors. What&#8217;s the
+problem?</p>
+</div>
+</blockquote>
+</div>
+<div class="sect2">
+<h3 id="_durable_execution_through_the_functional_programming_lens"><a class="anchor" href="#_durable_execution_through_the_functional_programming_lens"></a>Durable Execution Through the Functional Programming Lens</h3>
+<div class="paragraph">
+<p>If you&#8217;ve spent time in the Haskell, Scala, or ML communities, you
+probably winced — and then laughed. That line, from Saunders Mac Lane&#8217;s
+<em>Categories for the Working Mathematician</em>, has become the canonical
+example of a true statement that explains nothing.</p>
+</div>
+<div class="paragraph">
+<p>This section is the opposite. We&#8217;re going to take three ideas from
+functional programming and show how they illuminate durable execution —
+not with category theory, but with practical parallels that make both
+sides click. If you&#8217;ve written Scala with Cats or ZIO, or Haskell with
+IO, you&#8217;ll recognize old friends in new clothes. If you haven&#8217;t, you&#8217;ll
+discover that the durable execution constraints you&#8217;ve been learning
+throughout this book aren&#8217;t arbitrary engineering decisions — they&#8217;re
+consequences of ideas that functional programmers identified decades
+ago.</p>
+</div>
+<div class="sect3">
+<h4 id="_purity_is_determinism"><a class="anchor" href="#_purity_is_determinism"></a>Purity Is Determinism</h4>
+<div class="paragraph">
+<p>The most fundamental rule in durable execution is the <strong>determinism
+constraint</strong>: workflow code must produce the same results given the same
+inputs. No <code>datetime.now()</code>. No <code>random()</code>. No network calls. No file
+I/O. The introduction to this book spends considerable space on this
+rule because violating it causes <code>NonDeterminismError</code> on replay.</p>
+</div>
+<div class="paragraph">
+<p>Functional programmers have a name for this rule: <strong>purity</strong>. A pure
+function has no side effects and exhibits referential transparency —
+you can replace a function call with its result without changing the
+program&#8217;s behavior. That&#8217;s not a philosophical preference. It&#8217;s a
+mechanical requirement. If <code>f(x)</code> can return different values on
+different calls, you can&#8217;t cache its result and replay it later. If
+<code>f(x)</code> mutates global state, replaying it changes the world twice.</p>
+</div>
+<div class="paragraph">
+<p>The determinism rules documented by durable execution platforms are, line by
+line, a purity tutorial for imperative programmers:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Durable execution rule</th>
+<th class="tableblock halign-left valign-top">FP equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Don&#8217;t use <code>datetime.now()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Don&#8217;t perform I/O in pure code</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Don&#8217;t use <code>random()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No non-deterministic effects</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Don&#8217;t call external APIs directly</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Side effects go in IO, not in pure functions</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use <code>workflow.now()</code> instead</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use a managed effect that the runtime controls</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Durable execution SDKs provide deterministic replacements (<code>workflow.now()</code>,
+<code>workflow.random()</code>) not because the SDK designers were being
+paternalistic, but because <strong>the replay interpreter needs to control
+these effects</strong>. In Haskell, you&#8217;d express this by keeping workflow
+logic in a pure function and pushing effects into <code>IO</code>. In ZIO, you&#8217;d
+express it by returning <code>ZIO</code> values instead of performing effects
+directly. In Temporal, you express it by calling activities instead of
+doing I/O inline. Different syntax, identical structure.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_activities_are_managed_effects"><a class="anchor" href="#_activities_are_managed_effects"></a>Activities Are Managed Effects</h4>
+<div class="paragraph">
+<p>In ZIO, you don&#8217;t write <code>println("Order confirmed")</code>. You write
+<code>Console.printLine("Order confirmed")</code>, which returns a <code>ZIO[Any,
+IOException, Unit]</code> — a <strong>description</strong> of an effect, not the effect
+itself. The ZIO runtime decides <em>when</em> and <em>how</em> to execute it. This
+separation of description from execution is the core idea behind every
+effect system.</p>
+</div>
+<div class="paragraph">
+<p>Activities are the same thing. When a workflow calls
+<code>await execute_activity(charge_payment, order)</code>, it doesn&#8217;t charge the
+customer. It emits a <strong>command</strong>: "please schedule this activity." The
+runtime receives the command, dispatches the activity to a worker,
+records the result in the event history, and returns it to the workflow.
+The workflow described the effect. The runtime executed it.</p>
+</div>
+<div class="paragraph">
+<p>This isn&#8217;t an analogy. It&#8217;s the same architectural pattern:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Effect system (ZIO/IO)</th>
+<th class="tableblock halign-left valign-top">Durable execution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ZIO[R, E, A]</code> describes an effect</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>execute_activity(fn, input)</code> describes an effect</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The ZIO runtime executes it</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The durable execution runtime executes it</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The runtime can retry, timeout, or trace it</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The runtime can retry, timeout, or trace it</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">On test, swap the interpreter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">On replay, swap the interpreter (return cached results)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The last row is the crucial one. In a test, you might swap the ZIO
+interpreter to return fake values instead of hitting a real database.
+On replay, the durable execution runtime swaps its own interpreter — instead of
+executing the activity again, it returns the result from the event
+history. <strong>Replay is just a different interpreter for the same program.</strong></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_event_replay_is_re_interpretation_the_free_monad_connection"><a class="anchor" href="#_event_replay_is_re_interpretation_the_free_monad_connection"></a>Event Replay Is Re-Interpretation: The Free Monad Connection</h4>
+<div class="paragraph">
+<p>This brings us to the deepest parallel: the <strong>Free Monad</strong>.</p>
+</div>
+<div class="paragraph">
+<p>If you attended Runar Bjarnason&#8217;s talks in the early 2010s or worked
+through <em>Functional Programming in Scala</em> (the Red Book), you&#8217;ll
+remember the idea. A Free Monad lets you build a program as a <strong>data
+structure</strong> — an abstract syntax tree of operations — and then interpret
+that tree with different interpreters. One interpreter executes for
+real. Another logs the operations. A third returns canned values for
+testing.</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s the structure of a Free program:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">Program:
+  1. Charge(order)       -- effect description
+  2. SendReceipt(email)  -- effect description
+  3. Return(confirmation)
+
+Interpreter A (production):
+  Charge(order)      → call Stripe API, return result
+  SendReceipt(email) → call SendGrid API, return result
+
+Interpreter B (test):
+  Charge(order)      → return Success("ch_fake123")
+  SendReceipt(email) → return Success("sent")</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now look at what a durable execution runtime does:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">Workflow code (the "program"):
+  1. execute_activity(charge_payment, order)   -- command
+  2. execute_activity(send_receipt, email)      -- command
+  3. return confirmation
+
+First execution (Interpreter A):
+  charge_payment → dispatch to worker, call Stripe, record result
+  send_receipt   → dispatch to worker, call SendGrid, record result
+
+Replay after crash (Interpreter B):
+  charge_payment → return result from event history
+  send_receipt   → return result from event history</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The workflow code is the program. The event history is the log of
+effects. First execution and replay are two interpreters for the same
+program. The <code>NonDeterminismError</code> you get when workflow code changes
+between executions? That&#8217;s the equivalent of modifying the AST after
+the first interpreter has already run — the second interpreter finds
+commands in the history that don&#8217;t match the program, and it rightfully
+panics.</p>
+</div>
+<div class="paragraph">
+<p>This isn&#8217;t a loose metaphor. The structural correspondence is exact:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The workflow function = the Free program (a sequence of effect descriptions)</p>
+</li>
+<li>
+<p>Activity calls = the effect constructors (the AST nodes)</p>
+</li>
+<li>
+<p>First execution = the production interpreter</p>
+</li>
+<li>
+<p>Replay = the test/cached interpreter</p>
+</li>
+<li>
+<p>Event history = the interpreter&#8217;s log of previous results</p>
+</li>
+<li>
+<p><code>NonDeterminismError</code> = AST mismatch between program and log</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you&#8217;ve ever implemented a Free Monad interpreter, you&#8217;ve built a
+toy version of a durable execution replay engine. And perhaps the most
+vivid example of this convergence: Runar Bjarnason and Paul Chiusano —
+co-authors of <em>Functional Programming in Scala</em> — went on to create
+Unison, a language whose cloud platform includes durable execution
+built in. They started from the FP side and arrived at durable
+execution. Temporal started from the infrastructure side and arrived at
+an effect system.</p>
+</div>
+<div class="paragraph">
+<p>And if none of that convinces you — well, a monad is just a monoid in
+the category of endofunctors. What&#8217;s the problem?</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_across_platforms"><a class="anchor" href="#_across_platforms"></a>Across Platforms</h3>
+<div class="paragraph">
+<p>The patterns in this book use terminology from Temporal, but they apply
+to any platform that provides durable execution. The tables below map
+each concept to its equivalent across representative platforms.</p>
+</div>
+<div class="sect3">
+<h4 id="_temporal_and_azure_durable_functions"><a class="anchor" href="#_temporal_and_azure_durable_functions"></a>Temporal and Azure Durable Functions</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Concept</th>
+<th class="tableblock halign-left valign-top">Temporal</th>
+<th class="tableblock halign-left valign-top">Azure Durable Functions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Workflow</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Workflow</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Orchestrator Function</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Side effect</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Activity</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Activity Function</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">External message</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Signal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">External Event</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">State query</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom Status</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">History compaction</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ContinueAsNew</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ContinueAsNew</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Singleton</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Workflow ID + Reuse Policy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Instance ID</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Race / select</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Selector / <code>race()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Task.WhenAny()</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Durable timer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>workflow.sleep()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CreateTimer()</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Child execution</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Child Workflow</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sub-orchestration</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Execution log</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Event History (append-only)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Orchestration History</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Executor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Worker (self-hosted)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Function App (managed)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indexed metadata</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Search Attributes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom Status</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_dbos_inngest_and_restate"><a class="anchor" href="#_dbos_inngest_and_restate"></a>DBOS, Inngest, and Restate</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Concept</th>
+<th class="tableblock halign-left valign-top">DBOS</th>
+<th class="tableblock halign-left valign-top">Inngest</th>
+<th class="tableblock halign-left valign-top">Restate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Workflow</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@DBOS.workflow()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Function</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Workflow / Virtual Object</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Side effect</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@DBOS.step()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>step.run()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ctx.run()</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">External message</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DBOS.send()</code> / <code>recv()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>step.waitForEvent()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Awakeable</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">State query</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>get_event()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Not supported</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shared Handler</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">History compaction</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Not needed</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Not needed</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Not needed</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Singleton</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Workflow ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Concurrency key + limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Virtual Object key</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Race / select</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Not supported</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Not supported</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ctx.race()</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Durable timer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DBOS.sleep()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>step.sleep()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ctx.sleep()</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Child execution</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DBOS.start_workflow()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>step.invoke()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ctx.workflowClient().run()</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Execution log</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PostgreSQL rows</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Memoized step results</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Journal (per invocation)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Executor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Your app process</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Your HTTP server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Your HTTP server</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indexed metadata</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Workflow list filters</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Event payload</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Not supported</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_read_this_book_if_you_use"><a class="anchor" href="#_how_to_read_this_book_if_you_use"></a>How to Read This Book If You Use&#8230;&#8203;</h3>
+<div class="paragraph">
+<p><strong>Azure Durable Functions or Dapr.</strong> These share the Durable Task
+Framework heritage with Temporal. Every pattern translates directly.
+Substitute "Orchestrator Function" for "Workflow," "Activity Function"
+for "Activity," "External Event" for "Signal," and <code>CreateTimer</code> for
+<code>workflow.sleep()</code>. The <code>ContinueAsNew</code> API works identically.</p>
+</div>
+<div class="paragraph">
+<p><strong>DBOS.</strong> Most patterns apply. You don&#8217;t need to worry about history
+compaction — DBOS stores step results in PostgreSQL, not an append-only
+log. The Entity pattern works but without Temporal-style query handlers;
+you&#8217;d use DBOS&#8217;s event-based pub/sub for state reads. The determinism
+sections are less critical — DBOS doesn&#8217;t replay as aggressively as
+Temporal.</p>
+</div>
+<div class="paragraph">
+<p><strong>Inngest.</strong> The sequential patterns (Code-as-State, Saga, Pipeline)
+translate well using <code>step.run()</code> for activities. Inngest&#8217;s event-driven
+model is a natural fit for the Durable Observer. The Entity pattern is
+harder — there&#8217;s no persistent event loop or query mechanism. You don&#8217;t
+need history compaction.</p>
+</div>
+<div class="paragraph">
+<p><strong>Restate.</strong> Restate&#8217;s three abstractions (Services, Virtual Objects,
+Workflows) map cleanly to the book&#8217;s patterns. Virtual Objects are a
+native implementation of the Entity pattern — keyed singletons with
+shared handlers for queries. <code>ctx.run()</code> replaces activities.
+<code>ctx.sleep()</code> and <code>ctx.race()</code> provide timers and race semantics.
+Journals are per-invocation, so Perpetual Execution&#8217;s history
+management doesn&#8217;t apply.</p>
+</div>
+<div class="paragraph">
+<p><strong>Golem.</strong> Golem&#8217;s WASM-based model is the most different from the
+Temporal model used in this book. Workers are persistent stateful
+processes — the Entity pattern is the natural programming model.
+Activities don&#8217;t exist as a separate concept; all I/O is transparently
+recorded by the WASM sandbox. The determinism constraint is enforced by
+the sandbox, not by developer discipline.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

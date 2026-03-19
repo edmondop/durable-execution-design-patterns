@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: Durable Execution Design Patterns</title>
+    <meta name="generator" content="Antora 3.1.14">
+<link rel="stylesheet" href="../_/css/site.css">
+<link rel="stylesheet" href="../_/css/extra.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="..">Durable Execution Design Patterns</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="dedp" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="index.html">Durable Execution Design Patterns</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Preface</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">State Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-entity.html">The Entity (Durable Object)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-code-as-state.html">Code-as-State</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Coordination Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03-durable-promise.html">The Durable Promise</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-execution-singleton.html">The Execution Singleton</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Composition Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="05-saga.html">The Saga</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="06-scatter-gather.html">The Scatter-Gather</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07-pipeline.html">The Pipeline</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Lifecycle Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="08-perpetual-execution.html">The Perpetual Execution</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09-durable-observer.html">The Durable Observer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="10-closing-thoughts.html">Closing Thoughts</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Appendices</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="a-pattern-quick-reference.html">A: Pattern Quick Reference</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="b-environment-setup.html">B: Environment Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="c-failure-simulation-playbook.html">C: Failure Simulation Playbook</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Durable Execution Design Patterns</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="index.html">Durable Execution Design Patterns</a></div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Durable Execution Design Patterns</a></li>
+    <li><a href="introduction.html">Introduction</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="file:///repo/docs/modules/ROOT/pages/introduction.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="_introduction_the_pattern_language_of_durable_execution"><a class="anchor" href="#_introduction_the_pattern_language_of_durable_execution"></a>Introduction: The Pattern Language of Durable Execution</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In 1977, Christopher Alexander published <em>A Pattern Language</em>. His insight was
+deceptively simple: a pattern is not a recipe. It is a named tension and its
+resolution. A recurring problem, the forces that shape it, and a structural
+response that resolves those forces.</p>
+</div>
+<div class="paragraph">
+<p>Software adopted this idea and ran with it.</p>
+</div>
+<div class="sect2">
+<h3 id="_a_brief_history_of_software_patterns"><a class="anchor" href="#_a_brief_history_of_software_patterns"></a>A Brief History of Software Patterns</h3>
+<div class="imageblock">
+<div class="content">
+<img src="_images/intro-pattern-timeline.svg" alt="Pattern evolution timeline" width="100%">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>1987: Beck &amp; Cunningham</strong> applied Alexander&#8217;s ideas to Smalltalk, showing that
+software design had recurring structural tensions just like architecture.</p>
+</div>
+<div class="paragraph">
+<p><strong>1994: Design Patterns.</strong> Gamma, Helm, Johnson, and Vlissides published
+<em>Design Patterns: Elements of Reusable Object-Oriented Software</em>. Twenty-three
+patterns. Strategy, Observer, Factory, Decorator. They gave engineers a shared
+vocabulary. But many patterns were bound to class hierarchies. As functional
+programming rose, patterns dissolved into language features: Strategy became a
+lambda. Observer became a reactive stream. Iterator became a language primitive.</p>
+</div>
+<div class="paragraph">
+<p><strong>Mid-1990s: Reactor and Proactor.</strong> Douglas Schmidt&#8217;s POSA2 patterns solved
+concurrent I/O without threads. They gave us the event loop — the architecture
+behind Node.js, Nginx, and every modern async runtime. But they also gave us
+callback hell and the manual state management that comes with event-driven
+programming.</p>
+</div>
+<div class="paragraph">
+<p><strong>2003: Enterprise Integration Patterns.</strong> Hohpe and Woolf cataloged 65
+messaging patterns. Content-Based Router, Dead Letter Channel, Aggregator,
+Scatter-Gather. Powerful abstractions, but they required ESBs, message brokers,
+and what felt like a PhD in middleware to operate correctly.</p>
+</div>
+<div class="paragraph">
+<p><strong>2007: Release It!</strong> Michael Nygard&#8217;s insight: failures are inevitable, so
+design for them. Circuit Breaker, Bulkhead, Timeout, Retry. Each required a
+library — Hystrix, Resilience4j, Polly — and careful integration. The patterns
+were sound; the implementation tax was high.</p>
+</div>
+<div class="paragraph">
+<p><strong>~2010: CQRS and Event Sourcing.</strong> Greg Young, building on Bertrand Meyer&#8217;s
+Command-Query Separation, proposed separating reads from writes completely.
+Store events, not state. Replay to rebuild. Powerful, but the implementation
+complexity was enormous: event stores, projections, snapshots, versioning,
+eventual consistency.</p>
+</div>
+<div class="paragraph">
+<p>Notice the recurring theme across four decades of patterns: each generation
+solved real problems but demanded significant infrastructure to implement
+correctly. Strategy required class hierarchies. Reactor required manual state
+machines. EIP required message brokers. Circuit Breaker required resilience
+libraries. CQRS required event stores and projection pipelines.</p>
+</div>
+<div class="paragraph">
+<p>Durable execution is not on this timeline because <strong>it is not a pattern — it is a
+runtime capability</strong>. Amazon SWF introduced the core idea as early as 2012. But
+the insight that matters for this book is what that capability <em>enables</em>: a new
+family of design patterns where <strong>the runtime handles state persistence, failure
+recovery, retries, and coordination</strong>. Patterns that previously required pages of
+infrastructure code collapse into a few lines of workflow logic. Durable
+execution does not add a new layer of patterns on top of existing complexity. It
+<strong><em>removes</em> complexity</strong>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_what_is_a_durable_execution_pattern"><a class="anchor" href="#_what_is_a_durable_execution_pattern"></a>What Is a Durable Execution Pattern?</h3>
+<div class="paragraph">
+<p>Each pattern in this book follows the same structure:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Intent</strong> — one sentence describing the structural tension and its resolution.</p>
+</li>
+<li>
+<p><strong>Motivation</strong> — a concrete scenario that makes the reader feel the pain.</p>
+</li>
+<li>
+<p><strong>The Pattern</strong> — a diagram and a flowing description that walks through the pattern&#8217;s mechanics.</p>
+</li>
+<li>
+<p><strong>Traditionally</strong> — how you would build this without durable execution. All the moving parts, all the failure modes.</p>
+</li>
+<li>
+<p><strong>With Durable Execution</strong> — how the pattern maps to workflow code. Full runnable example.</p>
+</li>
+<li>
+<p><strong>Consequences</strong> — benefits, trade-offs, limitations, when NOT to use it.</p>
+</li>
+<li>
+<p><strong>Known Applications</strong> — real-world systems that exhibit this pattern.</p>
+</li>
+<li>
+<p><strong>Related Patterns</strong> — connections to other patterns in this catalog.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_naming_what_already_exists"><a class="anchor" href="#_naming_what_already_exists"></a>Naming What Already Exists</h3>
+<div class="paragraph">
+<p>None of the patterns in this book are inventions. Every one of them already
+exists in production systems — in Temporal&#8217;s own sample repositories, in
+conference talks, in engineering blog posts, in the codebases of companies that
+adopted durable execution years ago. Engineers have been building entities
+backed by long-lived workflows, suspending execution for external fulfillment,
+coordinating sagas inside orchestrators, and running perpetual processes with
+history compaction since the earliest days of durable execution platforms.</p>
+</div>
+<div class="paragraph">
+<p>What has been missing is <strong>the naming</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Alexander wrote that a pattern "describes a problem which occurs over and over
+again in our environment, and then describes the core of the solution to that
+problem." The solution already existed in the buildings around him. His
+contribution was to see the recurrence, name it, and describe the forces that
+make it work. That is what this book attempts to do for durable execution.</p>
+</div>
+<div class="paragraph">
+<p><strong>Naming matters because unnamed patterns are invisible.</strong> An engineer who
+independently discovers that a workflow can serve as a durable object that accepts external messages and answers state queries has learned something valuable — but they have no way to
+search for it, reference it in a design document, or teach it to a teammate.
+Once you call it "The Entity," it becomes findable, teachable, and debatable.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_about_the_code_examples"><a class="anchor" href="#_about_the_code_examples"></a>About the Code Examples</h3>
+<div class="paragraph">
+<p>The code examples in this book are inspired by, and in some cases directly
+adapted from, the excellent sample repositories maintained by the Temporal
+community:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/temporalio/samples-go">Temporal Go Samples</a></p>
+</li>
+<li>
+<p><a href="https://github.com/temporalio/samples-java">Temporal Java Samples</a></p>
+</li>
+<li>
+<p><a href="https://github.com/temporalio/samples-python">Temporal Python Samples</a></p>
+</li>
+<li>
+<p><a href="https://github.com/temporalio/samples-typescript">Temporal TypeScript Samples</a></p>
+</li>
+<li>
+<p><a href="https://github.com/temporalio/samples-dotnet">Temporal .NET Samples</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These repositories are a remarkable resource — hundreds of runnable examples
+covering patterns, integrations, and edge cases. If you are building with
+Temporal, they should be your first stop. Many of the structural ideas in this
+book can be found there in working form, unlabeled but fully functional.</p>
+</div>
+<div class="paragraph">
+<p>The examples in each chapter have been adapted to emphasize the pattern&#8217;s
+structure rather than production completeness. Where an example originates from
+or closely follows a Temporal sample, the chapter notes it explicitly.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_a_note_on_idempotency"><a class="anchor" href="#_a_note_on_idempotency"></a>A Note on Idempotency</h3>
+<div class="paragraph">
+<p>Durable execution replays workflow code deterministically, returning cached
+results for completed activities without re-executing them. This eliminates a
+large class of failure-recovery bugs. But it does not eliminate the need for
+<strong>idempotent activities</strong>. If a worker crashes after an activity&#8217;s side effect
+completes (a credit card is charged, an email is sent) but <em>before</em> the result
+is recorded in the event history, the runtime will retry the activity. The
+workflow won&#8217;t know the difference — from its perspective, the activity simply
+hasn&#8217;t completed yet. If the activity charges a card without an idempotency key,
+the customer is charged twice. Every activity that produces external side effects
+must be idempotent: use idempotency keys, check-before-write patterns, or
+naturally idempotent operations.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_determinism_constraint"><a class="anchor" href="#_the_determinism_constraint"></a>The Determinism Constraint</h3>
+<div class="paragraph">
+<p>Replay only works if the workflow code produces the same sequence of commands
+every time it runs. This means workflow code must be <strong>deterministic</strong>: no
+<code>random()</code>, no <code>datetime.now()</code>, no reading environment variables, no direct
+file or network I/O. All of these can produce different values on each
+execution, which would cause the replayed history to diverge from the original.</p>
+</div>
+<div class="paragraph">
+<p>To understand <em>why</em>, it helps to see what replay actually does. Consider a
+simple order workflow:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">@workflow.defn
+class OrderWorkflow:
+    @workflow.run
+    async def run(self, order: Order) -&gt; str:
+        charge_id = await workflow.execute_activity(
+            charge_payment, order.payment_info,
+            start_to_close_timeout=timedelta(seconds=30),
+        )
+        tracking = await workflow.execute_activity(
+            ship_order, order.items,
+            start_to_close_timeout=timedelta(seconds=60),
+        )
+        return f"Completed: {charge_id}, {tracking}"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When this workflow runs for the first time, the runtime records each step as
+an event in the workflow&#8217;s history. After both activities complete, the history
+looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Event 1: WorkflowExecutionStarted  {input: Order(...)}
+Event 2: ActivityTaskScheduled      {activity: "charge_payment"}
+Event 3: ActivityTaskCompleted      {result: "ch_abc123"}
+Event 4: ActivityTaskScheduled      {activity: "ship_order"}
+Event 5: ActivityTaskCompleted      {result: "TRACK-9X2"}
+Event 6: WorkflowExecutionCompleted {result: "Completed: ch_abc123, TRACK-9X2"}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now suppose the worker crashes after event 3 (payment charged) but before
+event 4 (shipment scheduled). The runtime assigns the workflow to a new
+worker and <strong>replays</strong> it: it re-executes the workflow code from the top, but
+instead of actually calling <code>charge_payment</code>, it checks the history — "event 2
+says you scheduled <code>charge_payment</code>, event 3 says it returned <code>"ch_abc123"`" —
+and returns the cached result. The code continues to `ship_order</code>, which has
+no history yet, so <em>that</em> activity actually executes. <strong>The workflow resumes
+exactly where it left off.</strong></p>
+</div>
+<div class="paragraph">
+<p>This works because the code produces the same sequence of commands on replay
+as it did originally: first <code>charge_payment</code>, then <code>ship_order</code>. But what if
+someone modifies the workflow to add a time-based condition?</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python"># BROKEN — non-deterministic workflow code
+@workflow.defn
+class OrderWorkflow:
+    @workflow.run
+    async def run(self, order: Order) -&gt; str:
+        charge_id = await workflow.execute_activity(
+            charge_payment, order.payment_info,
+            start_to_close_timeout=timedelta(seconds=30),
+        )
+        if datetime.now().hour &lt; 16:  # &lt;-- non-deterministic!
+            await workflow.execute_activity(
+                reserve_inventory, order.items,
+                start_to_close_timeout=timedelta(seconds=30),
+            )
+        tracking = await workflow.execute_activity(
+            ship_order, order.items,
+            start_to_close_timeout=timedelta(seconds=60),
+        )
+        return f"Completed: {charge_id}, {tracking}"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The original execution ran at 3pm, so <code>datetime.now().hour &lt; 16</code> was <code>True</code>
+and the history recorded <code>reserve_inventory</code> between <code>charge_payment</code> and
+<code>ship_order</code>. But the replay happens at 5pm. Now the condition is <code>False</code>,
+the code skips <code>reserve_inventory</code> and goes straight to <code>ship_order</code>. The
+runtime checks the history: "the code says the next command is <code>ship_order</code>,
+but event 4 in the history says <code>reserve_inventory</code>." <strong>The sequences
+diverge.</strong> The runtime raises a <code>NonDeterminismError</code> and the workflow is
+stuck — it can&#8217;t make progress because its code no longer matches its history.</p>
+</div>
+<div class="paragraph">
+<p>The fix is to use the runtime&#8217;s deterministic time API:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">if workflow.now().hour &lt; 16:  # recorded in history, same on replay</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>workflow.now()</code> returns the current time on first execution and records it in
+the history. On replay, it returns the <em>same</em> recorded time — 3pm — so the
+condition evaluates the same way and the command sequence matches.</p>
+</div>
+<div class="paragraph">
+<p>Durable execution runtimes provide deterministic replacements for all
+non-deterministic operations: <code>workflow.random()</code> for randomness,
+<code>workflow.now()</code> for the current time, and activities for any operation with
+external side effects. If you need to read a file or call an API, wrap it in
+an activity — the result is recorded in the history and returned on replay
+without re-execution.</p>
+</div>
+<div class="paragraph">
+<p>This is arguably the single most important practical constraint of durable
+execution and the most common source of bugs for new adopters. Each chapter&#8217;s
+code examples follow this rule implicitly; now you know why.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_nine_patterns"><a class="anchor" href="#_the_nine_patterns"></a>The Nine Patterns</h3>
+<div class="paragraph">
+<p>At first glance, these patterns might look similar — they all involve durable
+workflows, and they all solve problems in distributed systems. The difference is
+in <strong><em>what</em> each pattern holds durable</strong> and <strong><em>why</em></strong>.</p>
+</div>
+<div class="paragraph">
+<p>An Entity holds mutable state behind an API of signals and queries. A Saga holds
+a sequence of side effects paired with compensations. A Pipeline holds a chain
+of transformations with checkpoints between stages. These are structurally
+different. An Entity sits in a loop accepting commands until a terminal event (checkout,
+deletion, inactivity); a Saga always completes (successfully or after full
+rollback); a Pipeline progresses linearly.</p>
+</div>
+<div class="paragraph">
+<p>The four categories reflect four different architectural tensions:</p>
+</div>
+<div class="paragraph">
+<p><strong>State Patterns</strong> — <em>how do you represent and persist application state?</em> The
+Entity (<a href="01-entity.html" class="xref page">Chapter 1</a>) encapsulates mutable state inside a long-lived execution
+that responds to signals and queries — the durable equivalent of an actor. Code-as-State
+(<a href="02-code-as-state.html" class="xref page">Chapter 2</a>) is the opposite approach: there is no explicit state variable at
+all. The execution&#8217;s position in the code <em>is</em> the state. These two patterns
+solve the same problem (durable state) with fundamentally different structures.
+The Entity is appropriate when external systems need to read and mutate state
+throughout the execution&#8217;s lifetime. Code-as-State is appropriate when state is
+implicit in a linear progression of steps.</p>
+</div>
+<div class="paragraph">
+<p><strong>Coordination Patterns</strong> — <em>how do distributed components synchronize?</em> The
+Durable Promise (<a href="03-durable-promise.html" class="xref page">Chapter 3</a>) suspends execution until an external actor fulfills
+it — the workflow blocks for hours or days waiting for a human approval, a
+webhook, or a third-party callback. The Execution Singleton (<a href="04-execution-singleton.html" class="xref page">Chapter 4</a>) uses
+workflow identity as a distributed lock — it ensures exactly one execution
+exists for a given key. A Promise coordinates <em>timing</em> (when does the answer
+arrive?). A Singleton coordinates <em>uniqueness</em> (is anyone already handling
+this?). They solve different coordination problems and are often used together.</p>
+</div>
+<div class="paragraph">
+<p><strong>Composition Patterns</strong> — <em>how do you combine multiple operations?</em> The Saga
+(<a href="05-saga.html" class="xref page">Chapter 5</a>) orchestrates a sequence where each step has a compensation. If step
+four fails, steps three, two, and one are undone in reverse order. Scatter-Gather
+(<a href="06-scatter-gather.html" class="xref page">Chapter 6</a>) fans work out to multiple activities in parallel and aggregates the
+results with a deadline. The Pipeline (<a href="07-pipeline.html" class="xref page">Chapter 7</a>) chains stages sequentially
+where each stage&#8217;s output feeds the next, with durable checkpoints between
+them. A Saga is about <em>reversibility</em>. Scatter-Gather is about <em>parallelism</em>.
+A Pipeline is about <em>sequential transformation</em>. Using the wrong one produces
+either unnecessary complexity or missing guarantees.</p>
+</div>
+<div class="paragraph">
+<p><strong>Lifecycle Patterns</strong> — <em>how do long-lived processes evolve over time?</em> The
+Perpetual Execution (<a href="08-perpetual-execution.html" class="xref page">Chapter 8</a>) runs indefinitely by periodically compacting
+its history via ContinueAsNew — think heartbeat monitors, subscription billing,
+SLA trackers. The Durable Observer (<a href="09-durable-observer.html" class="xref page">Chapter 9</a>) correlates events arriving over
+hours or days against temporal conditions — it waits for patterns, not just
+individual signals. Perpetual Execution solves the problem of <em>infinite
+duration</em>. The Durable Observer solves the problem of <em>temporal correlation</em>.</p>
+</div>
+<div class="paragraph">
+<p>A <a href="10-closing-thoughts.html" class="xref page">closing chapter</a> explores the parallels
+between durable execution constraints and ideas from functional
+programming, and maps the book&#8217;s Temporal-based terminology to other
+durable execution platforms.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_read_this_book"><a class="anchor" href="#_how_to_read_this_book"></a>How to Read This Book</h3>
+<div class="paragraph">
+<p>Each chapter is self-contained. You can read them in order or jump to any
+pattern that interests you. The code examples use a different Temporal SDK
+language per chapter — not to teach those languages, but to prove the patterns
+are universal.</p>
+</div>
+<div class="paragraph">
+<p>Every code listing in this book is included directly from tested source files
+using AsciiDoc tagged regions. If you want to run the examples yourself, see
+<a href="b-environment-setup.html" class="xref page">Appendix B</a> for environment setup.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

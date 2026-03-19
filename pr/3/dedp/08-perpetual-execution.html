@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: Durable Execution Design Patterns</title>
+    <meta name="generator" content="Antora 3.1.14">
+<link rel="stylesheet" href="../_/css/site.css">
+<link rel="stylesheet" href="../_/css/extra.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="..">Durable Execution Design Patterns</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="dedp" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="index.html">Durable Execution Design Patterns</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Preface</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">State Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-entity.html">The Entity (Durable Object)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-code-as-state.html">Code-as-State</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Coordination Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03-durable-promise.html">The Durable Promise</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-execution-singleton.html">The Execution Singleton</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Composition Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="05-saga.html">The Saga</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="06-scatter-gather.html">The Scatter-Gather</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07-pipeline.html">The Pipeline</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Lifecycle Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="08-perpetual-execution.html">The Perpetual Execution</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09-durable-observer.html">The Durable Observer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="10-closing-thoughts.html">Closing Thoughts</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Appendices</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="a-pattern-quick-reference.html">A: Pattern Quick Reference</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="b-environment-setup.html">B: Environment Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="c-failure-simulation-playbook.html">C: Failure Simulation Playbook</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Durable Execution Design Patterns</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="index.html">Durable Execution Design Patterns</a></div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Durable Execution Design Patterns</a></li>
+    <li>Lifecycle Patterns</li>
+    <li><a href="08-perpetual-execution.html">The Perpetual Execution</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="file:///repo/docs/modules/ROOT/pages/08-perpetual-execution.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="_the_perpetual_execution_living_process"><a class="anchor" href="#_the_perpetual_execution_living_process"></a>The Perpetual Execution (Living Process)</h2>
+<div class="sectionbody">
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Run a durable workflow indefinitely by periodically resetting its execution
+history while carrying forward minimal essential state.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p><strong>Intent.</strong> Some processes must run forever: subscription billing, monitoring
+agents, rate limiters, cron replacements. Durable workflows accumulate event
+history with every activity, signal, and timer, and that history eventually
+degrades replay performance and approaches platform limits. The Perpetual
+Execution pattern uses a continue-as-new mechanism (<code>ContinueAsNew</code> in Temporal) to periodically compact history while
+preserving the workflow&#8217;s logical continuity.</p>
+</div>
+<div class="paragraph">
+<p><strong>Motivation.</strong> A SaaS company charges subscribers monthly. Each subscriber has
+a workflow that charges their card, handles declined payments with retry logic,
+sends a receipt, and sleeps until the next billing date. The subscription may
+last years. A subscriber who joined in 2022 and is still active in 2026 has
+been billed 48 times.</p>
+</div>
+<div class="paragraph">
+<p>Each billing cycle generates events in the workflow&#8217;s history: a timer event for
+the sleep, a scheduled-activity event for the charge, a completed-activity
+event with the result, another pair for the receipt, and so on. After 48 cycles,
+the history has hundreds of events. A billing <em>system</em> managing millions of
+subscribers will have workflows at every age — even moderate 3-5 year
+subscriptions accumulate thousands of events, and the fleet-wide distribution
+always includes workflows with very large histories.</p>
+</div>
+<div class="paragraph">
+<p>Durable execution platforms impose history size limits — Temporal&#8217;s default is 50,000 events per workflow execution, and replay
+time is proportional to history size. Long before you hit the hard limit, replay
+becomes slow — a workflow with 10,000 events takes noticeably longer to recover
+after a worker restart than one with 100. If your billing workflows share
+workers with other workflows (they usually do), the slow replays affect the
+entire worker pool.</p>
+</div>
+<div class="paragraph">
+<p>The solution is to periodically restart the workflow with a clean history. This
+is what ContinueAsNew does: it terminates the current execution and immediately
+starts a new one with the same workflow ID, using only the state you explicitly
+pass as input. The new execution has zero events in its history. From the
+outside, the workflow appears to be the same continuous process — same ID, same
+logical identity — but internally it&#8217;s a fresh execution.</p>
+</div>
+<div class="paragraph">
+<p><strong>The Pattern</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ch08-perpetual-execution.svg" alt="Perpetual Execution pattern diagram" width="100%">
+</div>
+</div>
+<div class="paragraph">
+<p>The perpetual workflow runs one iteration of its work — one billing cycle, one
+monitoring check, one cron tick — then calls ContinueAsNew with the current
+state as input to the next execution. The <strong>carried state</strong> is a minimal data
+structure (a record or struct) containing only what the next iteration needs:
+subscription ID, billing amount, cycle count, configuration. You want it as
+small as possible because it&#8217;s serialized as the <strong>new execution&#8217;s input</strong>. From
+the caller&#8217;s perspective nothing changes — same workflow ID, same logical
+identity — but internally the runtime discards the old history and starts fresh.</p>
+</div>
+<div class="paragraph">
+<p><strong>Traditionally,</strong> you&#8217;d build this as a cron job backed by a database. A
+scheduled task polls for subscriptions due for billing, charges each card,
+updates the next billing date, and handles retries through status flags and
+counters. If the job crashes mid-batch, some subscriptions get charged but not
+updated — risking double charges unless you&#8217;ve wired up idempotency keys. If
+the scheduler itself misses a cycle, you need gap-detection logic to figure out
+what was missed and whether to back-fill. It works, but the <strong>retry, recovery,
+and idempotency logic is entirely manual</strong> and lives alongside your business
+code.</p>
+</div>
+<div class="paragraph">
+<p><strong>With Durable Execution.</strong> Each subscription is a workflow that runs
+indefinitely:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @Override
+    public void run(BillingState state) {
+        // Process this billing cycle
+        activities.chargeSubscription(state.subscriptionId(), state.amount());
+        activities.sendReceipt(state.subscriptionId(), state.email());
+
+        // Sleep until next billing cycle
+        Workflow.sleep(Duration.ofDays(30));
+
+        // ContinueAsNew: fresh execution, clean history, carried state
+        BillingState nextState = new BillingState(
+                state.subscriptionId(),
+                state.email(),
+                state.amount(),
+                state.cycleCount() + 1);
+
+        Workflow.continueAsNew(nextState);
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>run</code> method processes one billing cycle: charge the subscription, send a
+receipt. Then it sleeps for 30 days — a durable sleep that survives worker
+restarts, deployments, and infrastructure failures. When the sleep completes,
+the workflow calls <code>Workflow.continueAsNew(nextState)</code>, which terminates the
+current execution and starts a fresh one with the same workflow ID.</p>
+</div>
+<div class="paragraph">
+<p>The <code>BillingState</code> record carries forward only what the next cycle needs:
+subscription ID, email, amount, and a cycle counter. The new execution starts
+with <strong>zero event history</strong> and a single input event containing this state. It
+doesn&#8217;t matter that the previous execution had 20 events from the charge,
+receipt, and sleep — those are discarded. The logical workflow is continuous
+(same ID, same identity), but the physical execution is fresh.</p>
+</div>
+<div class="paragraph">
+<p>If the worker crashes during <code>chargeSubscription</code>, the runtime replays the
+workflow on another worker and retries the activity. If the activity itself
+fails (the card is declined), the retry policy on the activity options controls
+the behavior — retry with backoff, up to a maximum number of attempts. If all
+retries are exhausted, the activity throws and the workflow can decide what to
+do: send a dunning notice, pause the subscription, or escalate to a human. This
+is ordinary Java code inside the <code>run</code> method, not a separate state machine or
+database flag.</p>
+</div>
+<div class="paragraph">
+<p><strong>Consequences.</strong> The Perpetual Execution pattern gives a workflow an
+effectively unlimited lifetime without unbounded history growth. Each
+ContinueAsNew resets the history to zero, so the <strong>replay cost stays constant</strong>
+regardless of how many cycles the workflow has completed.</p>
+</div>
+<div class="paragraph">
+<p>The most important trade-off is the <strong>ContinueAsNew boundary</strong>. When a workflow
+calls ContinueAsNew, the current execution terminates and a new one starts.
+Event handlers (signals and queries in Temporal) registered in the current execution aren&#8217;t carried
+over — the new execution must re-register them in its initialization code.
+Temporal handles in-flight signals correctly: signals sent during the transition
+are buffered and delivered to the new execution. However, queries issued during
+the brief transition window will fail because no execution is actively running
+to handle them. For workflows that serve queries (Entity-style workflows using
+Perpetual Execution for compaction), this means a short period of query
+unavailability at each boundary — typically milliseconds, but observable under
+high query load.</p>
+</div>
+<div class="paragraph">
+<p>The carried state must be small. It&#8217;s serialized as the input to the new
+execution, subject to the platform&#8217;s payload size limit (4 MB in Temporal) as any other workflow input.
+If your perpetual workflow accumulates large state over time (a growing list
+of processed items, a cache of historical data), you need to trim it before
+calling ContinueAsNew or offload it to external storage.</p>
+</div>
+<div class="paragraph">
+<p><strong>Distinction from the Entity.</strong> Both patterns produce long-lived workflows, but
+they solve different problems. The Entity (<a href="01-entity.html" class="xref page">Chapter 1</a>) models a stateful domain
+object sitting in an event loop, accepting commands and answering queries. The
+Perpetual Execution pattern is about <strong>history management</strong> — it&#8217;s the mechanism
+an Entity (or any long-running workflow) uses to stay healthy over time. In
+practice, many Entity workflows <em>use</em> Perpetual Execution internally for
+compaction, but the two concerns are orthogonal: you can have a perpetual
+workflow that isn&#8217;t an Entity (a cron replacement), and a short-lived Entity
+that never needs ContinueAsNew.</p>
+</div>
+<div class="paragraph">
+<p><strong>Known Applications</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Subscription billing — one workflow per subscriber, ContinueAsNew each cycle</p>
+</li>
+<li>
+<p>Cron replacement — a workflow that runs a task on a schedule, indefinitely</p>
+</li>
+<li>
+<p>Monitoring agents — periodic health checks with alerting</p>
+</li>
+<li>
+<p>Rate limiters — per-user or per-API-key rate tracking with windowed state</p>
+</li>
+<li>
+<p>Heartbeat services — "I am alive" signals sent on a schedule</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Related Patterns</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The Entity (<a href="01-entity.html" class="xref page">Chapter 1</a>) — long-lived entities use Perpetual Execution for
+history compaction when they run indefinitely</p>
+</li>
+<li>
+<p>The Durable Observer (<a href="09-durable-observer.html" class="xref page">Chapter 9</a>) — observers that run perpetually use this
+pattern for history management</p>
+</li>
+<li>
+<p>Execution Singleton (<a href="04-execution-singleton.html" class="xref page">Chapter 4</a>) — perpetual workflows are almost always
+singletons, one per business key</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
