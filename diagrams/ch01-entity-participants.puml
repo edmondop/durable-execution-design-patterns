@@ -9,17 +9,15 @@ skinparam sequence {
   ParticipantFontColor #333333
   ParticipantFontSize 14
   ActorBorderColor #555555
+  ParticipantBackgroundColor<<wf>> #4338CA
+  ParticipantBorderColor<<wf>> #4338CA
+  ParticipantFontColor<<wf>> #ffffff
 }
 skinparam note {
   BackgroundColor #ffffff
   BorderColor #999999
   FontSize 11
   FontColor #666666
-}
-skinparam participant<<wf>> {
-  BackgroundColor #4338CA
-  BorderColor #4338CA
-  FontColor #ffffff
 }
 
 hide footbox
