@@ -23,7 +23,7 @@ skinparam note {
 hide footbox
 
 actor "Client A" as a
-participant "  Cart Workflow\n  (cart-abc-123)  " as cart <<wf>>
+participant "  <color:#ffffff>Cart Workflow</color>\n  <color:#ffffff>(cart-abc-123)</color>  " as cart <<wf>>
 actor "Client B" as b
 
 note over cart #ffffff
