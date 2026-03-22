@@ -21,6 +21,7 @@ skinparam note {
 }
 
 hide footbox
+hide <<wf>> stereotype
 
 actor "Client A" as a
 participant "  <color:#ffffff>Cart Workflow</color>\n  <color:#ffffff>(cart-abc-123)</color>  " as cart <<wf>>
