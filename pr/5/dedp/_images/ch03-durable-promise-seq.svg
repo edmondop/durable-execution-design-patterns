@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="567px" preserveAspectRatio="none" style="width:650px;height:567px;" version="1.1" viewBox="0 0 650 567" width="650px" zoomAndPan="magnify"><defs><filter height="300%" id="f4xsss83coa8z" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FFFFFF" filter="url(#f4xsss83coa8z)" height="351.5996" style="stroke: #555555; stroke-width: 1.0;" width="10" x="263.5" y="112.4001"/><rect fill="#FFFFFF" filter="url(#f4xsss83coa8z)" height="192.7996" style="stroke: #555555; stroke-width: 1.0;" width="10" x="465" y="138.4001"/><rect fill="#FFFFFF" filter="url(#f4xsss83coa8z)" height="31" style="stroke: #555555; stroke-width: 1.0;" width="10" x="465" y="432.9997"/><line style="stroke: #555555; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="91" x2="91" y1="84.4001" y2="481.9997"/><line style="stroke: #555555; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="268" x2="268" y1="84.4001" y2="481.9997"/><line style="stroke: #555555; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="470" x2="470" y1="84.4001" y2="481.9997"/><line style="stroke: #555555; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="616" x2="616" y1="84.4001" y2="481.9997"/><rect fill="#FFFFFF" filter="url(#f4xsss83coa8z)" height="47.5999" style="stroke: #555555; stroke-width: 1.5;" width="83" x="48" y="31.8002"/><text fill="#333333" font-family="Helvetica" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="66" x="56.5" y="51.8062">Requester</text><text fill="#333333" font-family="Helvetica" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="69" x="55" y="68.6061">(API client)</text><rect fill="#FFFFFF" filter="url(#f4xsss83coa8z)" height="47.5999" style="stroke: #555555; stroke-width: 1.5;" width="83" x="48" y="480.9997"/><text fill="#333333" font-family="Helvetica" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="66" x="56.5" y="501.0056">Requester</text><text fill="#333333" font-family="Helvetica" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="69" x="55" y="517.8056">(API client)</text><rect fill="#FFFFFF" filter="url(#f4xsss83coa8z)" height="47.5999" style="stroke: #555555; stroke-width: 1.5;" width="83" x="225" y="31.8002"/><text fill="#333333" font-family="Helvetica" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="61" x="240" y="51.8062">Temporal</text><text fill="#333333" font-family="Helvetica" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="42" x="249.5" y="68.6061">Server</text><rect fill="#FFFFFF" filter="url(#f4xsss83coa8z)" height="47.5999" style="stroke: #555555; stroke-width: 1.5;" width="83" x="225" y="480.9997"/><text fill="#333333" font-family="Helvetica" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="61" x="240" y="501.0056">Temporal</text><text fill="#333333" font-family="Helvetica" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="42" x="249.5" y="517.8056">Server</text><rect fill="#FFFFFF" filter="url(#f4xsss83coa8z)" height="47.5999" style="stroke: #555555; stroke-width: 1.5;" width="132" x="402" y="31.8002"/><text fill="#333333" font-family="Helvetica" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="118" x="409" y="51.8062">Approval Workflow</text><text fill="#333333" font-family="Helvetica" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="73" x="431.5" y="68.6061">(on worker)</text><rect fill="#FFFFFF" filter="url(#f4xsss83coa8z)" height="47.5999" style="stroke: #555555; stroke-width: 1.5;" width="132" x="402" y="480.9997"/><text fill="#333333" font-family="Helvetica" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="118" x="409" y="501.0056">Approval Workflow</text><text fill="#333333" font-family="Helvetica" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="73" x="431.5" y="517.8056">(on worker)</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="50" x="588" y="81.1481">Approver</text><ellipse cx="616" cy="13" fill="#FEFECE" filter="url(#f4xsss83coa8z)" rx="8" ry="8" style="stroke: #555555; stroke-width: 2.0;"/><path d="M616,21 L616,48 M603,29 L629,29 M616,48 L603,63 M616,48 L629,63 " fill="none" filter="url(#f4xsss83coa8z)" style="stroke: #555555; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="50" x="588" y="492.1478">Approver</text><ellipse cx="616" cy="505.3998" fill="#FEFECE" filter="url(#f4xsss83coa8z)" rx="8" ry="8" style="stroke: #555555; stroke-width: 2.0;"/><path d="M616,513.3998 L616,540.3998 M603,521.3998 L629,521.3998 M616,540.3998 L603,555.3998 M616,540.3998 L629,555.3998 " fill="none" filter="url(#f4xsss83coa8z)" style="stroke: #555555; stroke-width: 2.0;"/><rect fill="#FFFFFF" filter="url(#f4xsss83coa8z)" height="351.5996" style="stroke: #555555; stroke-width: 1.0;" width="10" x="263.5" y="112.4001"/><rect fill="#FFFFFF" filter="url(#f4xsss83coa8z)" height="192.7996" style="stroke: #555555; stroke-width: 1.0;" width="10" x="465" y="138.4001"/><rect fill="#FFFFFF" filter="url(#f4xsss83coa8z)" height="31" style="stroke: #555555; stroke-width: 1.0;" width="10" x="465" y="432.9997"/><polygon fill="#555555" points="251.5,108.4001,261.5,112.4001,251.5,116.4001,255.5,112.4001" style="stroke: #555555; stroke-width: 1.0;"/><line style="stroke: #555555; stroke-width: 1.0;" x1="91.5" x2="257.5" y1="112.4001" y2="112.4001"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="78" x="98.5" y="107.6901">(1) StartWorkflow</text><polygon fill="#555555" points="453,134.4001,463,138.4001,453,142.4001,457,138.4001" style="stroke: #555555; stroke-width: 1.0;"/><line style="stroke: #555555; stroke-width: 1.0;" x1="273.5" x2="459" y1="138.4001" y2="138.4001"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="99" x="280.5" y="133.6901">(2) dispatch to worker</text><polygon fill="#555555" points="604,180.4001,614,184.4001,604,188.4001,608,184.4001" style="stroke: #555555; stroke-width: 1.0;"/><line style="stroke: #555555; stroke-width: 1.0;" x1="475" x2="610" y1="184.4001" y2="184.4001"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="83" x="482" y="179.6901">(3) NotifyApprover</text><line style="stroke: #555555; stroke-width: 1.0;" x1="475" x2="517" y1="215.4001" y2="215.4001"/><line style="stroke: #555555; stroke-width: 1.0;" x1="517" x2="517" y1="215.4001" y2="228.4001"/><line style="stroke: #555555; stroke-width: 1.0;" x1="476" x2="517" y1="228.4001" y2="228.4001"/><polygon fill="#555555" points="486,224.4001,476,228.4001,486,232.4001,482,228.4001" style="stroke: #555555; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="71" x="482" y="210.6901">(4) await Signal</text><path d="M480,241.4001 L480,303.4001 L609,303.4001 L609,251.4001 L599,241.4001 L480,241.4001 " fill="#FFFFFF" filter="url(#f4xsss83coa8z)" style="stroke: #999999; stroke-width: 1.0;"/><path d="M599,241.4001 L599,251.4001 L609,251.4001 L599,241.4001 " fill="#FFFFFF" style="stroke: #999999; stroke-width: 1.0;"/><text fill="#666666" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="67" x="486" y="256.619">SUSPENDED</text><text fill="#666666" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="108" x="486" y="269.8189">No threads, no polling,</text><text fill="#666666" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="99" x="486" y="283.0188">no DB row to check.</text><text fill="#666666" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="97" x="486" y="296.2187">Zero resource cost.</text><polygon fill="#555555" points="284.5,327.1996,274.5,331.1996,284.5,335.1996,280.5,331.1996" style="stroke: #555555; stroke-width: 1.0;"/><line style="stroke: #555555; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="278.5" x2="469" y1="331.1996" y2="331.1996"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="21" x="290.5" y="326.4897">yield</text><path d="M278,354.1996 L278,374.1996 L411,374.1996 L411,364.1996 L401,354.1996 L278,354.1996 " fill="#FFFFFF" filter="url(#f4xsss83coa8z)" style="stroke: #FFFFFF; stroke-width: 1.0;"/><path d="M401,354.1996 L401,364.1996 L411,364.1996 L401,354.1996 " fill="#FFFFFF" style="stroke: #FFFFFF; stroke-width: 1.0;"/><text fill="#999999" font-family="sans-serif" font-size="9" lengthAdjust="spacingAndGlyphs" textLength="112" x="284" y="367.5607">time passes (hours / days)</text><polygon fill="#555555" points="284.5,402.9997,274.5,406.9997,284.5,410.9997,280.5,406.9997" style="stroke: #555555; stroke-width: 1.0;"/><line style="stroke: #555555; stroke-width: 1.0;" x1="278.5" x2="615" y1="406.9997" y2="406.9997"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="124" x="290.5" y="402.2897">(5) Signal(approved = true)</text><polygon fill="#555555" points="453,428.9997,463,432.9997,453,436.9997,457,432.9997" style="stroke: #555555; stroke-width: 1.0;"/><line style="stroke: #555555; stroke-width: 1.0;" x1="273.5" x2="459" y1="432.9997" y2="432.9997"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="75" x="280.5" y="428.2897">(6) deliver signal</text><polygon fill="#555555" points="102.5,459.9997,92.5,463.9997,102.5,467.9997,98.5,463.9997" style="stroke: #555555; stroke-width: 1.0;"/><line style="stroke: #555555; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="96.5" x2="469" y1="463.9997" y2="463.9997"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacingAndGlyphs" textLength="136" x="108.5" y="459.2897">(7) WorkflowResult: Approved</text><!--MD5=[aa595356d7328c0c6bd2a15e01ecb2e4]
+@startuml ch03-durable-promise-seq
+skinparam backgroundColor transparent
+skinparam sequence {
+  ArrowColor #555555
+  LifeLineBorderColor #555555
+  LifeLineBackgroundColor #ffffff
+  ParticipantBorderColor #555555
+  ParticipantBackgroundColor #ffffff
+  ParticipantFontColor #333333
+  ParticipantFontSize 14
+  ParticipantFontName Helvetica
+  ArrowFontSize 10
+  ActorBorderColor #555555
+  ActorFontSize 12
+  GroupBackgroundColor #ffffff
+  GroupBorderColor #4338CA
+  ParticipantPadding 40
+}
+skinparam note {
+  BackgroundColor #ffffff
+  BorderColor #999999
+  FontColor #666666
+  FontSize 11
+}
+
+participant "Requester\n(API client)" as Req
+participant "  Temporal\n  Server" as TS
+participant "Approval Workflow\n(on worker)" as WF
+actor "Approver" as App
+
+Req -> TS : (1) StartWorkflow
+activate TS
+TS -> WF : (2) dispatch to worker
+activate WF
+
+||20||
+WF -> App : (3) NotifyApprover
+||5||
+WF -> WF : (4) await Signal
+note right of WF
+  **SUSPENDED**
+  No threads, no polling,
+  no DB row to check.
+  Zero resource cost.
+end note
+WF - -> TS : yield
+deactivate WF
+
+||10||
+note right of TS #white;line:white
+  <size:9><color:#999999>time passes (hours / days)</color></size>
+end note
+||5||
+
+App -> TS : (5) Signal(approved = true)
+TS -> WF : (6) deliver signal
+activate WF
+||5||
+WF - -> Req : (7) WorkflowResult: Approved
+deactivate WF
+deactivate TS
+
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 10:22:07 UTC 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 17.0.18+8-Debian-1deb12u1
+Operating System: Linux
+Default Encoding: ANSI_X3.4-1968
+Language: en
+Country: US
+--></g></svg>
