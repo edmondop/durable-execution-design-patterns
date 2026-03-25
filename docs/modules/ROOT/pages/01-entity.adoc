@@ -132,11 +132,54 @@ enough that this isn't a problem. For entities that genuinely need high write
 throughput (a real-time auction with hundreds of bids per second), you'd need to
 shard by key prefix or use a different pattern.
 
-**Query availability** is coupled to worker availability. If no worker is
-available (during a deployment, for instance), queries fail. For read-heavy
-workloads, project the entity's state to a read-optimized store via an activity
-or indexed metadata annotation (a _visibility attribute_ in Temporal) — the same strategy you'd use in a traditional
-architecture.
+**Query availability** deserves a deeper look, because the trade-off here is
+not specific to Temporal — it is inherent to event sourcing. The Entity pattern
+_is_ event sourcing: the workflow's event history is the journal, and replay is
+the mechanism that reconstructs current state. Temporal makes event sourcing
+dramatically easier — it handles journal persistence, replay correctness, and
+crash recovery — but it does not change the fundamental architecture. The journal
+stores events, not materialized state. Current state exists only in worker
+memory, reconstructed by replaying the journal. If no worker is available to
+perform that replay, there is no materialized state to query.
+
+The established answer is _CQRS_ — Command Query Responsibility Segregation:
+separate the write path from the read path. The workflow remains the single
+writer, but you project state to an external read-optimized store via an
+activity, so the read path does not depend on worker availability. **If you have
+a UI or API separate from Temporal's own, this is the default recommendation —
+serve reads from an external store.** The projected state will be eventually
+consistent with the workflow's live state — but this is not a Temporal
+limitation. It is the same trade-off you make in any event-sourced CQRS
+architecture: the event journal and the read store are separate systems, updated
+at different times. Temporal does not make this worse; it is at parity with the
+traditional approach.
+
+Where Temporal _does_ improve on traditional event sourcing is in how
+projections happen. In a classic event-sourced system, projections are maintained
+by separate consumers that tail the event journal — decoupled processes, running
+independently, each rebuilding its own materialized view from the full stream.
+These consumers have no context about the business logic; they see every event
+and typically project the entire state, because they cannot distinguish a routine
+mutation from a meaningful moment. If a consumer falls behind or crashes, it is a
+separate failure domain you monitor and recover independently.
+
+In the Entity pattern, the projection is an activity _inside the workflow_. The
+workflow is the business logic — it knows when something meaningful happened. You
+can project selectively: write to the read store only after checkout, not after
+every `addItem`. You can project different views at different moments — a
+lightweight summary for a listing page, full details only when the entity reaches
+a terminal state. You can skip projecting entirely for short-lived entities that
+will never need external reads. And because the projection is a durable activity,
+the workflow knows whether it succeeded or failed. The event history records the
+outcome. There is no silent consumer falling behind — there is an explicit,
+tracked step in the workflow.
+
+Separately from CQRS projections, Temporal's _search attributes_ let you attach
+indexed key-value pairs to a workflow execution — small, structured fields like
+status, customer ID, or priority — queryable through the platform's visibility
+APIs without hitting a worker. This is useful for operational queries and
+filtering (e.g., "find all active carts for this customer"), not for serving
+application read models.
 
 The **in-memory state model** has its own nuance. The worker keeps workflow
 state in a local execution cache (Temporal calls this the _sticky execution cache_) — a bounded, in-memory cache of recently
