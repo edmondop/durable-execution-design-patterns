@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: Durable Execution Design Patterns</title>
+    <meta name="generator" content="Antora 3.1.14">
+<link rel="stylesheet" href="../_/css/site.css">
+<link rel="stylesheet" href="../_/css/extra.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="..">Durable Execution Design Patterns</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="dedp" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="index.html">Durable Execution Design Patterns</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Preface</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">State Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-entity.html">The Entity (Durable Object)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-code-as-state.html">Code-as-State</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Coordination Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03-durable-promise.html">The Durable Promise</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-execution-singleton.html">The Execution Singleton</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Composition Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="05-saga.html">The Saga</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="06-scatter-gather.html">The Scatter-Gather</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07-pipeline.html">The Pipeline</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Lifecycle Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="08-perpetual-execution.html">The Perpetual Execution</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09-durable-observer.html">The Durable Observer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="10-closing-thoughts.html">Closing Thoughts</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Appendices</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="a-pattern-quick-reference.html">A: Pattern Quick Reference</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="b-environment-setup.html">B: Environment Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="c-failure-simulation-playbook.html">C: Failure Simulation Playbook</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Durable Execution Design Patterns</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="index.html">Durable Execution Design Patterns</a></div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Durable Execution Design Patterns</a></li>
+    <li>Composition Patterns</li>
+    <li><a href="05-saga.html">The Saga</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="file:///repo/docs/modules/ROOT/pages/05-saga.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="_the_saga_compensating_interaction"><a class="anchor" href="#_the_saga_compensating_interaction"></a>The Saga (Compensating Interaction)</h2>
+<div class="sectionbody">
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Orchestrate a sequence of distributed actions with paired compensations,
+maintained on a stack, that unwind in reverse order upon failure.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p><strong>Intent.</strong> A business transaction spans multiple services. Each step has a
+compensating action that undoes it. If any step fails, previously completed
+steps must be compensated in reverse order. The Saga maintains a compensation
+stack inside a workflow, ensuring reliable rollback without distributed
+transactions.</p>
+</div>
+<div class="paragraph">
+<p><strong>Motivation.</strong> A customer books a trip: reserve a flight, reserve a hotel,
+charge payment. Three different services, three different APIs, no shared
+database, no two-phase commit. If the payment charge fails after the flight and
+hotel are reserved, both reservations must be cancelled. If the hotel
+cancellation itself fails (e.g., the hotel API is down), the cancellation must be
+retried until it succeeds. The customer can&#8217;t end up with a hotel reservation
+they were never charged for, or a flight reservation that nobody knows about.</p>
+</div>
+<div class="paragraph">
+<p>This is the classic distributed transaction problem, and the Saga pattern —
+originally described by Garcia-Molina and Salem in 1987<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup> — is the standard
+solution for systems that can&#8217;t use two-phase commit. The insight is that each
+forward action has a compensating action (reserve flight / cancel flight), and
+these compensations must execute in <strong>reverse order</strong> on failure. Reverse order
+matters because later steps may depend on earlier ones still being in place.
+For example, if you cancel the flight before cancelling the hotel, the hotel
+system might still hold a reservation linked to a now-cancelled flight —
+creating an orphaned booking that no downstream process knows how to clean up.
+Unwinding from the most recent step backward ensures each compensation operates
+against a consistent state.</p>
+</div>
+<div class="paragraph">
+<p><strong>The Pattern</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ch05-saga.svg" alt="Saga pattern diagram" width="70%">
+</div>
+</div>
+<div class="paragraph">
+<p>The Saga workflow executes a sequence of forward actions — the steps that
+advance the transaction (reserve flight, reserve hotel, charge payment). Each
+is a durable step (an <em>activity</em> in Temporal) with a timeout and retry policy. After each successful action,
+the workflow pushes the corresponding compensating action onto a <strong>compensation
+stack</strong> — a LIFO structure that ensures reverse-order execution on failure.
+Compensations are the inverse operations (cancel flight, cancel hotel, refund
+payment). As with each step in the forward flow, each compensation must be
+<strong>idempotent</strong>, because the runtime may retry it if the worker crashes before
+its execution is complete.</p>
+</div>
+<div class="paragraph">
+<p><strong>Traditionally,</strong> the two common approaches are choreography and custom
+orchestration, and both have significant drawbacks. In choreography, each
+service listens for events and emits events through a message broker (Apache Kafka,
+RabbitMQ), scattering the saga&#8217;s logic across services — there&#8217;s no single
+place showing the booking&#8217;s current state, and adding a new step means updating
+event handlers in multiple services. A custom orchestrator centralizes
+coordination but requires its own persistence: a <code>sagas</code> table with serialized
+compensation parameters, a state machine tracking which steps completed, crash
+recovery logic that scans for abandoned sagas, and idempotent compensations
+tracked in a database. The orchestrator needs its own retry policies, dead
+letter handling, and monitoring. You&#8217;ve essentially built a workflow engine.</p>
+</div>
+<div class="paragraph">
+<p><strong>With Durable Execution.</strong> The saga becomes a single workflow with a try/catch
+and a stack:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">[Workflow]
+public class TravelBookingWorkflow
+{
+    private static readonly ActivityOptions ForwardOptions = new()
+    {
+        StartToCloseTimeout = TimeSpan.FromSeconds(30),
+    };
+
+    private static readonly ActivityOptions CompensationOptions = new()
+    {
+        StartToCloseTimeout = TimeSpan.FromSeconds(30),
+        RetryPolicy = new RetryPolicy
+        {
+            MaximumAttempts = 10,
+            InitialInterval = TimeSpan.FromSeconds(1),
+            BackoffCoefficient = 2.0,
+        },
+    };
+
+    [WorkflowRun]
+    public async Task&lt;string&gt; RunAsync(BookingRequest request)
+    {
+        var compensations = new Stack&lt;Func&lt;Task&gt;&gt;();
+
+        try
+        {
+            // Step 1: Reserve flight
+            var flightRef = await Workflow.ExecuteActivityAsync(
+                (TravelActivities a) =&gt; a.ReserveFlightAsync(request.FlightId),
+                ForwardOptions);
+            compensations.Push(() =&gt; Workflow.ExecuteActivityAsync(
+                (TravelActivities a) =&gt; a.CancelFlightAsync(flightRef),
+                CompensationOptions));
+
+            // Step 2: Reserve hotel
+            var hotelRef = await Workflow.ExecuteActivityAsync(
+                (TravelActivities a) =&gt; a.ReserveHotelAsync(request.HotelId),
+                ForwardOptions);
+            compensations.Push(() =&gt; Workflow.ExecuteActivityAsync(
+                (TravelActivities a) =&gt; a.CancelHotelAsync(hotelRef),
+                CompensationOptions));
+
+            // Step 3: Charge payment
+            var paymentRef = await Workflow.ExecuteActivityAsync(
+                (TravelActivities a) =&gt; a.ChargePaymentAsync(request.PaymentInfo, request.TotalAmount),
+                new() { StartToCloseTimeout = TimeSpan.FromSeconds(60) });
+            compensations.Push(() =&gt; Workflow.ExecuteActivityAsync(
+                (TravelActivities a) =&gt; a.RefundPaymentAsync(paymentRef),
+                CompensationOptions));
+
+            return $"Booked: flight={flightRef}, hotel={hotelRef}, payment={paymentRef}";
+        }
+        catch (Exception ex)
+        {
+            // Compensate in reverse order
+            while (compensations.Count &gt; 0)
+            {
+                var compensation = compensations.Pop();
+                await compensation();
+            }
+
+            return $"Booking failed and compensated: {ex.Message}";
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The structure is straightforward. The <code>compensations</code> stack is a local variable.
+Each successful forward action pushes its inverse onto the stack as a lambda.
+If any step throws, the <code>catch</code> block pops compensations and executes them in
+reverse order.</p>
+</div>
+<div class="paragraph">
+<p>This is ordinary C# code — a <code>Stack&lt;Func&lt;Task&gt;&gt;</code>, a try/catch, and a while
+loop. What makes it a saga is the runtime guarantees underneath. If the worker
+crashes after reserving the flight but before reserving the hotel, the runtime
+replays the workflow: it re-executes the code, returns the cached result of
+<code>ReserveFlightAsync</code> (the flight isn&#8217;t re-reserved), and continues from the
+hotel step. If the worker crashes during compensation — between cancelling the
+hotel and refunding the payment — the runtime replays through the successful
+forward actions, enters the catch block, skips the compensations that already
+completed (their results are in the history), and continues with the refund.</p>
+</div>
+<div class="paragraph">
+<p>The compensation stack is <strong>reconstructed on replay</strong> because it&#8217;s built by the
+deterministic code path. The runtime doesn&#8217;t need to persist the stack
+separately — it&#8217;s an emergent property of replaying the code. This is the
+same mechanism that makes all durable execution patterns work, but it&#8217;s
+particularly elegant here because the compensation logic, which would require
+its own persistence layer in a traditional implementation, gets it for free.</p>
+</div>
+<div class="paragraph">
+<p><strong>Consequences.</strong> The Saga pattern co-locates forward and compensation logic
+in a single function. A new developer can read the booking saga top to bottom
+and understand what happens on success and on failure without consulting a state
+machine, a database schema, or event contracts across three services.</p>
+</div>
+<div class="paragraph">
+<p>Compensations must be <strong>idempotent</strong>. If the runtime retries
+<code>CancelFlightAsync</code> because the worker crashed after the cancellation API call
+returned but before the result was persisted, the flight service must handle the
+duplicate cancellation request gracefully — returning success without cancelling
+again. This isn&#8217;t unique to the Saga pattern; it&#8217;s a universal requirement for
+compensating actions. But it&#8217;s worth emphasizing because the durable execution
+runtime makes retries invisible, which can create a false sense of safety if
+your compensations aren&#8217;t idempotent. Compensations should also use
+<strong>aggressive retry policies</strong> — a compensation that fails permanently leaves the
+system in a partially rolled-back state, which is worse than no rollback at all.
+The code example uses <code>CompensationOptions</code> with <code>MaximumAttempts = 10</code> and
+exponential backoff precisely for this reason: compensations must keep trying
+until they succeed.</p>
+</div>
+<div class="paragraph">
+<p>Some actions are <strong>not compensable</strong>. You can&#8217;t unsend a notification email. You
+can&#8217;t un-charge a card that has already settled (you can refund it, but that&#8217;s
+a new transaction, not an undo). The Saga pattern works best when every forward
+action has a clean inverse. For actions that aren&#8217;t reversible, consider
+reordering the saga to execute non-compensable actions last, after all fallible
+steps have succeeded. In the original saga literature, the first non-compensable
+step is called the <strong>pivot transaction</strong> — the point of no return after which the
+saga must go forward, not back.</p>
+</div>
+<div class="paragraph">
+<p><strong>Distinction from Code-as-State.</strong> Code-as-State (<a href="02-code-as-state.html" class="xref page">Chapter 2</a>) represents a
+process that moves through a sequence of steps — the state is implicit in the
+execution position. The Saga extends this with explicit compensation tracking.
+If your process doesn&#8217;t need to undo previous steps on failure — if a failure
+simply means "stop and report the error" — you want Code-as-State, not a Saga.</p>
+</div>
+<div class="paragraph">
+<p><strong>Known Applications</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Travel booking — reserve flight, hotel, car; compensate on failure.</p>
+</li>
+<li>
+<p>Order management — reserve inventory, charge payment, schedule shipment.</p>
+</li>
+<li>
+<p>Account provisioning — create user, assign roles, provision resources.</p>
+</li>
+<li>
+<p>Financial transactions — debit account A, credit account B; reverse on
+failure.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Related Patterns</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Code-as-State (<a href="02-code-as-state.html" class="xref page">Chapter 2</a>) — sequential execution without compensations.</p>
+</li>
+<li>
+<p>The Pipeline (<a href="07-pipeline.html" class="xref page">Chapter 7</a>) — sequential stages with data transformation.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>. Hector Garcia-Molina and Kenneth Salem, "Sagas," <em>ACM SIGMOD Record</em>, 1987. <a href="https://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf" class="bare">https://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf</a>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cf50c20bc2cf4cd89789d626615c9afc"}'></script>
+<!-- End Cloudflare Web Analytics -->
+  </body>
+</html>

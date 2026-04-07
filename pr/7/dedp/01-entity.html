@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: Durable Execution Design Patterns</title>
+    <meta name="generator" content="Antora 3.1.14">
+<link rel="stylesheet" href="../_/css/site.css">
+<link rel="stylesheet" href="../_/css/extra.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="..">Durable Execution Design Patterns</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="dedp" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="index.html">Durable Execution Design Patterns</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Preface</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">State Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="01-entity.html">The Entity (Durable Object)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-code-as-state.html">Code-as-State</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Coordination Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03-durable-promise.html">The Durable Promise</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-execution-singleton.html">The Execution Singleton</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Composition Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="05-saga.html">The Saga</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="06-scatter-gather.html">The Scatter-Gather</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07-pipeline.html">The Pipeline</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Lifecycle Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="08-perpetual-execution.html">The Perpetual Execution</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09-durable-observer.html">The Durable Observer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="10-closing-thoughts.html">Closing Thoughts</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Appendices</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="a-pattern-quick-reference.html">A: Pattern Quick Reference</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="b-environment-setup.html">B: Environment Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="c-failure-simulation-playbook.html">C: Failure Simulation Playbook</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Durable Execution Design Patterns</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="index.html">Durable Execution Design Patterns</a></div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Durable Execution Design Patterns</a></li>
+    <li>State Patterns</li>
+    <li><a href="01-entity.html">The Entity (Durable Object)</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="file:///repo/docs/modules/ROOT/pages/01-entity.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="_the_entity_durable_object"><a class="anchor" href="#_the_entity_durable_object"></a>The Entity (Durable Object)</h2>
+<div class="sectionbody">
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Encapsulate a domain object&#8217;s mutable state and behavior inside a single
+long-lived durable execution, accessed exclusively through typed messages.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p><strong>Intent.</strong> A domain object needs mutable state that survives pod restarts,
+deploys, and infrastructure failures — without an external database. The Entity
+pattern places that state, along with the command handlers that mutate it and
+the query handlers that read it, inside a single workflow identified by
+a stable business key.</p>
+</div>
+<div class="paragraph">
+<p><strong>Motivation.</strong> Consider an e-commerce shopping cart. A customer opens a
+session, adds a few items, gets distracted, comes back the next day, removes
+one item, applies a coupon, and checks out — or abandons the cart entirely.
+The interaction spans minutes to days. The cart has identity (one per customer
+session), mutable state (the line items, quantities, and applied discounts),
+and a lifecycle (active until checkout, expiration, or explicit abandonment).</p>
+</div>
+<div class="paragraph">
+<p>This is not a request-response problem. The cart is a <em>thing</em> — a long-lived
+object with behavior. It accepts commands ("add this item," "apply this
+coupon"), answers queries ("what is in the cart right now?"), and eventually
+reaches a terminal state. If you squint, it looks like an object in the
+object-oriented sense: encapsulated state, a public interface, a lifetime
+managed by the system.</p>
+</div>
+<div class="paragraph">
+<p><strong>The Pattern</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ch01-entity-participants.svg" alt="The Entity pattern" width="60%">
+</div>
+</div>
+<div class="paragraph">
+<p>The workflow lives as long as the domain object does — one per cart, one per
+device, one per game lobby. It&#8217;s identified by a stable business key like
+<code>cart-{customer_id}</code>, so external clients always know how to find it.</p>
+</div>
+<div class="paragraph">
+<p>Commands arrive as asynchronous, durably delivered messages — called <em>signals</em> in Temporal — like
+<code>AddItem</code>, <code>RemoveItem</code>, or <code>Checkout</code>. Inside the workflow, a <em>selector</em> (Temporal&#8217;s Go SDK term) — a channel multiplexer that blocks until
+any one of several channels has a message, analogous to Go&#8217;s <code>select</code>
+statement or a Unix <code>poll()</code> — sits in an event loop, picking up signals
+one at a time, validating business rules,
+and mutating local state. Because the selector processes signals sequentially,
+<strong>there are no concurrent mutations</strong> — two clients adding items at the same
+time don&#8217;t race. Their signals are queued and processed in order.</p>
+</div>
+<div class="paragraph">
+<p>Reads arrive as synchronous state inspections — <em>queries</em> in Temporal. A query handler returns the current state without
+side effects — no database round-trip, no cache to invalidate. The state you
+read is always consistent because it <em>is</em> the actual live state.</p>
+</div>
+<div class="paragraph">
+<p>When the event history grows too large, the workflow compacts its history by starting a fresh execution with only the current state — a mechanism called <code>ContinueAsNew</code> in Temporal. The workflow terminates when it reaches a terminal condition:
+checkout, deletion, or an inactivity timer.</p>
+</div>
+<div class="paragraph">
+<p><strong>Traditionally,</strong> building a stateful domain object like this means scattering
+it across at least three systems: a <em>database</em> for state (with optimistic
+locking to handle concurrent writes), a <em>stateless API service</em> for business
+rules (separated from the state it protects), and a <em>cron job</em> or TTL
+mechanism for lifecycle (expiration, cleanup). The domain object doesn&#8217;t exist
+as a coherent thing in this architecture — it&#8217;s a convention, maintained by the
+discipline of developers who know these systems are related.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ch01-without-de.svg" alt="Traditional entity implementation" width="90%">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>With Durable Execution.</strong> The Entity pattern collapses all three concerns
+into a single workflow. State becomes a local variable. Commands arrive as
+signals. Queries read the variable directly. The event loop <em>is</em> the lifecycle.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">func CartWorkflow(ctx workflow.Context, cartID string) (*CartState, error) {
+	state := &amp;CartState{ID: cartID, UpdatedAt: workflow.Now(ctx)} <i class="conum" data-value="1"></i><b>(1)</b>
+
+	err := workflow.SetQueryHandler(ctx, "getCart", func() (*CartState, error) { <i class="conum" data-value="2"></i><b>(2)</b>
+		return state, nil
+	})
+	if err != nil {
+		return nil, fmt.Errorf("register query handler: %w", err)
+	}
+
+	addItemCh := workflow.GetSignalChannel(ctx, "addItem")    <i class="conum" data-value="3"></i><b>(3)</b>
+	removeItemCh := workflow.GetSignalChannel(ctx, "removeItem")
+	checkoutCh := workflow.GetSignalChannel(ctx, "checkout")
+
+	checkedOut := false
+
+	for !checkedOut { <i class="conum" data-value="4"></i><b>(4)</b>
+		selector := workflow.NewSelector(ctx)
+
+		selector.AddReceive(addItemCh, func(c workflow.ReceiveChannel, _ bool) {
+			var cmd AddItemCommand
+			c.Receive(ctx, &amp;cmd)
+			state.Items = append(state.Items, cmd.Item) <i class="conum" data-value="5"></i><b>(5)</b>
+			state.UpdatedAt = workflow.Now(ctx)
+		})
+
+		selector.AddReceive(removeItemCh, func(c workflow.ReceiveChannel, _ bool) {
+			var cmd RemoveItemCommand
+			c.Receive(ctx, &amp;cmd)
+			for i, item := range state.Items {
+				if item.ProductID == cmd.ProductID {
+					state.Items = append(state.Items[:i], state.Items[i+1:]...)
+					break
+				}
+			}
+			state.UpdatedAt = workflow.Now(ctx)
+		})
+
+		selector.AddReceive(checkoutCh, func(c workflow.ReceiveChannel, _ bool) {
+			var signal struct{}
+			c.Receive(ctx, &amp;signal)
+			checkedOut = true
+		})
+
+		selector.Select(ctx)
+
+		if ctx.Err() != nil {
+			return state, ctx.Err()
+		}
+	}
+
+	return state, nil
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>State lives in a local variable — no external database, no ORM, no schema.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The query handler exposes state read-only; external callers can inspect
+the cart without mutating it.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Each signal channel delivers a command. The selector processes them one at
+a time — no concurrent mutations, no optimistic locking.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The event loop <em>is</em> the entity&#8217;s lifecycle. It runs until checkout or
+cancellation — state, behavior, and lifecycle in one construct.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Business rules are enforced inline, at the point of mutation, next to the
+state they protect.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>CartWorkflow</code> function is the entire entity. <code>state</code> is a Go struct living
+in the worker&#8217;s memory — <strong>not in a database, not in Redis, not in any external
+store</strong>. The worker holds it as a plain local variable. When a query arrives,
+the handler reads that variable directly — zero network hops, zero
+serialization, zero cache invalidation. This is why the Entity pattern
+eliminates the cache layer from the traditional architecture: the in-memory
+state on the worker <em>is</em> both the source of truth and the fast read path.</p>
+</div>
+<div class="paragraph">
+<p>When the workflow replays after a crash, the runtime reconstructs <code>state</code> by
+re-executing the deterministic code path up to the point of failure, then
+continues from there. There is no database table, no ORM mapping, no migration
+file — the event history <em>is</em> the persistence layer, and replay <em>is</em> the
+recovery mechanism.</p>
+</div>
+<div class="paragraph">
+<p>The three signal channels — <code>addItem</code>, <code>removeItem</code>, <code>checkout</code> — are the
+command interface. The <code>Selector</code> blocks until one of them fires, processes the
+command, and loops. <strong>No optimistic locking is needed</strong> — the sequential
+processing model described above eliminates concurrent mutations entirely.</p>
+</div>
+<div class="paragraph">
+<p>The checkout signal sets a flag and exits the loop. The workflow returns the
+final cart state. If the worker crashes between receiving a signal and updating
+the state, the runtime replays the workflow from its last checkpoint, re-applies
+the signal, and continues. No data is lost, no retry logic is needed in
+application code.</p>
+</div>
+<div class="paragraph">
+<p>The full repository includes activity definitions for post-checkout side effects
+(sending confirmation emails, updating inventory). These would be called after
+the loop exits, before the workflow returns. The activity signatures:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">type CartActivities struct{}
+
+func (a *CartActivities) SendOrderConfirmation(ctx context.Context, state *CartState) error {
+	fmt.Printf("Order confirmed for cart %s: %d items, total $%.2f\n",
+		state.ID, len(state.Items), state.Total())
+	return nil
+}
+
+func (a *CartActivities) ReserveInventory(ctx context.Context, items []CartItem) error {
+	for _, item := range items {
+		fmt.Printf("Reserved: %s x%d\n", item.Name, item.Quantity)
+	}
+	return nil
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Consequences.</strong> The Entity pattern eliminates the need to store and manage state in an application database, and collapses the service
+layer and the scheduler into a single construct. The workflow runtime replaces all
+three. (You may still want an OLAP database for analytic queries across many entities — the pattern removes the operational store, not the analytical one.) But the trade-offs are real and worth understanding before adopting this
+pattern.</p>
+</div>
+<div class="paragraph">
+<p>The most immediate constraint is <strong>event history</strong>. Every signal, every timer,
+every activity completion — each generates events in the workflow&#8217;s history.
+(Queries do not; they are handled synchronously without modifying history.) A cart
+that receives thousands of add/remove operations will accumulate a large
+history. Durable execution platforms enforce a configurable maximum history size (Temporal&#8217;s default is 50K
+events). Long-lived entities must use <code>ContinueAsNew</code> to periodically compact
+their history — <a href="08-perpetual-execution.html" class="xref page">Perpetual Execution</a> covers this in detail.</p>
+</div>
+<div class="paragraph">
+<p>The <strong>single-writer model</strong> means only one worker processes the workflow at a
+time. This guarantees consistency but limits write throughput. For most domain
+objects — shopping carts, user sessions, device twins — the write rate is low
+enough that this isn&#8217;t a problem. For entities that genuinely need high write
+throughput (a real-time auction with hundreds of bids per second), you&#8217;d need to
+shard by key prefix or use a different pattern.</p>
+</div>
+<div class="paragraph">
+<p><strong>Query availability</strong> deserves a deeper look, because the trade-off here is
+not specific to Temporal — it is inherent to event sourcing. The Entity pattern
+<em>is</em> event sourcing: the workflow&#8217;s event history is the journal, and replay is
+the mechanism that reconstructs current state. Temporal makes event sourcing
+dramatically easier — it handles journal persistence, replay correctness, and
+crash recovery — but it does not change the fundamental architecture. The journal
+stores events, not materialized state. Current state exists only in worker
+memory, reconstructed by replaying the journal. If no worker is available to
+perform that replay, there is no materialized state to query.</p>
+</div>
+<div class="paragraph">
+<p>The established answer is <em>CQRS</em> — Command Query Responsibility Segregation:
+separate the write path from the read path. The workflow remains the single
+writer, but you project state to an external read-optimized store via an
+activity, so the read path does not depend on worker availability. <strong>If you have
+a UI or API separate from Temporal&#8217;s own, this is the default recommendation —
+serve reads from an external store.</strong> The projected state will be eventually
+consistent with the workflow&#8217;s live state — but this is not a Temporal
+limitation. It is the same trade-off you make in any event-sourced CQRS
+architecture: the event journal and the read store are separate systems, updated
+at different times. Temporal does not make this worse; it is at parity with the
+traditional approach.</p>
+</div>
+<div class="paragraph">
+<p>Where Temporal <em>does</em> improve on traditional event sourcing is in how
+projections happen. In a classic event-sourced system, projections are maintained
+by separate consumers that tail the event journal — decoupled processes, running
+independently, each rebuilding its own materialized view from the full stream.
+These consumers have no context about the business logic; they see every event
+and typically project the entire state, because they cannot distinguish a routine
+mutation from a meaningful moment. If a consumer falls behind or crashes, it is a
+separate failure domain you monitor and recover independently.</p>
+</div>
+<div class="paragraph">
+<p>In the Entity pattern, the projection is an activity <em>inside the workflow</em>. The
+workflow is the business logic — it knows when something meaningful happened. You
+can project selectively: write to the read store only after checkout, not after
+every <code>addItem</code>. You can project different views at different moments — a
+lightweight summary for a listing page, full details only when the entity reaches
+a terminal state. You can skip projecting entirely for short-lived entities that
+will never need external reads. And because the projection is a durable activity,
+the workflow knows whether it succeeded or failed. The event history records the
+outcome. There is no silent consumer falling behind — there is an explicit,
+tracked step in the workflow.</p>
+</div>
+<div class="paragraph">
+<p>Separately from CQRS projections, Temporal&#8217;s <em>search attributes</em> let you attach
+indexed key-value pairs to a workflow execution — small, structured fields like
+status, customer ID, or priority — queryable through the platform&#8217;s visibility
+APIs without hitting a worker. This is useful for operational queries and
+filtering (e.g., "find all active carts for this customer"), not for serving
+application read models.</p>
+</div>
+<div class="paragraph">
+<p>The <strong>in-memory state model</strong> has its own nuance. The worker keeps workflow
+state in a local execution cache (Temporal calls this the <em>sticky execution cache</em>) — a bounded, in-memory cache of recently
+active workflows. When the cache is full, the worker evicts the least recently
+used workflows. If a signal or query arrives for an evicted workflow, the worker
+replays its event history from the Temporal Service to reconstruct the state before
+processing the request. This adds latency on the first access after eviction,
+but the state is always correct — replay is deterministic. Unlike a traditional
+cache, there are no invalidation bugs and no stale reads. The cache size is
+configurable per worker, and for most workloads the hot set of active entities
+fits comfortably in memory.</p>
+</div>
+<div class="paragraph">
+<p><strong>Distinction from Code-as-State.</strong> Both the Entity and Code-as-State are state
+patterns, but they model fundamentally different things. Code-as-State
+(<a href="02-code-as-state.html" class="xref page">Chapter 2</a>) represents a process that moves through a sequence of steps — the
+state is implicit in the execution position. The Entity represents an object
+that sits in a loop, accepting commands indefinitely until some terminal event.
+If your domain concept has a linear lifecycle (order fulfillment, onboarding
+flow), use Code-as-State. If it has an event-driven loop (shopping cart, device
+twin, game lobby), use the Entity.</p>
+</div>
+<div class="paragraph">
+<p><strong>Origin of the example.</strong> The shopping cart workflow is directly inspired by
+<a href="https://github.com/temporalio/temporal-ecommerce">temporal-ecommerce</a>, an
+official Temporal sample. Our version simplifies the code to emphasize the
+pattern&#8217;s structure, but the architectural idea — one workflow per cart, signals
+as commands, queries for state — comes from that repository.</p>
+</div>
+<div class="paragraph">
+<p><strong>Known Applications</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Shopping carts — one workflow per cart, signals for add/remove, query for
+contents</p>
+</li>
+<li>
+<p>User sessions — session state in a workflow, signals for actions, timer for
+inactivity timeout</p>
+</li>
+<li>
+<p>IoT device twins — a workflow per device, signals from telemetry, queries for
+current state</p>
+</li>
+<li>
+<p>Game lobbies — one workflow per lobby, signals for join/leave/ready, query for
+lobby state</p>
+</li>
+<li>
+<p>Order management — the order entity progresses through states via signals,
+queryable at any point</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Related Patterns</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Code-as-State (<a href="02-code-as-state.html" class="xref page">Chapter 2</a>) — see distinction above</p>
+</li>
+<li>
+<p>Perpetual Execution (<a href="08-perpetual-execution.html" class="xref page">Chapter 8</a>) — long-lived entities must use ContinueAsNew
+for history compaction</p>
+</li>
+<li>
+<p>Execution Singleton (<a href="04-execution-singleton.html" class="xref page">Chapter 4</a>) — guarantees only one entity workflow per
+business key. Almost always used together with the Entity pattern</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cf50c20bc2cf4cd89789d626615c9afc"}'></script>
+<!-- End Cloudflare Web Analytics -->
+  </body>
+</html>

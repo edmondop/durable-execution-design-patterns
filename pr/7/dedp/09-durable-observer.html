@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: Durable Execution Design Patterns</title>
+    <meta name="generator" content="Antora 3.1.14">
+<link rel="stylesheet" href="../_/css/site.css">
+<link rel="stylesheet" href="../_/css/extra.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="..">Durable Execution Design Patterns</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="dedp" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="index.html">Durable Execution Design Patterns</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Preface</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">State Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-entity.html">The Entity (Durable Object)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-code-as-state.html">Code-as-State</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Coordination Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03-durable-promise.html">The Durable Promise</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-execution-singleton.html">The Execution Singleton</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Composition Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="05-saga.html">The Saga</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="06-scatter-gather.html">The Scatter-Gather</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07-pipeline.html">The Pipeline</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Lifecycle Patterns</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="08-perpetual-execution.html">The Perpetual Execution</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="09-durable-observer.html">The Durable Observer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="10-closing-thoughts.html">Closing Thoughts</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Appendices</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="a-pattern-quick-reference.html">A: Pattern Quick Reference</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="b-environment-setup.html">B: Environment Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="c-failure-simulation-playbook.html">C: Failure Simulation Playbook</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Durable Execution Design Patterns</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="index.html">Durable Execution Design Patterns</a></div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Durable Execution Design Patterns</a></li>
+    <li>Lifecycle Patterns</li>
+    <li><a href="09-durable-observer.html">The Durable Observer</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="file:///repo/docs/modules/ROOT/pages/09-durable-observer.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="_the_durable_observer_event_correlator"><a class="anchor" href="#_the_durable_observer_event_correlator"></a>The Durable Observer (Event Correlator)</h2>
+<div class="sectionbody">
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Collect events from multiple external sources over time inside a durable
+workflow, maintaining correlation state and acting when a pattern or threshold
+is detected.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p><strong>Intent.</strong> Multiple events arrive from different sources at unpredictable
+times. The system must correlate them, maintain running state, and trigger
+actions when patterns emerge — a combination of events within a time window, a
+threshold crossed, a sequence detected. The Durable Observer holds correlation
+state inside a workflow, receives events as external messages (signals), and acts on conditions.</p>
+</div>
+<div class="paragraph">
+<p><strong>Motivation.</strong> A financial services company monitors customer accounts for
+fraud. No single event is suspicious on its own. A login from a new device is
+normal — customers get new phones. A $2,000 wire transfer is normal — customers
+pay rent. But a new-device login followed by a $2,000 wire transfer within five
+minutes, from a different country than the customer&#8217;s usual location, is a
+pattern that warrants freezing the account and alerting the fraud team.</p>
+</div>
+<div class="paragraph">
+<p>The challenge is correlation within a time window. The events arrive minutes or hours apart,
+from different services (the authentication service, the transaction processing
+service, the geolocation service). The fraud rule must "remember" that a device
+change happened and check whether a large transaction follows within a time
+window. If the window expires without a matching transaction, the device change
+is forgotten (or at least deprioritized). If the window is still open and a
+matching transaction arrives, the alert fires.</p>
+</div>
+<div class="paragraph">
+<p>This is Complex Event Processing (CEP), a well-studied domain with dedicated
+engines — Esper, Apache Flink CEP, AWS EventBridge. These systems are powerful but
+represent significant operational overhead: a streaming infrastructure
+(Apache Kafka or Kinesis), a CEP runtime, a state backend (RocksDB, Redis), and a
+deployment pipeline for rule changes. For teams that already run a durable
+execution platform, implementing simple-to-moderate correlation rules as
+workflows eliminates the need for a separate streaming stack.</p>
+</div>
+<div class="paragraph">
+<p><strong>The Pattern</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ch09-durable-observer.svg" alt="Durable Observer pattern diagram" width="100%">
+</div>
+</div>
+<div class="paragraph">
+<p>The observer workflow is a long-running workflow identified by a business key —
+typically an account ID or entity ID. It sits in a loop, receiving events as
+<em>signals</em> (Temporal&#8217;s mechanism for sending data into a running workflow) and accumulating them in local state. Each signal carries event data
+(type, timestamp, payload) from an external source into the workflow. Inside the
+signal handler lives the <strong>correlation rule</strong> — ordinary application logic that
+evaluates accumulated events against patterns: "device change followed by large
+transaction within 5 minutes," "three failed login attempts in 10 minutes," or
+"order total exceeds $50,000 across all orders today." When a rule fires, the
+workflow acts — freezing an account, sending an alert, or kicking off a
+downstream activity.</p>
+</div>
+<div class="paragraph">
+<p><strong>Traditionally,</strong> you&#8217;d build this with a stream processing pipeline: events
+flow through a message broker (Kafka, Kinesis) into a processor (Flink, Apache Spark
+Streaming) that maintains windowed state and evaluates rules against it. The
+operational cost is substantial — <strong>cluster management, state backends,
+checkpointing, consumer group coordination</strong> — all for correlation logic that
+might fit in a single function. A simpler alternative is polling a database
+table, but that trades infrastructure complexity for latency and scaling
+problems.</p>
+</div>
+<div class="paragraph">
+<p><strong>With Durable Execution.</strong> One workflow per monitored account. Events arrive
+as signals. Correlation rules evaluate in the signal handler:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">export async function fraudMonitorWorkflow(accountId: string): Promise&lt;AlertResult&gt; {
+  const events: FraudEvent[] = [];
+  let alertTriggered = false;
+  let alertReason = '';
+
+  // Register signal handler for incoming events
+  setHandler(reportEvent, (event: FraudEvent) =&gt; {
+    events.push(event);
+
+    // Correlation rule: new device + large transaction within 5 minutes
+    const recentDeviceChange = events.find(
+      (e) =&gt;
+        e.type === 'device_change' &amp;&amp;
+        event.timestamp - e.timestamp &lt; 5 * 60 * 1000,
+    );
+
+    if (
+      event.type === 'transaction' &amp;&amp;
+      recentDeviceChange &amp;&amp;
+      (event.details.amount as number) &gt; 1000
+    ) {
+      alertTriggered = true;
+      alertReason = `Large transaction ($${event.details.amount}) from new device within 5 minutes`;
+    }
+  });
+
+  setHandler(getStatus, () =&gt; ({
+    triggered: alertTriggered,
+    reason: alertReason,
+    events,
+  }));
+
+  // Wait for alert or monitoring window expiry (24 hours)
+  await condition(() =&gt; alertTriggered, '24h');
+
+  return {
+    triggered: alertTriggered,
+    reason: alertReason || 'Monitoring window expired without alert',
+    events,
+  };
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>fraudMonitorWorkflow</code> starts when an account enters monitoring — a new
+customer, a flagged account, or simply every active account. It registers a
+signal handler for <code>reportEvent</code> that accumulates events in a local array and
+evaluates the correlation rule on each arrival.</p>
+</div>
+<div class="paragraph">
+<p>The correlation rule is ordinary TypeScript. When a <code>transaction</code> event arrives,
+the handler searches the accumulated events for a <code>device_change</code> within the
+last 5 minutes. If it finds one, and the transaction amount exceeds $1,000, it
+sets <code>alertTriggered</code> to true. The <code>condition()</code> call at the bottom of the
+workflow wakes up immediately when <code>alertTriggered</code> becomes true, or after 24
+hours if no alert is triggered (the monitoring window expires).</p>
+</div>
+<div class="paragraph">
+<p>The workflow&#8217;s state — the <code>events</code> array, the <code>alertTriggered</code> flag — is
+<strong>durable by default</strong>. If the worker crashes after receiving three events but
+before the alert fires, the runtime replays the workflow on another worker. The
+signal handler re-processes the three events from history (they&#8217;re recorded as
+signal events), reconstructs the <code>events</code> array, and continues. No events are
+lost, no correlation state is lost.</p>
+</div>
+<div class="paragraph">
+<p>The <code>getStatus</code> query lets external systems check the current state of the
+monitor at any time. An operations dashboard can query all fraud-monitor
+workflows to show which accounts are under observation, how many events have
+been collected, and whether any alerts have triggered.</p>
+</div>
+<div class="paragraph">
+<p><strong>Consequences.</strong> The Durable Observer replaces streaming infrastructure
+(Kafka + Flink + state backend) with workflows and signals. For moderate event
+volumes — tens of events per minute per account, thousands of monitored
+accounts — this is operationally simpler and uses infrastructure you already
+run.</p>
+</div>
+<div class="paragraph">
+<p>The primary constraint is <strong>throughput per workflow</strong>. A single workflow
+processes signals sequentially, and Temporal enforces a per-workflow signal rate
+on the order of a few hundred per second. If an account generates events at
+that rate or higher (a high-frequency trading account, a real-time IoT sensor),
+signals will be throttled or the workflow will fall behind. For those volumes,
+you&#8217;ll need either dedicated stream processing or a sharding strategy — one
+observer workflow per time window or per event partition, with a router
+directing events to the correct shard.</p>
+</div>
+<div class="paragraph">
+<p>The <code>events</code> array in the example grows without bound. For a 24-hour monitoring
+window on an active account, it could hold thousands of entries. That&#8217;s fine
+within the payload size limit, but for longer windows or higher volumes, you
+should prune events that have fallen outside the correlation window or use
+<strong>ContinueAsNew</strong> (<a href="08-perpetual-execution.html" class="xref page">Chapter 8</a>) to periodically compact the history and carry
+forward only the relevant events.</p>
+</div>
+<div class="paragraph">
+<p><strong>Distinction from the Entity.</strong> The Durable Observer is structurally similar
+to the Entity (<a href="01-entity.html" class="xref page">Chapter 1</a>) — both are long-running workflows that receive
+signals and maintain state. The distinction is purpose. The Entity models a
+domain <em>object</em> (a cart, a device, a session) and its signals are commands that
+mutate its state. The Observer monitors a stream of <em>events</em> and its signals
+carry observations evaluated against rules. The Entity&#8217;s output is its own
+state; the Observer&#8217;s output is an alert or action triggered by a pattern in
+the input.</p>
+</div>
+<div class="paragraph">
+<p><strong>Known Applications</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Fraud detection — correlate login, transaction, and device events per
+account</p>
+</li>
+<li>
+<p>SLA monitoring — track service response times, alert when thresholds are
+breached</p>
+</li>
+<li>
+<p>Order tracking — correlate shipment events from multiple carriers</p>
+</li>
+<li>
+<p>IoT alerting — monitor sensor readings, alert on sustained anomalies</p>
+</li>
+<li>
+<p>Multi-party agreement — wait for signatures from all parties within a
+deadline</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Related Patterns</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The Entity (<a href="01-entity.html" class="xref page">Chapter 1</a>) — structurally similar; see distinction above</p>
+</li>
+<li>
+<p>Perpetual Execution (<a href="08-perpetual-execution.html" class="xref page">Chapter 8</a>) — long-running observers need history
+compaction</p>
+</li>
+<li>
+<p>The Durable Promise (<a href="03-durable-promise.html" class="xref page">Chapter 3</a>) — a degenerate observer that waits for
+exactly one event rather than correlating many</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cf50c20bc2cf4cd89789d626615c9afc"}'></script>
+<!-- End Cloudflare Web Analytics -->
+  </body>
+</html>
