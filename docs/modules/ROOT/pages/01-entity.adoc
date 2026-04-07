@@ -28,7 +28,6 @@ managed by the system.
 
 **The Pattern**
 
-// TODO: Fix garbled characters in entity diagram after "query reads local var"
 image::ch01-entity-participants.svg[The Entity pattern,width=60%]
 
 The workflow lives as long as the domain object does — one per cart, one per

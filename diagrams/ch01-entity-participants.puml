@@ -43,7 +43,7 @@ note right of cart #ffffff: state = [{T-shirt, $25}, {Mug, $15}]
 
 b -> cart : query **getCart()**
 cart --> b : [{T-shirt, $25}, {Mug, $15}]
-note right of cart #ffffff: query reads local var —\nno DB, no cache
+note right of cart #ffffff: query reads local var --\nno DB, no cache
 
 ...next day...
 
