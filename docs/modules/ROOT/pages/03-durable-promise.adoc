@@ -7,10 +7,12 @@ an external actor at any future time — seconds, hours, or months later.
 ____
 
 **Intent.** A workflow needs to pause and wait for something that happens
-outside the system's control: a human approval, a webhook callback, a payment
-confirmation, a signed document. The Durable Promise suspends execution at a
-named point, persists the suspension durably, and resumes only when an external
-actor signals fulfillment — or a deadline expires.
+outside the system's control — such as a human approval, a webhook callback, a
+payment confirmation, or a decision from an AI agent. The Durable Promise
+suspends execution at a named point, persists the suspension durably, and
+resumes only when an external actor signals fulfillment — or a deadline
+expires. This is the foundational _human-in-the-loop_ pattern for durable
+execution.
 
 **Motivation.** An employee submits an expense report. Their manager must
 review and approve or reject it. The manager might respond in five minutes or
@@ -28,7 +30,7 @@ system can't speed it up. It can only wait.
 
 image::ch03-durable-promise-seq.svg[Durable promise sequence diagram,width=100%]
 
-The Awaiting Workflow is a durable workflow that reaches a point where it can't
+The Awaiting Workflow is a workflow that reaches a point where it can't
 proceed without external input. It registers a handler for external messages (a _signal handler_ in Temporal) and blocks —
 durably. The runtime persists the workflow's event history, so the process can
 **wait for days or weeks without consuming resources**. The External Actor is whatever
@@ -100,6 +102,11 @@ one signal (approve or reject) but the external system sends both (a UI bug, a
 webhook retry), the workflow must handle the duplicate. The `approve()` and
 `reject()` methods in the example overwrite `approvalResult`, so the last
 signal wins. Whether that's correct depends on your business rules.
+
+A single workflow may involve **multiple applications of the Durable Promise
+pattern**. An expense report workflow, for instance, might block on one promise
+awaiting the employee's submission, then on a second promise awaiting the
+manager's approval, each with its own deadline.
 
 **Distinction from the Entity.** Both patterns receive signals, but the Entity
 (xref:01-entity.adoc[Chapter 1]) sits in a loop accepting commands indefinitely — it's a long-lived
