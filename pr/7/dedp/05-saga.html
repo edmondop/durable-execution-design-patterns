@@ -199,7 +199,7 @@ they were never charged for, or a flight reservation that nobody knows about.</p
 </div>
 <div class="paragraph">
 <p>This is the classic distributed transaction problem, and the Saga pattern —
-originally described by Garcia-Molina and Salem in 1987<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup> — is the standard
+originally described by Garcia-Molina and Salem in 1987 <sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup> — is the standard
 solution for systems that can&#8217;t use two-phase commit. The insight is that each
 forward action has a compensating action (reserve flight / cancel flight), and
 these compensations must execute in <strong>reverse order</strong> on failure. Reverse order
