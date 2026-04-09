@@ -21,7 +21,7 @@ retried until it succeeds. The customer can't end up with a hotel reservation
 they were never charged for, or a flight reservation that nobody knows about.
 
 This is the classic distributed transaction problem, and the Saga pattern —
-originally described by Garcia-Molina and Salem in 1987footnote:[Hector Garcia-Molina and Kenneth Salem, "Sagas," _ACM SIGMOD Record_, 1987. https://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf] — is the standard
+originally described by Garcia-Molina and Salem in 1987 footnote:[Hector Garcia-Molina and Kenneth Salem, "Sagas," _ACM SIGMOD Record_, 1987. https://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf] — is the standard
 solution for systems that can't use two-phase commit. The insight is that each
 forward action has a compensating action (reserve flight / cancel flight), and
 these compensations must execute in **reverse order** on failure. Reverse order

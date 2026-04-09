@@ -55,7 +55,7 @@ early as 2012. Durable execution's value is most visible after the application
 is running in production, although it also influences application design by
 eliminating complexity. The insight that matters for this book is what that
 foundation _enables_: a new family of design patterns where **the runtime handles
-state persistence, failure recovery, retries, and coordination**. Patterns that
+state persistence, crash recovery, retries, and coordination**. Patterns that
 previously required pages of infrastructure code collapse into a few lines of
 workflow logic. Durable execution does not add a new layer of patterns on top of
 existing complexity. It **_removes_ complexity**.
