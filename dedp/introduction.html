@@ -235,13 +235,15 @@ libraries. CQRS required event stores and projection pipelines.</p>
 </div>
 <div class="paragraph">
 <p>Durable execution is not on this timeline because <strong>it is not a pattern — it is a
-runtime capability</strong>. Amazon SWF introduced the core idea as early as 2012. But
-the insight that matters for this book is what that capability <em>enables</em>: a new
-family of design patterns where <strong>the runtime handles state persistence, failure
-recovery, retries, and coordination</strong>. Patterns that previously required pages of
-infrastructure code collapse into a few lines of workflow logic. Durable
-execution does not add a new layer of patterns on top of existing complexity. It
-<strong><em>removes</em> complexity</strong>.</p>
+foundation for building applications</strong>. Amazon SWF introduced the core idea as
+early as 2012. Durable execution&#8217;s value is most visible after the application
+is running in production, although it also influences application design by
+eliminating complexity. The insight that matters for this book is what that
+foundation <em>enables</em>: a new family of design patterns where <strong>the runtime handles
+state persistence, crash recovery, retries, and coordination</strong>. Patterns that
+previously required pages of infrastructure code collapse into a few lines of
+workflow logic. Durable execution does not add a new layer of patterns on top of
+existing complexity. It <strong><em>removes</em> complexity</strong>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -397,7 +399,8 @@ looks like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>Event 1: WorkflowExecutionStarted  {input: Order(...)}
+<pre>Event 1: WorkflowExecutionStarted   {input: Order(...)}
+  // ...
 Event 2: ActivityTaskScheduled      {activity: "charge_payment"}
 Event 3: ActivityTaskCompleted      {result: "ch_abc123"}
 Event 4: ActivityTaskScheduled      {activity: "ship_order"}
@@ -467,12 +470,15 @@ the history. On replay, it returns the <em>same</em> recorded time — 3pm — s
 condition evaluates the same way and the command sequence matches.</p>
 </div>
 <div class="paragraph">
-<p>Durable execution runtimes provide deterministic replacements for all
-non-deterministic operations: <code>workflow.random()</code> for randomness,
-<code>workflow.now()</code> for the current time, and activities for any operation with
-external side effects. If you need to read a file or call an API, wrap it in
-an activity — the result is recorded in the history and returned on replay
-without re-execution.</p>
+<p>Durable execution runtimes address non-determinism through two distinct
+mechanisms. First, they provide <strong>workflow-safe replacements</strong> for some common
+non-deterministic API calls: <code>workflow.random()</code> instead of <code>random()</code>,
+<code>workflow.now()</code> instead of <code>datetime.now()</code>. These are drop-in substitutions
+that record their result in the history and return the same value on replay.
+Second, <strong>activities</strong> let you encapsulate any operation that involves external
+side effects — reading a file, calling an API, querying a database. Wrap the
+logic in an activity, and the result is recorded in the history and returned on
+replay without re-execution.</p>
 </div>
 <div class="paragraph">
 <p>This is arguably the single most important practical constraint of durable
@@ -483,7 +489,7 @@ code examples follow this rule implicitly; now you know why.</p>
 <div class="sect2">
 <h3 id="_the_nine_patterns"><a class="anchor" href="#_the_nine_patterns"></a>The Nine Patterns</h3>
 <div class="paragraph">
-<p>At first glance, these patterns might look similar — they all involve durable
+<p>At first glance, these patterns might look similar — they all involve
 workflows, and they all solve problems in distributed systems. The difference is
 in <strong><em>what</em> each pattern holds durable</strong> and <strong><em>why</em></strong>.</p>
 </div>

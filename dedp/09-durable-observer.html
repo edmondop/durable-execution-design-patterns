@@ -198,7 +198,7 @@ minutes, from a different country than the customer&#8217;s usual location, is a
 pattern that warrants freezing the account and alerting the fraud team.</p>
 </div>
 <div class="paragraph">
-<p>The challenge is temporal correlation. The events arrive minutes or hours apart,
+<p>The challenge is correlation within a time window. The events arrive minutes or hours apart,
 from different services (the authentication service, the transaction processing
 service, the geolocation service). The fraud rule must "remember" that a device
 change happened and check whether a large transaction follows within a time
@@ -208,9 +208,9 @@ matching transaction arrives, the alert fires.</p>
 </div>
 <div class="paragraph">
 <p>This is Complex Event Processing (CEP), a well-studied domain with dedicated
-engines — Esper, Flink CEP, AWS EventBridge. These systems are powerful but
+engines — Esper, Apache Flink CEP, AWS EventBridge. These systems are powerful but
 represent significant operational overhead: a streaming infrastructure
-(Kafka or Kinesis), a CEP runtime, a state backend (RocksDB, Redis), and a
+(Apache Kafka or Kinesis), a CEP runtime, a state backend (RocksDB, Redis), and a
 deployment pipeline for rule changes. For teams that already run a durable
 execution platform, implementing simple-to-moderate correlation rules as
 workflows eliminates the need for a separate streaming stack.</p>
@@ -237,7 +237,7 @@ downstream activity.</p>
 </div>
 <div class="paragraph">
 <p><strong>Traditionally,</strong> you&#8217;d build this with a stream processing pipeline: events
-flow through a message broker (Kafka, Kinesis) into a processor (Flink, Spark
+flow through a message broker (Kafka, Kinesis) into a processor (Flink, Apache Spark
 Streaming) that maintains windowed state and evaluates rules against it. The
 operational cost is substantial — <strong>cluster management, state backends,
 checkpointing, consumer group coordination</strong> — all for correlation logic that

@@ -183,10 +183,12 @@ an external actor at any future time — seconds, hours, or months later.</p>
 </div>
 <div class="paragraph">
 <p><strong>Intent.</strong> A workflow needs to pause and wait for something that happens
-outside the system&#8217;s control: a human approval, a webhook callback, a payment
-confirmation, a signed document. The Durable Promise suspends execution at a
-named point, persists the suspension durably, and resumes only when an external
-actor signals fulfillment — or a deadline expires.</p>
+outside the system&#8217;s control — such as a human approval, a webhook callback, a
+payment confirmation, or a decision from an AI agent. The Durable Promise
+suspends execution at a named point, persists the suspension durably, and
+resumes only when an external actor signals fulfillment — or a deadline
+expires. This is the foundational <em>human-in-the-loop</em> pattern for durable
+execution.</p>
 </div>
 <div class="paragraph">
 <p><strong>Motivation.</strong> An employee submits an expense report. Their manager must
@@ -211,7 +213,7 @@ system can&#8217;t speed it up. It can only wait.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The Awaiting Workflow is a durable workflow that reaches a point where it can&#8217;t
+<p>The Awaiting Workflow is a workflow that reaches a point where it can&#8217;t
 proceed without external input. It registers a handler for external messages (a <em>signal handler</em> in Temporal) and blocks —
 durably. The runtime persists the workflow&#8217;s event history, so the process can
 <strong>wait for days or weeks without consuming resources</strong>. The External Actor is whatever
@@ -346,6 +348,12 @@ one signal (approve or reject) but the external system sends both (a UI bug, a
 webhook retry), the workflow must handle the duplicate. The <code>approve()</code> and
 <code>reject()</code> methods in the example overwrite <code>approvalResult</code>, so the last
 signal wins. Whether that&#8217;s correct depends on your business rules.</p>
+</div>
+<div class="paragraph">
+<p>A single workflow may involve <strong>multiple applications of the Durable Promise
+pattern</strong>. An expense report workflow, for instance, might block on one promise
+awaiting the employee&#8217;s submission, then on a second promise awaiting the
+manager&#8217;s approval, each with its own deadline.</p>
 </div>
 <div class="paragraph">
 <p><strong>Distinction from the Entity.</strong> Both patterns receive signals, but the Entity

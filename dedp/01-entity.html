@@ -185,7 +185,7 @@ long-lived durable execution, accessed exclusively through typed messages.</p>
 <p><strong>Intent.</strong> A domain object needs mutable state that survives pod restarts,
 deploys, and infrastructure failures — without an external database. The Entity
 pattern places that state, along with the command handlers that mutate it and
-the query handlers that read it, inside a single durable workflow identified by
+the query handlers that read it, inside a single workflow identified by
 a stable business key.</p>
 </div>
 <div class="paragraph">
@@ -393,9 +393,9 @@ func (a *CartActivities) ReserveInventory(ctx context.Context, items []CartItem)
 </div>
 </div>
 <div class="paragraph">
-<p><strong>Consequences.</strong> The Entity pattern eliminates the database, the service
-layer, and the scheduler as separate systems. The workflow runtime replaces all
-three. But the trade-offs are real and worth understanding before adopting this
+<p><strong>Consequences.</strong> The Entity pattern eliminates the need to store and manage state in an application database, and collapses the service
+layer and the scheduler into a single construct. The workflow runtime replaces all
+three. (You may still want an OLAP database for analytic queries across many entities — the pattern removes the operational store, not the analytical one.) But the trade-offs are real and worth understanding before adopting this
 pattern.</p>
 </div>
 <div class="paragraph">
@@ -403,7 +403,7 @@ pattern.</p>
 every activity completion — each generates events in the workflow&#8217;s history.
 (Queries do not; they are handled synchronously without modifying history.) A cart
 that receives thousands of add/remove operations will accumulate a large
-history. Durable execution platforms enforce a configurable maximum history size (Temporal&#8217;s default is 50,000
+history. Durable execution platforms enforce a configurable maximum history size (Temporal&#8217;s default is 50K
 events). Long-lived entities must use <code>ContinueAsNew</code> to periodically compact
 their history — <a href="08-perpetual-execution.html" class="xref page">Perpetual Execution</a> covers this in detail.</p>
 </div>
@@ -474,7 +474,7 @@ application read models.</p>
 state in a local execution cache (Temporal calls this the <em>sticky execution cache</em>) — a bounded, in-memory cache of recently
 active workflows. When the cache is full, the worker evicts the least recently
 used workflows. If a signal or query arrives for an evicted workflow, the worker
-replays its event history from the server to reconstruct the state before
+replays its event history from the Temporal Service to reconstruct the state before
 processing the request. This adds latency on the first access after eviction,
 but the state is always correct — replay is deterministic. Unlike a traditional
 cache, there are no invalidation bugs and no stale reads. The cache size is
