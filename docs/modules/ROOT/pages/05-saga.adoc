@@ -9,19 +9,19 @@ ____
 **Intent.** A business transaction spans multiple services. Each step has a
 compensating action that undoes it. If any step fails, previously completed
 steps must be compensated in reverse order. The Saga maintains a compensation
-stack inside a durable workflow, ensuring reliable rollback without distributed
+stack inside a workflow, ensuring reliable rollback without distributed
 transactions.
 
 **Motivation.** A customer books a trip: reserve a flight, reserve a hotel,
 charge payment. Three different services, three different APIs, no shared
 database, no two-phase commit. If the payment charge fails after the flight and
 hotel are reserved, both reservations must be cancelled. If the hotel
-cancellation itself fails (the hotel API is down), the cancellation must be
+cancellation itself fails (e.g., the hotel API is down), the cancellation must be
 retried until it succeeds. The customer can't end up with a hotel reservation
 they were never charged for, or a flight reservation that nobody knows about.
 
 This is the classic distributed transaction problem, and the Saga pattern —
-originally described by Garcia-Molina and Salem in 1987 — is the standard
+originally described by Garcia-Molina and Salem in 1987 footnote:[Hector Garcia-Molina and Kenneth Salem, "Sagas," _ACM SIGMOD Record_, 1987. https://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf] — is the standard
 solution for systems that can't use two-phase commit. The insight is that each
 forward action has a compensating action (reserve flight / cancel flight), and
 these compensations must execute in **reverse order** on failure. Reverse order
@@ -42,12 +42,13 @@ is a durable step (an _activity_ in Temporal) with a timeout and retry policy. A
 the workflow pushes the corresponding compensating action onto a **compensation
 stack** — a LIFO structure that ensures reverse-order execution on failure.
 Compensations are the inverse operations (cancel flight, cancel hotel, refund
-payment). Each compensation must be **idempotent**, because the runtime may
-retry it if the worker crashes during compensation execution.
+payment). As with each step in the forward flow, each compensation must be
+**idempotent**, because the runtime may retry it if the worker crashes before
+its execution is complete.
 
 **Traditionally,** the two common approaches are choreography and custom
 orchestration, and both have significant drawbacks. In choreography, each
-service listens for events and emits events through a message broker (Kafka,
+service listens for events and emits events through a message broker (Apache Kafka,
 RabbitMQ), scattering the saga's logic across services — there's no single
 place showing the booking's current state, and adding a new step means updating
 event handlers in multiple services. A custom orchestrator centralizes

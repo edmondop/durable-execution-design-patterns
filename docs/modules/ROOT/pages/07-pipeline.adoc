@@ -2,7 +2,7 @@
 
 [quote]
 ____
-Process items through sequential stages where each completed stage is a durable
+Process items through sequential stages where each completed stage is an automatic
 checkpoint — and orchestrate thousands of such pipelines in parallel with
 per-item visibility, retry, and human-in-the-loop stages.
 ____
@@ -11,8 +11,8 @@ ____
 stages — some automated, some involving external APIs with rate limits, some
 requiring human judgment. Each item must progress independently: if item #7,432
 fails at stage 3, only that item retries. A parent workflow orchestrates the
-fan-out and tracks aggregate progress. The Pipeline pattern makes each stage a
-durable checkpoint and each item an independent child workflow.
+fan-out and tracks aggregate progress. The Pipeline pattern makes each stage an
+automatic checkpoint and each item an independent child workflow.
 
 **Motivation.** An insurance company receives 10,000 claims per day. Each
 claim is a bundle of documents — photos of damage, repair estimates, police
@@ -55,10 +55,10 @@ adjuster Smith."
 The parent controls concurrency. Instead of launching 10,000 child workflows
 simultaneously (which would overwhelm the fraud-scoring API), it fans out in
 batches — 500 at a time, for example — respecting downstream rate limits. The
-parent itself is a durable workflow, so if _it_ crashes mid-fan-out, it
+parent itself is a workflow, so if _it_ crashes mid-fan-out, it
 replays and resumes from the last batch it launched.
 
-**Traditionally,** you'd reach for a DAG scheduler like Airflow. But Airflow
+**Traditionally,** you'd reach for a DAG scheduler like Apache Airflow. But Airflow
 processes _batches_, not items. The "fraud scoring" task in an Airflow DAG
 scores all 10,000 claims as a single task. If claim #7,432 fails, Airflow
 retries the entire task — or you build per-item tracking inside the task
@@ -76,13 +76,15 @@ them sequentially. Checkpointing is automatic:
 include::{examplesdir}/ch07-pipeline/python/workflow.py[tag=pipeline]
 ----
 
-Each `await workflow.execute_activity(...)` call is a durable checkpoint. When
-`parse_csv` completes, the runtime records its result — the `ParseResult`
-dataclass — in the workflow's event history. If the worker crashes after
-`validate_schema` but before `enrich_records`, the runtime assigns the workflow
-to a new worker, replays the code, returns the cached results of `parse_csv`
-and `validate_schema` without calling them again, and resumes at the
-`enrich_records` call.
+Each `await workflow.execute_activity(...)` call is an automatic checkpoint. When
+`parse_csv` completes, the system records its result — the `ParseResult`
+dataclass — in the workflow's event history. If the worker crashes between
+`validate_schema` and `enrich_records`, the system assigns this workflow
+execution to another worker, which retrieves the event history and reconstructs
+the state by replaying the workflow code — using cached results for the
+`parse_csv` and `validate_schema` activities that completed previously. At that
+point the state matches what it was before the crash, and execution resumes with
+the `enrich_records` call.
 
 The code example shows a simplified ETL pipeline to keep the listing readable,
 but the structure maps directly to the insurance scenario: replace `parse_csv`
@@ -114,18 +116,18 @@ replay from history instantly and only the failed stage re-executes.
 **Consequences.** The Pipeline pattern gives you **two levels of
 observability** that DAG schedulers don't provide natively. The parent answers
 "did we handle yesterday's claims?" The children answer "what happened to this
-specific claim?" Both are queryable through the runtime — no separate status-tracking
+specific claim?" Both are queryable through the system — no separate status-tracking
 database required.
 
 The primary constraint is **fan-out scale**. Each child workflow has its own
-event history. 10,000 children with 6 stages each means 60,000+ history
-events across the system. This is well within a typical durable execution platform's capacity, but at
+event history, and each individual execution stays well within the 50K event
+history limit. But the sheer number of child workflows matters — at
 100,000+ children you should consider hierarchical decomposition: a parent
 fans out to 100 sub-parents, each managing 1,000 children.
 
 **Payload size** is another consideration. Activity inputs and outputs are
 serialized into the event history. Each activity result must be serializable
-and must fit within the runtime's payload size limit (4 MB for Temporal's gRPC
+and must fit within the system's payload size limit (4 MB for Temporal's gRPC
 messages). For stages that produce large intermediate results, the activity
 should write to external storage (S3, a staging table) and return a
 _reference_ — a file path or table name — rather than the data itself.

@@ -9,7 +9,7 @@ ____
 **Intent.** A domain object needs mutable state that survives pod restarts,
 deploys, and infrastructure failures — without an external database. The Entity
 pattern places that state, along with the command handlers that mutate it and
-the query handlers that read it, inside a single durable workflow identified by
+the query handlers that read it, inside a single workflow identified by
 a stable business key.
 
 **Motivation.** Consider an e-commerce shopping cart. A customer opens a
@@ -112,16 +112,16 @@ the loop exits, before the workflow returns. The activity signatures:
 include::{examplesdir}/ch01-entity/go/activities.go[tag=entity_activities]
 ----
 
-**Consequences.** The Entity pattern eliminates the database, the service
-layer, and the scheduler as separate systems. The workflow runtime replaces all
-three. But the trade-offs are real and worth understanding before adopting this
+**Consequences.** The Entity pattern eliminates the need to store and manage state in an application database, and collapses the service
+layer and the scheduler into a single construct. The workflow runtime replaces all
+three. (You may still want an OLAP database for analytic queries across many entities — the pattern removes the operational store, not the analytical one.) But the trade-offs are real and worth understanding before adopting this
 pattern.
 
 The most immediate constraint is **event history**. Every signal, every timer,
 every activity completion — each generates events in the workflow's history.
 (Queries do not; they are handled synchronously without modifying history.) A cart
 that receives thousands of add/remove operations will accumulate a large
-history. Durable execution platforms enforce a configurable maximum history size (Temporal's default is 50,000
+history. Durable execution platforms enforce a configurable maximum history size (Temporal's default is 50K
 events). Long-lived entities must use `ContinueAsNew` to periodically compact
 their history — xref:08-perpetual-execution.adoc[Perpetual Execution] covers this in detail.
 
@@ -185,7 +185,7 @@ The **in-memory state model** has its own nuance. The worker keeps workflow
 state in a local execution cache (Temporal calls this the _sticky execution cache_) — a bounded, in-memory cache of recently
 active workflows. When the cache is full, the worker evicts the least recently
 used workflows. If a signal or query arrives for an evicted workflow, the worker
-replays its event history from the server to reconstruct the state before
+replays its event history from the Temporal Service to reconstruct the state before
 processing the request. This adds latency on the first access after eviction,
 but the state is always correct — replay is deterministic. Unlike a traditional
 cache, there are no invalidation bugs and no stale reads. The cache size is

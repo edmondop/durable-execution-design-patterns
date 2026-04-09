@@ -31,6 +31,7 @@ public class BillingWorkflowImpl implements BillingWorkflow {
                 state.amount(),
                 state.cycleCount() + 1);
 
+        // In production, typically called conditionally based on history size
         Workflow.continueAsNew(nextState);
     }
     // end::perpetual_execution[]

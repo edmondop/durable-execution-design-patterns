@@ -46,7 +46,10 @@ image::ch04-execution-singleton.svg[Execution Singleton pattern,width=70%]
 The core idea is a workflow whose ID is **deterministically derived from the
 business key** — `payment-pass:[{payment_id}]`, for example. The workflow engine
 enforces a hard constraint: at most one active workflow with a given ID can exist at any
-time. A second start request with the same ID is **rejected by default**
+time. This uniqueness spans **all workflow types**, not just the same type — a
+`payment-123` workflow and a `refund-123` workflow would not collide, but two
+workflows of _any_ type both using ID `123` would. This is why type-specific
+prefixes like `payment-pass:[{id}]` are a best practice. A second start request with the same ID is **rejected by default**
 — the caller receives a duplicate-start error (`WorkflowExecutionAlreadyStarted` in Temporal). This is the
 deduplication guarantee: the caller handles the rejection and can query or await
 the existing execution instead of starting a duplicate.
@@ -86,7 +89,7 @@ already-running workflow instead of creating a duplicate.
 
 The uniqueness guarantee isn't based on TTLs or wall-clock time. It's a
 property of the workflow's lifecycle: **the ID is occupied from the moment the
-workflow starts until it completes** (or is terminated). There's no expiry
+workflow starts until it ends**. There's no expiry
 window, no GC-pause vulnerability, no split-brain scenario. If the worker
 crashes during `processPayment`, the workflow engine replays execution on
 another worker and continues — the ID remains occupied throughout.
@@ -119,8 +122,11 @@ Another consideration: the Execution Singleton guarantees that only one workflow
 with a given ID is _active_, but it doesn't prevent concurrent _starts_ from
 racing. Two clients can both call `StartWorkflow` at the same instant. The
 platform ensures only one succeeds, but both clients may need to handle the
-"already exists" response. The duplicate-start error (`WorkflowExecutionAlreadyStarted` in Temporal, or its
-SDK-specific equivalent) is the expected response, not an exceptional condition.
+"already exists" response. Note that a duplicate start doesn't always produce an
+error — the behavior is configurable. Some platforms and SDK configurations
+return a handle to the existing execution instead of raising an error (Temporal's
+`USE_EXISTING` conflict policy, for example). Either way, the duplicate-start
+response is the expected outcome, not an exceptional condition.
 
 **Distinction from the Entity.** Both patterns use a deterministic workflow ID
 derived from a business key, and they're almost always combined. The difference

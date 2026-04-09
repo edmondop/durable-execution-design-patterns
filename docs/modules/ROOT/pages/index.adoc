@@ -112,8 +112,8 @@ solutions — patterns — that are worth naming, documenting, and reusing.
 The examples use https://temporal.io[Temporal]. I am a member of the
 https://temporal.io/community#702702[Temporal Constellation program], and I
 chose Temporal because it is the most flexible and complete implementation of
-the durable execution model available today. Each chapter uses a different
-Temporal SDK language — Go, Java, Python, TypeScript, .NET — to show that these
+the durable execution model available today. Each pattern uses a different
+Temporal SDK language — Go, Java, Python, TypeScript, C# — to show that these
 patterns are not language-specific.
 
 The patterns themselves are platform-agnostic. Other durable execution

@@ -14,7 +14,7 @@ completed work.
 **Motivation.** A customer searches for flights from San Francisco to London on
 a travel aggregation site. The system needs to query five airline APIs in
 parallel: United, Delta, American, Southwest, JetBlue. Each API has different
-latency characteristics. United responds in 200ms. JetBlue takes 3 seconds.
+latency characteristics. United responds in 200ms. JetBlue takes three seconds.
 American occasionally times out entirely. The customer expects results within a
 few seconds, and they expect to see whatever came back, not an all-or-nothing
 error because one airline was slow.
@@ -89,7 +89,7 @@ loop promptly. If you need to continue processing after a deadline (e.g., log
 which airlines timed out), collect the remaining futures separately.
 
 This is where durable execution earns its keep. If the worker crashes after
-collecting three results but before the deadline, the runtime replays the
+collecting three results but before the deadline is reached, the runtime replays the
 workflow on another worker. During replay, the three completed activities are
 **not re-executed** — their results are read from the event history, which
 effectively makes them free. Only the two pending activities actually run
@@ -106,8 +106,8 @@ first-class workflow timer, not a background job that checks timestamps.
 The main constraint is **fan-out degree**. Each activity generates events in
 the workflow's history: a scheduled event, a started event, and a completed (or
 failed) event. For five airline queries, that's 15 events — negligible. For
-10,000 parallel tasks (a map-reduce job over many shards), the history grows to
-30,000+ events, which approaches or exceeds the default history limit (50,000 events by default in Temporal). At that
+10,000 parallel tasks (a map-reduce job over many records), the history grows to
+30,000+ events, which approaches or exceeds the default history limit (50K events by default in Temporal). At that
 scale, you need hierarchical decomposition: a coordinator that fans out to 100
 child workflows, each of which fans out to 100 activities.
 
