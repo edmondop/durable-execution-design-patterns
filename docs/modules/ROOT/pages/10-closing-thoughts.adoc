@@ -34,7 +34,7 @@ rule because violating it causes `NonDeterminismError` on replay.
 Functional programmers have a name for this rule: **purity**. A pure
 function has no side effects and exhibits referential transparency —
 you can replace a function call with its result without changing the
-program's behavior. The requirement is mechanical, not philosophical. If `f(x)` can return different values on
+program's behavior. If `f(x)` can return different values on
 different calls, you can't cache its result and replay it later. If
 `f(x)` mutates global state, replaying it changes the world twice.
 
@@ -75,7 +75,7 @@ runtime receives the command, dispatches the activity to a worker,
 records the result in the event history, and returns it to the workflow.
 The workflow described the effect. The runtime executed it.
 
-The correspondence is structural, not metaphorical:
+The same architectural pattern appears in both:
 
 [cols="1,1",options="header"]
 |===
