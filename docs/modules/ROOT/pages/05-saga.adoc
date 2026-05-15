@@ -22,7 +22,7 @@ they were never charged for, or a flight reservation that nobody knows about.
 
 This is the classic distributed transaction problem, and the Saga pattern —
 originally described by Garcia-Molina and Salem in 1987 footnote:[Hector Garcia-Molina and Kenneth Salem, "Sagas," _ACM SIGMOD Record_, 1987. https://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf] — is the standard
-solution for systems that can't use two-phase commit. The insight is that each
+solution for systems that can't use two-phase commit. Each
 forward action has a compensating action (reserve flight / cancel flight), and
 these compensations must execute in **reverse order** on failure. Reverse order
 matters because later steps may depend on earlier ones still being in place.
@@ -97,9 +97,9 @@ Compensations must be **idempotent**. If the runtime retries
 `CancelFlightAsync` because the worker crashed after the cancellation API call
 returned but before the result was persisted, the flight service must handle the
 duplicate cancellation request gracefully — returning success without cancelling
-again. This isn't unique to the Saga pattern; it's a universal requirement for
-compensating actions. But it's worth emphasizing because the durable execution
-runtime makes retries invisible, which can create a false sense of safety if
+again. This requirement applies to all compensating actions, not just Sagas.
+The durable execution runtime makes retries invisible, which can create a
+false sense of safety if
 your compensations aren't idempotent. Compensations should also use
 **aggressive retry policies** — a compensation that fails permanently leaves the
 system in a partially rolled-back state, which is worse than no rollback at all.

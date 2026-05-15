@@ -92,7 +92,7 @@ monitor at any time. An operations dashboard can query all fraud-monitor
 workflows to show which accounts are under observation, how many events have
 been collected, and whether any alerts have triggered.
 
-**Consequences.** The Durable Observer replaces streaming infrastructure
+**Consequences.** With the Durable Observer, you replace streaming infrastructure
 (Kafka + Flink + state backend) with workflows and signals. For moderate event
 volumes — tens of events per minute per account, thousands of monitored
 accounts — this is operationally simpler and uses infrastructure you already
@@ -116,7 +116,7 @@ forward only the relevant events.
 
 **Distinction from the Entity.** The Durable Observer is structurally similar
 to the Entity (xref:01-entity.adoc[Chapter 1]) — both are long-running workflows that receive
-signals and maintain state. The distinction is purpose. The Entity models a
+signals and maintain state, but they serve different purposes. The Entity models a
 domain _object_ (a cart, a device, a session) and its signals are commands that
 mutate its state. The Observer monitors a stream of _events_ and its signals
 carry observations evaluated against rules. The Entity's output is its own

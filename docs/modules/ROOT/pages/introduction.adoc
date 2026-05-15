@@ -1,7 +1,6 @@
 == Introduction: The Pattern Language of Durable Execution
 
-In 1977, Christopher Alexander published _A Pattern Language_. His insight was
-deceptively simple: a pattern is not a recipe. It is a named tension and its
+In 1977, Christopher Alexander published _A Pattern Language_. His insight: a pattern is not a recipe. It is a named tension and its
 resolution. A recurring problem, the forces that shape it, and a structural
 response that resolves those forces.
 
@@ -53,12 +52,10 @@ Durable execution is not on this timeline because **it is not a pattern — it i
 foundation for building applications**. Amazon SWF introduced the core idea as
 early as 2012. Durable execution's value is most visible after the application
 is running in production, although it also influences application design by
-eliminating complexity. The insight that matters for this book is what that
-foundation _enables_: a new family of design patterns where **the runtime handles
+eliminating complexity. What that foundation _enables_ is a new family of design patterns where **the runtime handles
 state persistence, crash recovery, retries, and coordination**. Patterns that
 previously required pages of infrastructure code collapse into a few lines of
-workflow logic. Durable execution does not add a new layer of patterns on top of
-existing complexity. It **_removes_ complexity**.
+workflow logic. Durable execution **_removes_ complexity** rather than adding a new layer on top.
 
 === What Is a Durable Execution Pattern?
 
@@ -246,8 +243,8 @@ code examples follow this rule implicitly; now you know why.
 === The Nine Patterns
 
 At first glance, these patterns might look similar — they all involve
-workflows, and they all solve problems in distributed systems. The difference is
-in **_what_ each pattern holds durable** and **_why_**.
+workflows, and they all solve problems in distributed systems. They differ in
+**_what_ each pattern holds durable** and **_why_**.
 
 An Entity holds mutable state behind an API of signals and queries. A Saga holds
 a sequence of side effects paired with compensations. A Pipeline holds a chain

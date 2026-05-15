@@ -140,7 +140,7 @@ within a timeout.
 
 **Distinction from Code-as-State.** Code-as-State (xref:02-code-as-state.adoc[Chapter 2]) and the Pipeline
 are structurally identical — both are sequential workflows where each `await` is
-a checkpoint. The distinction is intent. Code-as-State models a business
+a checkpoint. Code-as-State models a business
 _process_ (order fulfillment, onboarding). The Pipeline models a data
 _transformation_ where each stage takes input data and produces output data for
 the next stage. The Pipeline adds the parent/child fan-out dimension that

@@ -27,8 +27,8 @@ depend on the Delta query), partial results are **useful** (four out of five
 prices is still a good comparison), and the aggregation has a **deadline** (the
 customer won't wait forever).
 
-The difficulty isn't in the parallelism itself — most languages have thread
-pools and futures. The difficulty is in what happens when things go wrong. If
+Most languages handle parallelism fine with thread pools and futures. The
+hard part is failure recovery. If
 the aggregator process crashes after receiving three out of five results, those
 three results are lost unless you've persisted them somewhere. If you add a
 database to persist partial results, you need correlation IDs to link each
@@ -88,7 +88,7 @@ this doesn't matter, but it means the pattern relies on breaking out of the
 loop promptly. If you need to continue processing after a deadline (e.g., log
 which airlines timed out), collect the remaining futures separately.
 
-This is where durable execution earns its keep. If the worker crashes after
+If the worker crashes after
 collecting three results but before the deadline is reached, the runtime replays the
 workflow on another worker. During replay, the three completed activities are
 **not re-executed** — their results are read from the event history, which

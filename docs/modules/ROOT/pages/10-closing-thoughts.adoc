@@ -34,8 +34,7 @@ rule because violating it causes `NonDeterminismError` on replay.
 Functional programmers have a name for this rule: **purity**. A pure
 function has no side effects and exhibits referential transparency —
 you can replace a function call with its result without changing the
-program's behavior. That's not a philosophical preference. It's a
-mechanical requirement. If `f(x)` can return different values on
+program's behavior. The requirement is mechanical, not philosophical. If `f(x)` can return different values on
 different calls, you can't cache its result and replay it later. If
 `f(x)` mutates global state, replaying it changes the world twice.
 
@@ -67,8 +66,7 @@ In ZIO, you don't write `println("Order confirmed")`. You write
 `Console.printLine("Order confirmed")`, which returns a `ZIO[Any,
 IOException, Unit]` — a **description** of an effect, not the effect
 itself. The ZIO runtime decides _when_ and _how_ to execute it. This
-separation of description from execution is the core idea behind every
-effect system.
+separation of description from execution defines effect systems.
 
 Activities are the same thing. When a workflow calls
 `await execute_activity(charge_payment, order)`, it doesn't charge the
@@ -77,7 +75,7 @@ runtime receives the command, dispatches the activity to a worker,
 records the result in the event history, and returns it to the workflow.
 The workflow described the effect. The runtime executed it.
 
-This isn't an analogy. It's the same architectural pattern:
+The correspondence is structural, not metaphorical:
 
 [cols="1,1",options="header"]
 |===
@@ -97,7 +95,7 @@ history. **Replay is just a different interpreter for the same program.**
 
 ==== Event Replay Is Re-Interpretation: The Free Monad Connection
 
-This brings us to the deepest parallel: the **Free Monad**.
+The deepest parallel is the **Free Monad**.
 
 If you attended Runar Bjarnason's talks in the early 2010s or worked
 through _Functional Programming in Scala_ (the Red Book), you'll
@@ -151,7 +149,7 @@ the first interpreter has already run — the second interpreter finds
 commands in the history that don't match the program, and it rightfully
 panics.
 
-This isn't a loose metaphor. The structural correspondence is exact:
+The structural correspondence is exact:
 
 - The workflow function = the Free program (a sequence of effect descriptions)
 - Activity calls = the effect constructors (the AST nodes)
