@@ -68,8 +68,8 @@ The key line is the `Workflow.await` call — a condition and a deadline in a
 single expression. This replaces the database row, the cron job, and the race
 condition between them. The runtime blocks the workflow until
 either the condition becomes true (a signal sets `approvalResult`) or the
-duration expires. There's no polling. **The workflow consumes no resources
-while waiting.** If the worker restarts during the wait, the runtime
+duration expires. The runtime blocks the workflow without polling or consuming resources
+while waiting. If the worker restarts during the wait, the runtime
 reconstructs the timer and the signal handler from the event history and
 continues.
 
@@ -86,8 +86,7 @@ workflow takes the expiration path.
 **Consequences.** The Durable Promise eliminates polling infrastructure
 entirely. A workflow can wait for a signal for days, weeks, or months without
 consuming compute resources and without a database table tracking its pending
-state. The deadline is a first-class concept, not a cron job bolted on after
-the fact.
+state. The deadline is a first-class runtime concept rather than a cron job bolted on separately.
 
 The trade-off is that the external actor must know the **workflow ID and the
 message type** (the _signal name_ in Temporal). This is straightforward when the actor is your own UI (the

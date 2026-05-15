@@ -9,8 +9,7 @@ ____
 **Intent.** Some processes must run forever: subscription billing, monitoring
 agents, rate limiters, cron replacements. Workflows accumulate event
 history with every activity, signal, and timer, and that history eventually
-degrades replay performance and approaches platform limits. The Perpetual
-Execution pattern uses a continue-as-new mechanism (`ContinueAsNew` in Temporal) to periodically compact history while
+degrades replay performance and approaches platform limits. You use a continue-as-new mechanism (`ContinueAsNew` in Temporal) to periodically compact history while
 preserving the workflow's logical continuity.
 
 **Motivation.** A SaaS company charges subscribers monthly. Each subscriber has
@@ -25,7 +24,7 @@ completed). After 48 cycles,
 the history has hundreds of events. A billing _system_ managing millions of
 subscribers will have workflows at every age — even moderate 3-5 year
 subscriptions accumulate thousands of events, and the fleet-wide distribution
-always includes workflows with very large histories.
+will include workflows with very large histories.
 
 Durable execution platforms impose history size limits — Temporal's default is 50K events per workflow execution, and replay
 time is proportional to history size. Long before you hit the hard limit, replay

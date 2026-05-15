@@ -19,8 +19,7 @@ The interaction spans minutes to days. The cart has identity (one per customer
 session), mutable state (the line items, quantities, and applied discounts),
 and a lifecycle (active until checkout, expiration, or explicit abandonment).
 
-This is not a request-response problem. The cart is a _thing_ — a long-lived
-object with behavior. It accepts commands ("add this item," "apply this
+The cart is a long-lived object with behavior, not a request-response interaction. It accepts commands ("add this item," "apply this
 coupon"), answers queries ("what is in the cart right now?"), and eventually
 reaches a terminal state. If you squint, it looks like an object in the
 object-oriented sense: encapsulated state, a public interface, a lifetime
@@ -114,8 +113,7 @@ include::{examplesdir}/ch01-entity/go/activities.go[tag=entity_activities]
 
 **Consequences.** The Entity pattern eliminates the need to store and manage state in an application database, and collapses the service
 layer and the scheduler into a single construct. The workflow runtime replaces all
-three. (You may still want an OLAP database for analytic queries across many entities — the pattern removes the operational store, not the analytical one.) But the trade-offs are real and worth understanding before adopting this
-pattern.
+three. (You may still want an OLAP database for analytic queries across many entities — the pattern removes the operational store, not the analytical one.) But the trade-offs are real.
 
 The most immediate constraint is **event history**. Every signal, every timer,
 every activity completion — each generates events in the workflow's history.

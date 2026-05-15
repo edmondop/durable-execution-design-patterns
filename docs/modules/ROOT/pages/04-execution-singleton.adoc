@@ -87,8 +87,7 @@ runtime rejects the duplicate start. The caller catches the
 duplicate-start error and can query or await the
 already-running workflow instead of creating a duplicate.
 
-The uniqueness guarantee isn't based on TTLs or wall-clock time. It's a
-property of the workflow's lifecycle: **the ID is occupied from the moment the
+The uniqueness guarantee is a property of the workflow's lifecycle, not TTLs or wall-clock time: **the ID is occupied from the moment the
 workflow starts until it ends**. There's no expiry
 window, no GC-pause vulnerability, no split-brain scenario. If the worker
 crashes during `processPayment`, the workflow engine replays execution on
